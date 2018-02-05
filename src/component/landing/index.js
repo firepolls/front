@@ -6,7 +6,8 @@ import React, { Component, Fragment } from 'react';
 
 import AuthForm from '../auth-form';
 import SocketForm from '../socket-form';
-import { createRoomEmit, joinRoomEmit, sendPoll } from '../../lib/socket';
+import * as owner from '../../socket/owner';
+import * as voter from '../../socket/voter';
 import { signupAction, loginAction, logoutAction } from '../../action/auth';
 
 class Landing extends Component {
@@ -24,10 +25,10 @@ class Landing extends Component {
           <button onClick={() => this.props.logout(this.props.socket)}>Logout</button>
         </div>
         <h3>Create</h3>
-        <SocketForm type="create" socket={this.props.socket} onComplete={createRoomEmit} />
+        <SocketForm type="create" socket={this.props.socket} onComplete={owner.createRoomEmit} />
         <h3>Join</h3>
-        <SocketForm type="join" socket={this.props.socket} onComplete={joinRoomEmit} />
-        <button onClick={() => sendPoll(this.props.socket)} >send poll</button>
+        <SocketForm type="join" socket={this.props.socket} onComplete={voter.joinRoomEmit} />
+        <button onClick={() => owner.sendPoll(this.props.socket)} >send poll</button>
       </Fragment>
     );
   }
