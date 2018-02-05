@@ -1,0 +1,80 @@
+{
+  "name": "fire-polls-front",
+  "version": "1.0.0",
+  "description": "firepolls.com front end React and Socket.io",
+  "main": "index.js",
+  "engines": {
+    "node": "8.4.0"
+  },
+  "scripts": {
+    "test": "jest -i --coverage",
+    "lint": "eslint .",
+    "watch": "webpack-dev-server --inline --hot",
+    "start": "node index.js",
+    "build": "webpack",
+    "heroku-postbuild": "webpack",
+    "bs": "webpack && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firepolls/front.git"
+  },
+  "keywords": [
+    "poll",
+    "quiz",
+    "test",
+    "formative",
+    "data"
+  ],
+  "author": "Anthony Robinson && Pedja Josifovic && Kerry Nordstrom && Seth Donohue && Robert Reed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/firepolls/front/issues"
+  },
+  "homepage": "https://github.com/firepolls/front#readme",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.18",
+    "css-loader": "^0.28.9",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "resolve-url-loader": "^2.2.1",
+    "sass-loader": "^6.0.6",
+    "serve-favicon": "^2.4.5",
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.0.4",
+    "style-loader": "^0.20.1",
+    "superagent": "^3.8.2",
+    "uglifyjs-webpack-plugin": "^1.1.8",
+    "url-loader": "^0.6.2",
+    "validator": "^9.4.0",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "jest": "^22.1.4"
+  }
+}
