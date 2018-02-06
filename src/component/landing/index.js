@@ -17,10 +17,11 @@ class Landing extends Component {
 
   handleAddPoll = () => {
     const question = prompt('type your question');
+    const poll = new Poll(question);
     // Anthony - emit poll to voters
-    owner.sendPoll(this.props.socket, question);
+    owner.createPoll(this.props.socket, poll);
     // Anthony - add poll to state
-    this.props.addPoll(new Poll(question));
+    this.props.addPoll(poll);
   };
 
   render() {

@@ -29,6 +29,6 @@ export const createRoomEmit = (socket, room) => {
 };
 
 // Anthony - Send poll creation request to server and emit to voters.
-export const sendPoll = (socket, question) => {
-  socket.emit('send poll', question);
+export const createPoll = (socket, poll) => {
+  socket.emit('create poll', poll);
 };
