@@ -6,7 +6,8 @@ import React, { Component, Fragment } from 'react';
 
 import AuthForm from '../auth-form';
 import Poll from '../../socket/poll';
-import PollItem from '../poll-item';
+import PollList from '../poll-list';
+
 import SocketForm from '../socket-form';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
@@ -51,10 +52,7 @@ class Landing extends Component {
         <h3>Join</h3>
         <SocketForm type="join" socket={this.props.socket} onComplete={voter.joinRoomEmit} />
         <button onClick={this.handleAddPoll} >send poll</button>
-
-        {pollitemJSX}
-
-        
+        <PollList room={this.props.room} />
       </Fragment>
     );
   }
