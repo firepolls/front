@@ -6,6 +6,7 @@ import React, { Component, Fragment } from 'react';
 
 import AuthForm from '../auth-form';
 import Poll from '../../socket/poll';
+import PollItem from '../poll-item';
 import SocketForm from '../socket-form';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
@@ -27,15 +28,10 @@ class Landing extends Component {
   };
 
   render() {
-    if (this.props.room && this.props.room.owner && this.props.room.polls[0]) {
-      console.log(this.props.room);
-      console.log(this.props.room.polls[0]);
-    }
-
-    const meterJSX = this.props.room && this.props.room.owner && this.props.room.polls[0] ?
+    const pollitemJSX = this.props.room && this.props.room.owner && this.props.room.polls[0] ?
       (
         <div>
-          <Meter results={this.props.room.polls[0].results} /> 
+          <PollItem poll={this.props.room.polls[0]} /> 
         </div>
       )
       : null;
@@ -56,7 +52,8 @@ class Landing extends Component {
         <SocketForm type="join" socket={this.props.socket} onComplete={voter.joinRoomEmit} />
         <button onClick={this.handleAddPoll} >send poll</button>
 
-        {meterJSX}
+        {pollitemJSX}
+
         
       </Fragment>
     );
