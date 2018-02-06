@@ -5,8 +5,11 @@ import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 
 import AuthForm from '../auth-form';
+import Poll from '../../socket/poll';
 import SocketForm from '../socket-form';
-import { createRoomEmit, joinRoomEmit, sendPoll } from '../../lib/socket';
+import * as owner from '../../socket/owner';
+import * as voter from '../../socket/voter';
+import { addPollAction } from '../../action/room';
 import { signupAction, loginAction, logoutAction } from '../../action/auth';
 import Meter from '../meter'; 
 import testResults from './results';
@@ -14,29 +17,19 @@ import testResults from './results';
 class Landing extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      r1: .2,
-      r2: .8,
-      r3: .2,
-      r4: .5,
-    };
+    this.state = {};
   } // only here to appease the linter
 
-  componentDidMount() {
-    this.animateMeter = setInterval(
-      () => this.animate(),
-      500
-    );
-  }
 
-  animate() {
-    this.setState({
-      r1: Math.random(),
-      r2: Math.random(),
-      r3: Math.random(),
-      r4: Math.random(),
-    });
-  }
+  handleAddPoll = () => {
+    const question = prompt('type your question');
+    const poll = new Poll(question);
+    // Anthony - emit poll to voters
+    owner.createPoll(this.props.socket, poll);
+    // Anthony - add poll to state
+    this.props.addPoll(poll);
+  };
+
   render() {
     return (
       <Fragment>
@@ -49,14 +42,19 @@ class Landing extends Component {
           <button onClick={() => this.props.logout(this.props.socket)}>Logout</button>
         </div>
         <h3>Create</h3>
-        <SocketForm type="create" socket={this.props.socket} onComplete={createRoomEmit} />
+        <SocketForm type="create" socket={this.props.socket} onComplete={owner.createRoomEmit} />
         <h3>Join</h3>
         <SocketForm type="join" socket={this.props.socket} onComplete={joinRoomEmit} />
         <button onClick={() => sendPoll(this.props.socket)} >send poll</button>
-        <Meter percent={this.state.r1} animate={true} />
-        <Meter percent={this.state.r2} animate={true} />
-        <Meter percent={this.state.r3} animate={true} />
-        <Meter percent={this.state.r4} animate={true} />
+        
+        <SocketForm type="join" socket={this.props.socket} onComplete={voter.joinRoomEmit} />
+        <button onClick={this.handleAddPoll} >send poll</button>
+
+        <Meter results={this.state.results} animate={true} />
+        <Meter results={this.state.results} animate={true} />
+        <Meter results={this.state.results} animate={true} />
+        <Meter results={this.state.results} animate={true} />
+
       </Fragment>
     );
   }
@@ -66,6 +64,7 @@ const mapDispatchToProps = dispatch => ({
   signup: userData => dispatch(signupAction(userData)),
   login: userData => dispatch(loginAction(userData)),
   logout: socket => dispatch(logoutAction(socket)),
+  addPoll: poll => dispatch(addPollAction(poll)),
 });
 
 const mapStateToProps = state => ({
