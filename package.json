@@ -61,6 +61,7 @@
     "superagent": "^3.8.2",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "url-loader": "^0.6.2",
+    "uuid": "^3.2.1",
     "validator": "^9.4.0",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
