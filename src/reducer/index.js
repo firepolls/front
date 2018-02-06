@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
+import room from './room';
 import token from './auth';
 import socket from './socket';
-import room from './room';
+import profile from './profile';
 
 export default combineReducers({
+  room,
   token,
   socket,
-  room,
+  profile,
 });
