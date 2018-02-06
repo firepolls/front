@@ -11,6 +11,12 @@ export default (state = emptyState, { type, payload }) => {
       const updatedState = Object.assign({}, state, { polls: updatedPolls });
       return updatedState;
     }
+    case 'UPDATE_POLL': {
+      const updatedPolls = state.polls.map(poll =>
+        (poll.id === payload.id ? payload : poll)
+      );
+      return updatedPolls;
+    }
     case 'TOKEN_REMOVE':
       return emptyState;
     default:

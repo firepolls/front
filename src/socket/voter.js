@@ -23,13 +23,12 @@ export default (socket, dispatch) => { // TODO: Rob - takes in dispatch to allow
   });
 
   // Anthony - Receive incoming poll from owner.
-  socket.on('poll inbound', data => {
-    const responseToPoll = prompt(data.question);
+  socket.on('poll received', poll => {
+    const vote = prompt(poll.question);
 
-    socket.emit('poll response', {
-      responseToPoll,
-      room: data.room,
-    });
+    const responseToPoll = { ...poll, vote };
+
+    socket.emit('poll response', responseToPoll);
   });
 };
 

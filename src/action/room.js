@@ -13,3 +13,8 @@ export const addPollAction = poll => ({
   type: 'POLL_SET',
   payload: poll,
 });
+
+export const updatePollAction = poll => ({
+  type: 'UPDATE_POLL',
+  payload: poll,
+});

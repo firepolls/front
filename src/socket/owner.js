@@ -1,5 +1,5 @@
 import { log } from '../lib/util';
-import { setRoomAction } from '../action/room';
+import { setRoomAction, updatePollAction } from '../action/room';
 
 export default (socket, dispatch) => { // TODO: Rob - takes in dispatch to allow state changing
   // Anthony - Room name already taken.
@@ -18,8 +18,8 @@ export default (socket, dispatch) => { // TODO: Rob - takes in dispatch to allow
   });
 
   // Anthony - Single result from a voter.
-  socket.on('poll result', message => {
-    log(message);
+  socket.on('poll result', poll => {
+    dispatch(updatePollAction(poll));
   });
 };
 
