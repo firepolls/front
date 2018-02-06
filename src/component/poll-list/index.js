@@ -20,22 +20,26 @@ class PollList extends Component {
   }
 
   render() {
+    const {
+      polls,
+    } = this.state;
+
     console.log('__POLL-LIST-NEW-STATE__', this.state.polls);
-  
-    const pollListJSX = this.props.room && this.state.polls[0] ?
-    
-      (
-        
-        <div>
-          {this.state.polls[0].question}
-        </div>
-      
-      )
-      : null;
-    
-    return (
+     
+    return ( 
       <main className="polls-container">
-        {pollListJSX}
+        {
+          this.props.room && this.state.polls[0] !== undefined ?
+
+            polls.map((poll) => 
+              (
+                <div key={poll.id}>
+                  {poll.question}
+                </div>)
+            )
+            : null
+        }
+      
       </main>
     );
   }
