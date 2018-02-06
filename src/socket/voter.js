@@ -1,10 +1,10 @@
 import { log } from '../lib/util';
-import { setRoomAction } from '../action/room';
+import { createRoomAction } from '../action/room';
 
 export default (socket, dispatch) => { // TODO: Rob - takes in dispatch to allow state changing
   // Anthony - Room successfully joined.
   socket.on('room joined', room => {
-    dispatch(setRoomAction({
+    dispatch(createRoomAction({
       name: room,
       owner: false,
     }));

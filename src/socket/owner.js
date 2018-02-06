@@ -1,16 +1,20 @@
 import { log } from '../lib/util';
-import { setRoomAction, updatePollAction } from '../action/room';
+import { setStatusAction, removeStatusAction } from '../action/status';
+import { createRoomAction, updatePollAction } from '../action/room';
 
 export default (socket, dispatch) => { // TODO: Rob - takes in dispatch to allow state changing
   // Anthony - Room name already taken.
-  socket.on('room conflict', room => {
-    log(room);
-    // TODO: HANDLE ROOM CONFLICT, modal popup warning
+  socket.on('room status', data => {
+    if (data === 200) dispatch(removeStatusAction());
+    else {
+      log('Type: ', data.type, 'Room name: ', data.roomName, 'Status: ', data.status);
+      dispatch(setStatusAction(data));
+    }
   });
 
   // Anthony - Room has been successfully created on server.
   socket.on('room created', room => {
-    dispatch(setRoomAction({
+    dispatch(createRoomAction({
       name: room,
       owner: true,
       polls: [],
