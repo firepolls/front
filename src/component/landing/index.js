@@ -12,13 +12,9 @@ import * as voter from '../../socket/voter';
 import { addPollAction } from '../../action/room';
 import { signupAction, loginAction, logoutAction } from '../../action/auth';
 import Meter from '../meter'; 
-import testResults from './results';
 
-class Landing extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  } // only here to appease the linter
+class Landing extends Component { 
+    state = {};// only here to appease the linter
 
 
   handleAddPoll = () => {
@@ -31,6 +27,27 @@ class Landing extends Component {
   };
 
   render() {
+    // if (this.props.room && this.props.room.owner) {
+    //   console.log('MeterJSX Is Rendering')
+    // }else{
+    //   console.log(' RENDER IS NULL');
+    // }
+    if (this.props.room && this.props.room.owner && this.props.room.polls[0]) {
+      console.log(this.props.room);
+      console.log(this.props.room.polls[0]);
+    }
+
+    const meterJSX = this.props.room && this.props.room.owner && this.props.room.polls[0] ?
+      (
+        <div>
+          <Meter results={this.props.room.polls[0].results} animate="true" /> 
+          <Meter results={this.props.room.polls[0].results} animate="true" /> 
+          <Meter results={this.props.room.polls[0].results} animate="true" /> 
+          <Meter results={this.props.room.polls[0].results} animate="true" /> 
+        </div>
+      )
+      : null;
+
     return (
       <Fragment>
         <h2>Signup</h2>
@@ -44,17 +61,11 @@ class Landing extends Component {
         <h3>Create</h3>
         <SocketForm type="create" socket={this.props.socket} onComplete={owner.createRoomEmit} />
         <h3>Join</h3>
-        <SocketForm type="join" socket={this.props.socket} onComplete={joinRoomEmit} />
-        <button onClick={() => sendPoll(this.props.socket)} >send poll</button>
-        
         <SocketForm type="join" socket={this.props.socket} onComplete={voter.joinRoomEmit} />
         <button onClick={this.handleAddPoll} >send poll</button>
 
-        <Meter results={this.state.results} animate={true} />
-        <Meter results={this.state.results} animate={true} />
-        <Meter results={this.state.results} animate={true} />
-        <Meter results={this.state.results} animate={true} />
-
+        {meterJSX}
+        
       </Fragment>
     );
   }
@@ -69,6 +80,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   socket: state.socket,
+  room: state.room,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landing);
