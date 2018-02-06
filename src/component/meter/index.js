@@ -3,10 +3,10 @@ import { log } from '../../lib/util';
 
 class Meter extends React.Component {
   state = {
-    r1: 3,
-    r2: 1,
-    r3: 5,
-    r4: 9,
+    r1: 10,
+    r2: 20,
+    r3: 50,
+    r4: 20,
   };
 
   componentWillReceiveProps(nextProps) {
