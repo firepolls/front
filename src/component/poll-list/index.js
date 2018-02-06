@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-// import PollItem from '../poll-item';
+import PollItem from '../poll-item';
 
 
 class PollList extends Component {
@@ -10,6 +10,8 @@ class PollList extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.room !== nextProps.room) {
       const newPolls = [];
+      // Kerry - Here we receive updates when a user creates a new poll
+      // and push these results to an array that can then set state. 
       nextProps.room.polls.forEach((polls, index) => {
         newPolls.push(nextProps.room.polls[index]);
         this.setState({
@@ -23,36 +25,20 @@ class PollList extends Component {
     const {
       polls,
     } = this.state;
-
-    console.log('__POLL-LIST-NEW-STATE__', this.state.polls);
-     
+ 
     return ( 
-      <main className="polls-container">
-        {
-          this.props.room && this.state.polls[0] !== undefined ?
-
-            polls.map((poll) => 
-              (
-                <div key={poll.id}>
-                  {poll.question}
-                </div>)
-            )
-            : null
-        }
-      
-      </main>
+      // Kerry - Here we are mapping each poll item as it is received from this UI state
+      // or if the array is empty, it renders null
+      this.props.room && this.state.polls[0] !== undefined ?
+        polls.map((poll) => 
+          (
+            <PollItem key={poll.id} poll={poll} />
+          )
+        )
+        : null
     );
   }
 }
 
-const whereIsQuestion = () => {
-  if (this.state.polls[0]) console.log('Is there a question?', this.state.polls[0].question);
-  return null;    
-};
-
 export default PollList;
 
-
-// <PollItem
-//   key={pollId}
-//   poll={this.props.room.poll[index]} />
