@@ -10,13 +10,15 @@ class Meter extends React.Component {
     log('THIS PROPS RESULTS------', this.props.results);
     log('NEXT PROPS RESULTS------', nextProps.results);
     if (this.props.results !== nextProps.results) {
-      
+      const sum = Object.keys(nextProps.results)
+        .map(key => nextProps.results[key])
+        .reduce((a, b) => a + b) * 100;
       log('---------I SHOULD BE ANIMATING-----------');
       this.setState({
-        r1: nextProps.results['1'] * 50,
-        r2: nextProps.results['2'],
-        r3: nextProps.results['3'],
-        r4: nextProps.results['4'],
+        r1: nextProps.results['1'] / sum,
+        r2: nextProps.results['2'] / sum,
+        r3: nextProps.results['3'] / sum,
+        r4: nextProps.results['4'] / sum,
       });
     }
   }
