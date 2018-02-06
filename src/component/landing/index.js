@@ -8,10 +8,35 @@ import AuthForm from '../auth-form';
 import SocketForm from '../socket-form';
 import { createRoomEmit, joinRoomEmit, sendPoll } from '../../lib/socket';
 import { signupAction, loginAction, logoutAction } from '../../action/auth';
+import Meter from '../meter'; 
+import testResults from './results';
 
 class Landing extends Component {
-  state = {}; // only here to appease the linter
+  constructor(props) {
+    super(props);
+    this.state = {
+      r1: .2,
+      r2: .8,
+      r3: .2,
+      r4: .5,
+    };
+  } // only here to appease the linter
 
+  componentDidMount() {
+    this.animateMeter = setInterval(
+      () => this.animate(),
+      500
+    );
+  }
+
+  animate() {
+    this.setState({
+      r1: Math.random(),
+      r2: Math.random(),
+      r3: Math.random(),
+      r4: Math.random(),
+    });
+  }
   render() {
     return (
       <Fragment>
@@ -28,6 +53,10 @@ class Landing extends Component {
         <h3>Join</h3>
         <SocketForm type="join" socket={this.props.socket} onComplete={joinRoomEmit} />
         <button onClick={() => sendPoll(this.props.socket)} >send poll</button>
+        <Meter percent={this.state.r1} animate={true} />
+        <Meter percent={this.state.r2} animate={true} />
+        <Meter percent={this.state.r3} animate={true} />
+        <Meter percent={this.state.r4} animate={true} />
       </Fragment>
     );
   }
