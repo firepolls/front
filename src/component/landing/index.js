@@ -5,13 +5,21 @@ import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 
 import AuthForm from '../auth-form';
+import Poll from '../../socket/poll';
 import SocketForm from '../socket-form';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
+import { addPollAction } from '../../action/room';
 import { signupAction, loginAction, logoutAction } from '../../action/auth';
 
 class Landing extends Component {
   state = {}; // only here to appease the linter
+
+  handleAddPoll = () => {
+    const question = prompt('type your question');
+    owner.sendPoll(this.props.socket, question);
+    this.props.addPoll(new Poll(question));
+  };
 
   render() {
     return (
@@ -28,7 +36,7 @@ class Landing extends Component {
         <SocketForm type="create" socket={this.props.socket} onComplete={owner.createRoomEmit} />
         <h3>Join</h3>
         <SocketForm type="join" socket={this.props.socket} onComplete={voter.joinRoomEmit} />
-        <button onClick={() => owner.sendPoll(this.props.socket)} >send poll</button>
+        <button onClick={this.handleAddPoll} >send poll</button>
       </Fragment>
     );
   }
@@ -38,6 +46,7 @@ const mapDispatchToProps = dispatch => ({
   signup: userData => dispatch(signupAction(userData)),
   login: userData => dispatch(loginAction(userData)),
   logout: socket => dispatch(logoutAction(socket)),
+  addPoll: poll => dispatch(addPollAction(poll)),
 });
 
 const mapStateToProps = state => ({

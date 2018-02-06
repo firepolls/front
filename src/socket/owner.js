@@ -1,9 +1,10 @@
+import { log } from '../lib/util';
 import { setRoomAction } from '../action/room';
 
 export default (socket, dispatch) => { // TODO: Rob - takes in dispatch to allow state changing
   // Anthony - Room name already taken.
   socket.on('room conflict', room => {
-    console.log(room);
+    log(room);
     // TODO: HANDLE ROOM CONFLICT, modal popup warning
   });
 
@@ -12,12 +13,13 @@ export default (socket, dispatch) => { // TODO: Rob - takes in dispatch to allow
     dispatch(setRoomAction({
       name: room,
       owner: true,
+      polls: [],
     }));
   });
 
   // Anthony - Single result from a voter.
   socket.on('poll result', message => {
-    console.log(message);
+    log(message);
   });
 };
 
@@ -27,7 +29,6 @@ export const createRoomEmit = (socket, room) => {
 };
 
 // Anthony - Send poll creation request to server and emit to voters.
-export const sendPoll = (socket) => {
-  const message = prompt('Asking something...');
-  socket.emit('send message', message);
+export const sendPoll = (socket, question) => {
+  socket.emit('send poll', question);
 };
