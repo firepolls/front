@@ -6,6 +6,7 @@ import React, { Component, Fragment } from 'react';
 
 import AuthForm from '../auth-form';
 import Poll from '../../socket/poll';
+import PollList from '../poll-list';
 import SocketForm from '../socket-form';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
@@ -57,7 +58,7 @@ class Landing extends Component {
         <button onClick={this.handleAddPoll} >send poll</button>
 
         {meterJSX}
-        
+        <PollList />
       </Fragment>
     );
   }
