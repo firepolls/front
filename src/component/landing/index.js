@@ -27,11 +27,6 @@ class Landing extends Component {
   };
 
   render() {
-    // if (this.props.room && this.props.room.owner) {
-    //   console.log('MeterJSX Is Rendering')
-    // }else{
-    //   console.log(' RENDER IS NULL');
-    // }
     if (this.props.room && this.props.room.owner && this.props.room.polls[0]) {
       console.log(this.props.room);
       console.log(this.props.room.polls[0]);
@@ -40,10 +35,7 @@ class Landing extends Component {
     const meterJSX = this.props.room && this.props.room.owner && this.props.room.polls[0] ?
       (
         <div>
-          <Meter results={this.props.room.polls[0].results} animate="true" /> 
-          <Meter results={this.props.room.polls[0].results} animate="true" /> 
-          <Meter results={this.props.room.polls[0].results} animate="true" /> 
-          <Meter results={this.props.room.polls[0].results} animate="true" /> 
+          <Meter results={this.props.room.polls[0].results} /> 
         </div>
       )
       : null;

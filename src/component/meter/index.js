@@ -3,17 +3,18 @@ import { log } from '../../lib/util';
 
 class Meter extends React.Component {
   state = {
-    r1: 0,
+    r1: 3,
+    r2: 1,
+    r3: 5,
+    r4: 9,
   };
 
   componentWillReceiveProps(nextProps) {
-    log('THIS PROPS RESULTS------', this.props.results);
-    log('NEXT PROPS RESULTS------', nextProps.results);
     if (this.props.results !== nextProps.results) {
       const sum = Object.keys(nextProps.results)
         .map(key => nextProps.results[key])
-        .reduce((a, b) => a + b) * 100;
-      log('---------I SHOULD BE ANIMATING-----------');
+        .reduce((a, b) => a + b) / 100;
+
       this.setState({
         r1: nextProps.results['1'] / sum,
         r2: nextProps.results['2'] / sum,
@@ -24,53 +25,40 @@ class Meter extends React.Component {
   }
 
   render() {
-    // const percent = result.P1[randomPercentage(0, 4)] / totalVotes;
-
-    // const rValue = rounded ? Math.ceil(height / 2) : 0;
-    // const animatedWidth = percent ? Math.max(height, width * Math.min(percent, 1)) : 0;
+    const width = 100;
+    const height = 10;
+    const rx = height / 2;
+    const ry = height / 2;
     const style = { transition: 'width 500ms, fill 250ms' }; 
 
-    return (
-      <svg width={100} height={10} >
-        <rect width={100} height={10} fill="#ccc" rx={5} ry={5} />
+    let svgProperties = [ 
+      { width: this.state.r1, color: 'blue' },
+      { width: this.state.r2, color: 'green' },
+      { width: this.state.r3, color: 'red' },
+      { width: this.state.r4, color: 'yellow' },
+    ];
+     
+    svgProperties = svgProperties.map((properties, index) => (
+
+      <svg key={index} width={width} height={height} >
+        <rect width={width} height={height} fill="#ccc" rx={rx} ry={ry} />
         <rect
-          width={Number(this.state.r1)}
-          height={10}
-          fill="blue"
-          rx={5}
-          ry={5}
+          width={Number(properties.width)}
+          height={height}
+          fill={properties.color}
+          rx={rx}
+          ry={ry}
           style={style}
         />
       </svg>
+    ));
+
+    return (
+      <div>
+        {svgProperties}
+      </div>
     );
   }
 }
 
 export default Meter;
-
-//   const totalVotes = result.P1.reduce((accumulator, currentValue) => accumulator + currentValue);
-//   function randomPercentage(min, max) {
-//     return Math.floor(Math.random() * (max - min) + min);
-//   }
-  
-//   const percent = result.P1[randomPercentage(0, 4)] / totalVotes;
-
-
-//   const rValue = rounded ? Math.ceil(height / 2) : 0;
-//   const animatedWidth = percent ? Math.max(height, width * Math.min(percent, 1)) : 0;
-//   const style = animate ? { transition: 'width 500ms, fill 250ms' } : null; 
-
-//   return (
-//     <svg width={width} height={height} aria-label={label}>
-//       <rect width={width} height={height} fill="#ccc" rx={rValue} ry={rValue} />
-//       <rect 
-//         width={animatedWidth} 
-//         height={height} 
-//         fill={color} 
-//         rx={rValue} 
-//         ry={rValue} 
-//         style={style} 
-//       />
-//     </svg>
-//   );
-// };
