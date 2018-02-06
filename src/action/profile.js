@@ -8,9 +8,8 @@ export const setProfileAction = profile => ({
 export const createProfile = (profile) => (store) => {
   const { token } = store.getState();
 
-  return superagent.post(`${API_URL}/profiles`)
+  return superagent.post(`${API_URL}/profile`)
     .set('Authorization', `Bearer ${token}`)
-    .set('Content-type', 'application/json')
     .send(profile)
     .then(response => {
       store.dispatch(setProfileAction(response.body));
