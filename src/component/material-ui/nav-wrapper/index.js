@@ -1,22 +1,26 @@
 import React, { Component, Fragment } from 'react';
 import { AppBar, Drawer, MenuItem, RaisedButton } from 'material-ui';
+import mastHead from '../nav-wrapper/navstyling';
+
 
 class NavWrapper extends Component {
     state = {
       open: false,
-    } 
+    }
 
     handleToggle = () => {
       this.setState({ open: !this.state.open });
     }
 
     render() {
+      const { classes } = this.props;
       return (
         <div>
           <AppBar 
             title="Fire Polls" 
             onLeftIconButtonClick={this.handleToggle}
             zDepth={3}
+            iconStyleLeft={mastHead}
           />
           <Drawer 
             docked={false}
