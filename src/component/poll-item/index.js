@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import { log } from '../../lib/util';
 
 import Meter from '../meter';
+import Voting from '../voting';
 
 import './_poll-item.scss';
 
@@ -40,6 +41,7 @@ class PollItem extends Component {
     return (
       <Fragment>
         <header>{this.props.poll.question}:</header>
+        <Voting /> 
         <Meter results={this.state.poll.results} />
         <button> STOP POLL </button>
       </Fragment>
