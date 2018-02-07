@@ -22,10 +22,15 @@ class Room extends Component {
     const question = prompt('type your question');
     const poll = new Poll(question);
     // Anthony - emit poll to voters
-    socket.createPoll(poll);
+    socket.createPollEmit(poll);
     // Anthony - add poll to state
     this.props.addPoll(poll);
   };
+  
+  handleLeaveRoom = () => {
+    const { socket, room } = this.props;
+    socket.leaveRoomEmit(room.roomName);
+  }
  
   render() {
     const buttonJSX = this.props.room.owner ?
@@ -44,6 +49,7 @@ class Room extends Component {
         <h2>{/* TODO: Placeholder for room description */}</h2>
         {buttonJSX}
         <PollList room={this.props.room} />
+        <button onClick={this.handleLeaveRoom}>LEAVE ROOM IF A VOTER</button>
       </Fragment>
     );
   }

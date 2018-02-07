@@ -24,9 +24,5 @@ export default (socket, dispatch) => {
   socket.on('poll result', poll => {
     dispatch(updatePollAction(poll));
   });
-
-  socket.on('voter joined', () => {
-    dispatch(incrementVoterCountAction());
-  });
 };
 
