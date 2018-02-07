@@ -5,6 +5,14 @@ export const createRoomAction = room => ({
   payload: room,
 });
 
+export const incrementVoterCountAction = () => ({
+  type: 'ROOM_COUNT_INCREMENT',
+});
+
+export const decrementVoterCountAction = () => ({
+  type: 'ROOM_COUNT_DECREMENT',
+});
+
 export const removeRoomAction = () => ({
   type: 'ROOM_REMOVE',
 });

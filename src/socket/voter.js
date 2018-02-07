@@ -4,16 +4,8 @@ import { createRoomAction, removeRoomAction } from '../action/room';
 export default (socket, dispatch) => { // TODO: Rob - takes in dispatch to allow state changing
   // Anthony - Room successfully joined.
   socket.on('room joined', room => {
-    dispatch(createRoomAction({
-      name: room,
-      owner: false,
-    }));
-  });
-
-  // Anthony - Room not found on server.
-  socket.on('room not found', room => {
-    log(room);
-    // TODO: HANDLE ROOM NOT FOUND, modal popup warning
+    log('JOINED', room);
+    dispatch(createRoomAction(room));
   });
 
   // Anthony - Room has been closed by owner.
@@ -27,9 +19,8 @@ export default (socket, dispatch) => { // TODO: Rob - takes in dispatch to allow
 
   // Anthony - Receive incoming poll from owner.
   socket.on('poll received', poll => {
-
-    //Kerry - Need to present to the user a div/modal that takes in their vote from 1-4 (stars)
-    //and then the response from this vote will increase the total votes.
+    // Kerry - Need to present to the user a div/modal that takes in their vote from 1-4 (stars)
+    // and then the response from this vote will increase the total votes.
 
     const vote = prompt(poll.question);
 

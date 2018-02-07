@@ -15,24 +15,24 @@ class Socket {
   // Anthony - Send room request to server.
   createRoomEmit = roomName => {
     this.socket.emit('create room', roomName);
-    log('__ROOM_CREATE__');
+    log('__ROOM_CREATE_EMIT__');
   }
 
   closeRoomEmit = () => {
     this.socket.emit('close room');
-    log('__ROOM_CLOSE__');
+    log('__ROOM_CLOSE_EMIT__');
   }
 
   // Anthony - Send poll creation request to server and emit to voters.
   createPoll = question => {
     this.socket.emit('create poll', question);
-    log('__POLL_CREATE__');
+    log('__POLL_CREATE_EMIT__');
   }
 
   // Anthony - Request to join room to server.
   joinRoomEmit = room => {
     this.socket.emit('join room', room);
-    log('__ROOM_JOIN__');
+    log('__ROOM_JOIN_EMIT__');
   }
 }
 
