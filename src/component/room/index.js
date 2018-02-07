@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import AuthForm from '../auth-form';
@@ -14,14 +14,28 @@ import { signupAction, loginAction, logoutAction } from '../../action/auth';
 import './_room.scss';
 
 class Room extends Component {
-  state = {};
-
+  state = {
+  };
+ 
   render() {
+    const buttonJSX = this.props.room.owner ?
+      (
+        <Fragment> 
+          <button>SAVE</button>
+          <button>CLOSE</button>
+        </Fragment>
+      )
+      : null;
+
     return (
-      <PollList room={this.props.room} />
+      <Fragment>
+        <h1>{this.props.room.name}</h1>
+        <h2>{/* TODO: Placeholder for room description */}</h2>
+        {buttonJSX}
+        <PollList room={this.props.room} />
+      </Fragment>
     );
   }
-
 }
 
 const mapDispatchToProps = dispatch => ({

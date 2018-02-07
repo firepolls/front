@@ -13,13 +13,20 @@ import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
 import { addPollAction } from '../../action/room';
 import { signupAction, loginAction, logoutAction } from '../../action/auth';
+
 import Meter from '../meter'; 
+import Room from '../room';
 
 import './_landing.scss';
 
 class Landing extends Component { 
-    state = {};// only here to appease the linter
+  state = {};// only here to appease the linter
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.room) {
+      this.props.history.push('/room');
+    }
+  }
 
   handleAddPoll = () => {
     const question = prompt('type your question');
@@ -46,7 +53,6 @@ class Landing extends Component {
         <h3>Join</h3>
         <SocketForm type="join" socket={this.props.socket} onComplete={voter.joinRoomEmit} />
         <button onClick={this.handleAddPoll} >send poll</button>
-        <Room room={this.props.room} />
       </Fragment>
     );
   }

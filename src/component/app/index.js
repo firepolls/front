@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import Room from '../room';
 import Landing from '../landing';
 import { setSocketAction } from '../../action/socket';
 
@@ -20,6 +21,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Landing} />
+            <Route exact path="/room" component={Room} />
           </Switch>
         </BrowserRouter>
       </div>
