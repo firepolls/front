@@ -16,11 +16,21 @@ import './_room.scss';
 class Room extends Component {
   state = {
   };
+
+  handleAddPoll = () => {
+    const question = prompt('type your question');
+    const poll = new Poll(question);
+    // Anthony - emit poll to voters
+    owner.createPoll(this.props.socket, poll);
+    // Anthony - add poll to state
+    this.props.addPoll(poll);
+  };
  
   render() {
     const buttonJSX = this.props.room.owner ?
       (
-        <Fragment> 
+        <Fragment>
+          <button onClick={this.handleAddPoll} >NEW POLL</button>
           <button>SAVE</button>
           <button>CLOSE</button>
         </Fragment>

@@ -28,14 +28,14 @@ class Landing extends Component {
     }
   }
 
-  handleAddPoll = () => {
-    const question = prompt('type your question');
-    const poll = new Poll(question);
-    // Anthony - emit poll to voters
-    owner.createPoll(this.props.socket, poll);
-    // Anthony - add poll to state
-    this.props.addPoll(poll);
-  };
+  // handleAddPoll = () => {
+  //   const question = prompt('type your question');
+  //   const poll = new Poll(question);
+  //   // Anthony - emit poll to voters
+  //   owner.createPoll(this.props.socket, poll);
+  //   // Anthony - add poll to state
+  //   this.props.addPoll(poll);
+  // };
 
   render() {
     return (
