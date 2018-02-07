@@ -1,12 +1,11 @@
-import socket from '../socket';
+import Socket from '../socket';
 
 const emptyState = null;
 
 export default (state = emptyState, { type, payload }) => {
   switch (type) {
     case 'SOCKET_SET':
-      return socket(payload);
-      // TODO: Rob - passing payload is passing dispatch to the socket listeners
+      return new Socket(payload);
     case 'SOCKET_REMOVE':
       payload.disconnect();
       return emptyState;

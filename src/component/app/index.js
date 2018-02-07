@@ -11,7 +11,7 @@ import './_app.scss';
 class App extends Component {
   state = {};
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.socketConnect();
   }
 

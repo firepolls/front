@@ -1,7 +1,5 @@
-import superagent from 'superagent';
-
 export const setSocketAction = dispatch => ({
-  // TODO: Rob - takes in dispatch as payload to eventually pass to listeners
+  // Rob - takes in dispatch as payload to pass to listeners
   type: 'SOCKET_SET',
   payload: dispatch,
 });

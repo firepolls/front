@@ -18,10 +18,11 @@ class Room extends Component {
   };
 
   handleAddPoll = () => {
+    const { socket } = this.props;
     const question = prompt('type your question');
     const poll = new Poll(question);
     // Anthony - emit poll to voters
-    owner.createPoll(this.props.socket, poll);
+    socket.createPoll(poll);
     // Anthony - add poll to state
     this.props.addPoll(poll);
   };
