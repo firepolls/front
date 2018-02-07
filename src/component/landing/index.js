@@ -28,15 +28,6 @@ class Landing extends Component {
     }
   }
 
-  // handleAddPoll = () => {
-  //   const question = prompt('type your question');
-  //   const poll = new Poll(question);
-  //   // Anthony - emit poll to voters
-  //   owner.createPoll(this.props.socket, poll);
-  //   // Anthony - add poll to state
-  //   this.props.addPoll(poll);
-  // };
-
   render() {
     return (
       <Fragment>
@@ -52,7 +43,6 @@ class Landing extends Component {
         <SocketForm type="create" socket={this.props.socket} onComplete={owner.createRoomEmit} />
         <h3>Join</h3>
         <SocketForm type="join" socket={this.props.socket} onComplete={voter.joinRoomEmit} />
-        <button onClick={this.handleAddPoll} >send poll</button>
       </Fragment>
     );
   }

@@ -5,6 +5,7 @@ $orange: #ff9d0d;
 $bright_orange: #E84E0C;
 $blue: #1485CC;
 $purple: #690ce8;
+$gutter: .5vw;
 
 $primary-border: $dark solid 2px;
 $secondary-border: $orange solid 2px;
@@ -23,4 +24,5 @@ body {
   background-color: $white;
   border: $primary-border;
   color: $dark;
+  padding: $gutter;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { log } from '../../lib/util';
 
 import './_meter.scss';
@@ -34,25 +34,29 @@ class Meter extends React.Component {
     const style = { transition: 'width 500ms, fill 250ms' }; 
 
     let svgProperties = [ 
-      { width: this.state.r1, color: 'blue' },
-      { width: this.state.r2, color: 'green' },
-      { width: this.state.r3, color: 'red' },
-      { width: this.state.r4, color: 'yellow' },
+      { width: this.state.r1, color: 'blue', star: '★★★★' },
+      { width: this.state.r2, color: 'green', star: '★★★' },
+      { width: this.state.r3, color: 'red', star: '★★' },
+      { width: this.state.r4, color: 'yellow', star: '★' },
     ];
      
-    svgProperties = svgProperties.map((properties, index) => (
+    log('STARS?', svgProperties[0].star);
 
-      <svg key={index} width={width} height={height} >
-        <rect width={width} height={height} fill="#ccc" rx={rx} ry={ry} />
-        <rect
-          width={Number(properties.width)}
-          height={height}
-          fill={properties.color}
-          rx={rx}
-          ry={ry}
-          style={style}
-        />
-      </svg>
+    svgProperties = svgProperties.map((properties, index) => (
+      <Fragment key={index}>
+        { properties.star }
+        <svg width={width} height={height} >
+          <rect width={width} height={height} fill="#ccc" rx={rx} ry={ry} />
+          <rect
+            width={Number(properties.width)}
+            height={height}
+            fill={properties.color}
+            rx={rx}
+            ry={ry}
+            style={style}
+          />
+        </svg>
+      </Fragment>
     ));
 
     return (
