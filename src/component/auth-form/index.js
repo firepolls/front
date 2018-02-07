@@ -1,5 +1,6 @@
 import validator from 'validator';
 import React, { Fragment } from 'react';
+import { RaisedButton, TextField } from 'material-ui';
 
 import './_auth-form.scss';
 
@@ -83,10 +84,10 @@ class AuthForm extends React.Component {
     
     return (
       <Fragment>
-        <input
+        <TextField
           className={this.generateClassName(formField)}
           name={formField}
-          placeholder={`${formField}...`}
+          hintText={`${formField}...`}
           type={type}
           value={this.state[formField]}
           onChange={this.handleChange}
@@ -107,7 +108,7 @@ class AuthForm extends React.Component {
         {this.generateInput('username')}
         {this.generateInput('password')}
         {emailInput}
-        <button type="submit">{type}</button>
+        <RaisedButton type="submit">{type}</RaisedButton>
       </form>
     );
   }
