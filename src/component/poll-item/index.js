@@ -31,7 +31,7 @@ class PollItem extends Component {
   }
 
   handleStopSubmit() {
-    // on submit this needs to hide the
+    // on submit this needs to stop new votes from being rendered by changing a property on the object
   }
 
   render() {
