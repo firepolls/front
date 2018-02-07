@@ -3,11 +3,28 @@ import openSocket from 'socket.io-client';
 import owner from './owner';
 import voter from './voter';
 
-export default dispatch => { // TODO: Rob - takes in dispatch to allow state changing
-  const socket = openSocket(API_URL);
+class Socket {
+  constructor(dispatch) {
+    this.socket = openSocket(API_URL);
 
-  owner(socket, dispatch);
-  voter(socket, dispatch);
+    owner(this.socket, dispatch);
+    voter(this.socket, dispatch);
+  }
 
-  return socket;
-};
+  // Anthony - Send room request to server.
+  createRoomEmit = roomName => {
+    this.socket.emit('create room', roomName);
+  }
+
+  // Anthony - Send poll creation request to server and emit to voters.
+  createPoll = question => {
+    this.socket.emit('create poll', question);
+  }
+
+  // Anthony - Request to join room to server.
+  joinRoomEmit = room => {
+    this.socket.emit('join room', room);
+  }
+}
+
+export default Socket;

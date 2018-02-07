@@ -31,8 +31,3 @@ export default (socket, dispatch) => { // TODO: Rob - takes in dispatch to allow
     socket.emit('poll response', responseToPoll);
   });
 };
-
-// Anthony - Request to join room to server.
-export const joinRoomEmit = (socket, room) => {
-  socket.emit('join room', room);
-};

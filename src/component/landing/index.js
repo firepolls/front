@@ -7,8 +7,6 @@ import React, { Component, Fragment } from 'react';
 import AuthForm from '../auth-form';
 import Poll from '../../socket/poll';
 import SocketForm from '../socket-form';
-import * as owner from '../../socket/owner';
-import * as voter from '../../socket/voter';
 import { addPollAction } from '../../action/room';
 import { signupAction, loginAction, logoutAction } from '../../action/auth';
 
@@ -16,29 +14,37 @@ class Landing extends Component {
   state = {}; // only here to appease the linter
 
   handleAddPoll = () => {
+    const { socket } = this.props;
     const question = prompt('type your question');
     const poll = new Poll(question);
     // Anthony - emit poll to voters
-    owner.createPoll(this.props.socket, poll);
+    socket.createPoll(poll);
     // Anthony - add poll to state
     this.props.addPoll(poll);
   };
 
   render() {
+    const {
+      socket,
+      signup,
+      login,
+      logout,
+    } = this.props;
+
     return (
       <Fragment>
         <h2>Signup</h2>
-        <AuthForm type="signup" onComplete={this.props.signup} />
+        <AuthForm type="signup" onComplete={signup} />
         <h2>Login</h2>
-        <AuthForm type="login" onComplete={this.props.login} />
+        <AuthForm type="login" onComplete={login} />
         <div>
           <h2>Logout</h2>
-          <button onClick={() => this.props.logout(this.props.socket)}>Logout</button>
+          <button onClick={() => logout(socket.socket)}>Logout</button>
         </div>
         <h3>Create</h3>
-        <SocketForm type="create" socket={this.props.socket} onComplete={owner.createRoomEmit} />
+        <SocketForm type="create" onComplete={socket.createRoomEmit} />
         <h3>Join</h3>
-        <SocketForm type="join" socket={this.props.socket} onComplete={voter.joinRoomEmit} />
+        <SocketForm type="join" onComplete={socket.joinRoomEmit} />
         <button onClick={this.handleAddPoll} >send poll</button>
       </Fragment>
     );

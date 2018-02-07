@@ -8,7 +8,7 @@ import { setSocketAction } from '../../action/socket';
 class App extends Component {
   state = {};
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.socketConnect();
   }
 
