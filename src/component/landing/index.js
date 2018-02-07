@@ -1,7 +1,7 @@
 // TODO: Rob - Currently this holds all of the available logic
 //             eventually this will need to be split up.
 
-import { RaisedButton } from 'material-ui';
+import { RaisedButton, TextField } from 'material-ui';
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -75,10 +75,15 @@ class Landing extends Component {
           {this.state.signingUp ? <AuthForm type="signup" onComplete={signup} /> : null}
           {this.state.loggingIn ? <AuthForm type="login" onComplete={login} /> : null}
 
-          <h3>Create</h3>
+          <h3>Create Room</h3>
+
           <SocketForm type="create" onComplete={socket.createRoomEmit} />
-          <button onClick={socket.closeRoomEmit}>Close Room</button>
-          <h3>Join</h3>
+
+          {/*TODO: Move this close room button to the Room component */}
+          {/* <RaisedButton onClick={socket.closeRoomEmit}>Close Room</RaisedButton> */}
+
+          <h3>Join Room</h3>
+   
           <SocketForm type="join" onComplete={socket.joinRoomEmit} />
         </Fragment>
       </MuiThemeProvider>
