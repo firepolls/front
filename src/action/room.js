@@ -1,6 +1,6 @@
 import superagent from 'superagent';
 
-export const setRoomAction = room => ({
+export const createRoomAction = room => ({
   type: 'ROOM_SET',
   payload: room,
 });
@@ -15,6 +15,6 @@ export const addPollAction = poll => ({
 });
 
 export const updatePollAction = poll => ({
-  type: 'UPDATE_POLL',
+  type: 'POLL_UPDATE',
   payload: poll,
 });

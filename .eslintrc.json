@@ -26,7 +26,8 @@
     "no-multi-assign": [0],
     "no-plusplus": [0],
     "no-underscore-dangle": [0],
-    "import/prefer-default-export": [0]
+    "import/prefer-default-export": [0],
+    "react/prefer-stateless-function": [0]
   },
   "globals": {
     "API_URL": false

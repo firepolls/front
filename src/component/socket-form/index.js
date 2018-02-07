@@ -1,5 +1,7 @@
 import React, { Fragment, Component } from 'react';
 
+import './_socket-form.scss';
+
 class SocketForm extends Component {
   state = {
     roomName: '',
@@ -31,7 +33,7 @@ class SocketForm extends Component {
     const { roomNameError, roomName } = this.state;
 
     if (!roomNameError) {      
-      this.props.onComplete(this.props.socket, roomName);
+      this.props.onComplete(roomName);
       this.setState(this.emptyState);
     } else {
       this.setState({
