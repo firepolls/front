@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import { log } from '../../lib/util';
 
 import Meter from '../meter';
+import Voting from '../voting';
 
 class PollItem extends Component {
   state = {
@@ -38,6 +39,7 @@ class PollItem extends Component {
     return (
       <Fragment>
         <header>{this.props.poll.question}:</header>
+        <Voting /> 
         <Meter results={this.state.poll.results} />
         <button> STOP POLL </button>
       </Fragment>
