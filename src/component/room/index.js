@@ -22,7 +22,8 @@ class Room extends Component {
     const question = prompt('type your question');
     const poll = new Poll(question);
     // Anthony - emit poll to voters
-    socket.createPollEmit(poll);
+    // Rob - MUST SEND JUST A QUESTION
+    socket.createPollEmit(question);
     // Anthony - add poll to state
     this.props.addPoll(poll);
   };
