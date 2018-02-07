@@ -43,6 +43,7 @@ class Landing extends Component {
         </div>
         <h3>Create</h3>
         <SocketForm type="create" onComplete={socket.createRoomEmit} />
+        <button onClick={socket.closeRoomEmit}>Close Room</button>
         <h3>Join</h3>
         <SocketForm type="join" onComplete={socket.joinRoomEmit} />
         <button onClick={this.handleAddPoll} >send poll</button>
