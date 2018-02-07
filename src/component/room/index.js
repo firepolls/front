@@ -14,8 +14,7 @@ import { signupAction, loginAction, logoutAction } from '../../action/auth';
 import './_room.scss';
 
 class Room extends Component {
-  state = {
-  };
+  state = {};
 
   handleAddPoll = () => {
     const { socket } = this.props;
@@ -31,6 +30,7 @@ class Room extends Component {
     const buttonJSX = this.props.room.owner ?
       (
         <Fragment>
+          <h4>Voters: {Number(this.props.room.voters)}</h4>
           <button onClick={this.handleAddPoll} >NEW POLL</button>
           <button>SAVE</button>
           <button>CLOSE</button>
@@ -40,7 +40,7 @@ class Room extends Component {
 
     return (
       <Fragment>
-        <h1>{this.props.room.name}</h1>
+        <h1>{this.props.room.roomName}</h1>
         <h2>{/* TODO: Placeholder for room description */}</h2>
         {buttonJSX}
         <PollList room={this.props.room} />

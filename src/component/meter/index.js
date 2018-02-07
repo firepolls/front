@@ -34,10 +34,10 @@ class Meter extends React.Component {
     const style = { transition: 'width 500ms, fill 250ms' }; 
 
     let svgProperties = [ 
-      { width: this.state.r1, color: 'blue', star: '★★★★' },
-      { width: this.state.r2, color: 'green', star: '★★★' },
-      { width: this.state.r3, color: 'red', star: '★★' },
-      { width: this.state.r4, color: 'yellow', star: '★' },
+      { width: this.state.r1, color: 'blue', star: '★' },
+      { width: this.state.r2, color: 'green', star: '★★' },
+      { width: this.state.r3, color: 'red', star: '★★★' },
+      { width: this.state.r4, color: 'yellow', star: '★★★★' },
     ];
      
     log('STARS?', svgProperties[0].star);
