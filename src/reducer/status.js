@@ -13,7 +13,7 @@ export default (state = initialState, { type, payload }) => {
 
       return updatedState;
     }
-    case 'STATUS_REMOVE':
+    case 'ROOM_SET':
       return initialState;
     default:
       return state;
