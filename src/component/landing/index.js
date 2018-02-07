@@ -29,14 +29,6 @@ class Landing extends Component {
   };
 
   render() {
-    const pollitemJSX = this.props.room && this.props.room.owner && this.props.room.polls[0] ?
-      (
-        <div>
-          <PollItem poll={this.props.room.polls[0]} /> 
-        </div>
-      )
-      : null;
-
     return (
       <Fragment>
         <h2>Signup</h2>

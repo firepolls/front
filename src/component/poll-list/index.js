@@ -8,16 +8,19 @@ class PollList extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.room !== nextProps.room) {
+    if (this.props.room && this.props.room !== nextProps.room) {
       const newPolls = [];
+      console.log('rooms', this.props);
       // Kerry - Here we receive updates when a user creates a new poll
       // and push these results to an array that can then set state. 
-      nextProps.room.polls.forEach((polls, index) => {
-        newPolls.push(nextProps.room.polls[index]);
-        this.setState({
-          polls: newPolls,
+      if (this.props.room.polls && nextProps.room) {
+        nextProps.room.polls.forEach((polls, index) => {
+          newPolls.push(nextProps.room.polls[index]);
+          this.setState({
+            polls: newPolls,
+          });
         });
-      });
+      }
     }
   }
 
