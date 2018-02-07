@@ -35,7 +35,7 @@ class PollList extends Component {
       this.props.room && this.state.polls[0] !== undefined ?
         polls.map((poll) => 
           (
-            <PollItem key={poll.id} poll={poll} owner={this.props.owner} />
+            <PollItem key={poll.id} poll={poll} owner={this.props.room.owner} />
           )
         )
         : null

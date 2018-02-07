@@ -38,12 +38,13 @@ class PollItem extends Component {
   }
 
   render() {
+    const starsJSX = this.props.owner ? <button> STOP POLL </button> : <Voting />;
+    
     return (
       <Fragment>
         <header>{this.props.poll.question}:</header>
-        <Voting /> 
+        {starsJSX}         
         <Meter results={this.state.poll.results} />
-        <button> STOP POLL </button>
       </Fragment>
     );
   }
