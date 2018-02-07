@@ -1,6 +1,8 @@
 import React from 'react';
 import { log } from '../../lib/util';
 
+import './_meter.scss';
+
 class Meter extends React.Component {
   state = {
     r1: 10,

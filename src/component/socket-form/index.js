@@ -1,5 +1,7 @@
 import React, { Fragment, Component } from 'react';
 
+import './_socket-form.scss';
+
 class SocketForm extends Component {
   state = {
     roomName: '',

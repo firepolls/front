@@ -4,6 +4,8 @@ import { log } from '../../lib/util';
 
 import Meter from '../meter';
 
+import './_poll-item.scss';
+
 class PollItem extends Component {
   state = {
     poll: {

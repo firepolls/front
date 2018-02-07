@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Landing from '../landing';
 import { setSocketAction } from '../../action/socket';
 
+import './_app.scss';
+
 class App extends Component {
   state = {};
 

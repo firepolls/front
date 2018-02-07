@@ -15,6 +15,8 @@ import { addPollAction } from '../../action/room';
 import { signupAction, loginAction, logoutAction } from '../../action/auth';
 import Meter from '../meter'; 
 
+import './_landing.scss';
+
 class Landing extends Component { 
     state = {};// only here to appease the linter
 

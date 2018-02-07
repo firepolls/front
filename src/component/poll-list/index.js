@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PollItem from '../poll-item';
 
+import './_poll-list.scss';
 
 class PollList extends Component {
   state={

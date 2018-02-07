@@ -1,6 +1,8 @@
 import validator from 'validator';
 import React, { Fragment } from 'react';
 
+import './_auth-form.scss';
+
 class AuthForm extends React.Component {
   // Rob - babel-preset-stage-2 includes class features that implicitly bind to the instance
   // Rob - This means no need for a constructor or props here
