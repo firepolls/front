@@ -46,7 +46,7 @@ class Landing extends Component {
         <h3>Join</h3>
         <SocketForm type="join" socket={this.props.socket} onComplete={voter.joinRoomEmit} />
         <button onClick={this.handleAddPoll} >send poll</button>
-        <PollList room={this.props.room} />
+        <Room room={this.props.room} />
       </Fragment>
     );
   }
