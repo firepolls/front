@@ -19,7 +19,7 @@ class Room extends Component {
     // Rob - MUST SEND JUST A QUESTION
     socket.createPollEmit(question);
     // Anthony - add poll to state
-    this.props.addPoll(poll);
+    this.props.createPoll(poll);
   };
   
   handleLeaveRoom = () => {
@@ -52,7 +52,7 @@ class Room extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addPoll: poll => dispatch(createPollAction(poll)),
+  createPoll: poll => dispatch(createPollAction(poll)),
 });
 
 const mapStateToProps = state => ({
