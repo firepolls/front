@@ -1,7 +1,7 @@
 import reducer from '../src/reducer/profile';
 
 describe('Profile Reducer', () => {
-  test('PROFILE_SET should', () => {
+  test('PROFILE_SET should return a profile back', () => {
     const action = {
       type: 'PROFILE_SET',
       payload: {
