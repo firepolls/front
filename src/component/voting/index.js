@@ -1,6 +1,6 @@
+import { render } from 'react-dom';
 import React, { Component } from 'react';
 import ReactStars from 'react-stars';
-import { render } from 'react-dom';
 import './_voting.scss';
 
 class Voting extends Component {

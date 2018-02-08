@@ -1,9 +1,13 @@
 import { connect } from 'react-redux';
+import { RaisedButton } from 'material-ui';
 import React, { Component, Fragment } from 'react';
-import { log } from '../../lib/util';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 import Meter from '../meter';
 import Voting from '../voting';
+import { log } from '../../lib/util';
+import muiTheme from '../../styles/mui-theme';
 
 import './_poll-item.scss';
 
@@ -38,7 +42,7 @@ class PollItem extends Component {
   }
 
   render() {
-    const starsJSX = this.props.owner ? <button> STOP POLL </button> : <Voting />;
+    const starsJSX = this.props.owner ? <RaisedButton> STOP POLL </RaisedButton> : <Voting />;
     
     return (
       <Fragment>

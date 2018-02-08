@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { RaisedButton } from 'material-ui';
+import React, { Component, Fragment } from 'react';
 
 import AuthForm from '../auth-form';
 import Poll from '../../socket/poll';
@@ -31,9 +32,9 @@ class Room extends Component {
     const buttonJSX = this.props.room.owner ?
       (
         <Fragment>
-          <button onClick={this.handleAddPoll} >NEW POLL</button>
-          <button>SAVE</button>
-          <button>CLOSE</button>
+          <RaisedButton onClick={this.handleAddPoll} >NEW POLL</RaisedButton>
+          <RaisedButton>SAVE</RaisedButton>
+          <RaisedButton>CLOSE</RaisedButton>
         </Fragment>
       )
       : null;

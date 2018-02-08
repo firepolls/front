@@ -3,11 +3,9 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { AppBar } from 'material-ui';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Room from '../room';
 import Landing from '../landing';
-import muiTheme from '../../styles/mui-theme';
 import NavWrapper from '../material-ui/nav-wrapper';
 import { setSocketAction } from '../../action/socket';
 
@@ -19,22 +17,23 @@ class App extends Component {
   componentWillMount() {
     this.props.socketConnect();
   }
-
+  
+  
   render() {
     return (
-      <div className="app">
-        <MuiThemeProvider muiTheme={muiTheme}>
-          <Fragment>
-            <NavWrapper />
-          </Fragment>
-        </MuiThemeProvider>
+      <Fragment>
+        {/* <Fragment>
+          <NavWrapper />
+        </Fragment> */}
         <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/room" component={Room} />
-          </Switch>
+          <div className="app">
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/room" component={Room} />
+            </Switch>
+          </div>
         </BrowserRouter>
-      </div>
+      </Fragment>
     );
   }
 }
