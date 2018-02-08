@@ -94,6 +94,11 @@ class Landing extends Component {
   
           <SocketForm 
             className="socket-room"
+            style={
+              {
+                top: 20,
+              }
+            }
             type="create" 
             fieldVar="roomName"
             placeholderPartial="Room"

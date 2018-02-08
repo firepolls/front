@@ -1,11 +1,15 @@
 .auth-form {
-  margin-right: 50%; 
-  width: 30%;
+  width: 50%;
   float: right;
   text-align: center;
-
+  
   @media only screen and (min-width: 600px) {
     margin-right: 5%;
     width: 200px;
   }
 }
+
+.auth-form-text {
+  height: 1px;
+  }
+
