@@ -33,9 +33,16 @@ class PollList extends Component {
       // Kerry - Here we are mapping each poll item as it is received from this UI state
       // or if the array is empty, it renders null
       this.props.room && this.state.polls[0] !== undefined ?
-        polls.map((poll) => 
+        polls.map((poll, index) => 
           (
-            <PollItem key={poll.id} poll={poll} owner={this.props.room.owner} />
+            <PollItem 
+              key={Math.random()}
+              pollId={index}
+              poll={poll}
+              owner={this.props.room.owner}
+              room={this.props.room}
+              socket={this.props.socket}
+            />
           )
         )
         : null

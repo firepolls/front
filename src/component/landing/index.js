@@ -43,6 +43,8 @@ class Landing extends Component {
         </div>
         <h3>Create</h3>
         <SocketForm type="create" onComplete={socket.createRoomEmit} />
+        { /* Rob - On close room click need to show modal to optionally save results,
+        then dispatch room remove action */ }
         <button onClick={socket.closeRoomEmit}>Close Room</button>
         <h3>Join</h3>
         <SocketForm type="join" onComplete={socket.joinRoomEmit} />
