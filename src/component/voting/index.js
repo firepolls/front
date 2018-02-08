@@ -1,4 +1,3 @@
-import { render } from 'react-dom';
 import ReactStars from 'react-stars';
 import React, { Component } from 'react';
 

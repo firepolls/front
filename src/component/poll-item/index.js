@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
-import { log } from '../../lib/util';
 
 import Meter from '../meter';
 import Voting from '../voting';
+import { log } from '../../lib/util';
 
 import './_poll-item.scss';
 
@@ -21,7 +21,6 @@ class PollItem extends Component {
       length: 1,
     },
   };
-
 
   // -----------------___LIFE-CYCLE HOOKS___-----------------
 
@@ -41,14 +40,13 @@ class PollItem extends Component {
       vote,
     };
 
-    // console.log(voteData);
     socket.castVoteEmit(voteData);
   }
 
   render() {
-    const starsJSX = this.props.owner ?
-      <button> STOP POLL </button> :
-      <Voting handleVote={this.handleVoteSubmit} pollId={this.props.pollId} />;
+    const starsJSX = !this.props.owner 
+      ? <Voting handleVote={this.handleVoteSubmit} pollId={this.props.pollId} />
+      : null;
     
     return (
       <Fragment>

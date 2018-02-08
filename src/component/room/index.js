@@ -1,15 +1,12 @@
-import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { RaisedButton } from 'material-ui';
+import React, { Component, Fragment } from 'react';
 
-import AuthForm from '../auth-form';
 import Poll from '../../socket/poll';
 import PollList from '../poll-list';
-
-import SocketForm from '../socket-form';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
 import { addPollAction, createPollAction } from '../../action/room';
-import { signupAction, loginAction, logoutAction } from '../../action/auth';
 
 import './_room.scss';
 
@@ -37,16 +34,16 @@ class Room extends Component {
     const buttonJSX = this.props.room.owner ?
       (
         <Fragment>
-          <button onClick={this.handleAddPoll} >NEW POLL</button>
-          <button>SAVE</button>
-          <button>CLOSE</button>
+          <RaisedButton onClick={this.handleAddPoll} >NEW POLL</RaisedButton>
+          <RaisedButton>SAVE</RaisedButton>
+          <RaisedButton>CLOSE</RaisedButton>
         </Fragment>
       )
       : null;
 
     return (
       <Fragment>
-        <h1>{this.props.room.name}</h1>
+        <h1>{this.props.room.roomName}</h1>
         <h2>{/* TODO: Placeholder for room description */}</h2>
         {buttonJSX}
         <PollList room={this.props.room} socket={this.props.socket} />
@@ -57,9 +54,6 @@ class Room extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  signup: userData => dispatch(signupAction(userData)),
-  login: userData => dispatch(loginAction(userData)),
-  logout: socket => dispatch(logoutAction(socket)),
   addPoll: poll => dispatch(createPollAction(poll)),
 });
 
