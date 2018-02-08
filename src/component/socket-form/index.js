@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { RaisedButton, TextField } from 'material-ui';
+import { capitalizer } from '../../lib/util';
 
 import './_socket-form.scss';
 
@@ -48,17 +49,26 @@ class SocketForm extends Component {
   handleValidation = (name, value) =>
     (value.length === 0 ? 'Room name is required.' : null);
 
-  generateInput = formField => (
+  generateError = formField => (
+    this.state[`${formField}Dirty`] ? <p>{this.state[`${formField}Error`]}</p> : null
+  )
+
+  generateInput = (formField, placeholder) => (
     <Fragment>
       <TextField
+        style={
+          {
+            marginTop: '10px',
+          }
+        }
         className={this.generateClassName(formField)}
         name={formField}
-        hintText={`${formField}...`}
+        hintText={`${capitalizer(placeholder)} Room...`}
+        floatingLabelText={`${capitalizer(placeholder)} Room...`}
         type="text"
         value={this.state[formField]}
         onChange={this.handleChange}
       />
-      {this.state[`${formField}Dirty`] ? <p>{this.state[`${formField}Error`]}</p> : null}
     </Fragment>
   );
 
@@ -67,10 +77,13 @@ class SocketForm extends Component {
     const { type } = this.props;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        {this.generateInput('roomName')}
-        <RaisedButton type="submit">{type}</RaisedButton>
-      </form>
+      <Fragment>
+        <form onSubmit={this.handleSubmit}>
+          {this.generateInput('roomName', type)}
+          <RaisedButton type="submit">{capitalizer(type)}</RaisedButton>
+        </form>
+        {this.generateError('roomName')}
+      </Fragment>
     );
   }
 }

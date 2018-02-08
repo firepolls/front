@@ -1,28 +1,3 @@
-// COLORS
-$white: #fff;
-$dark: #444;
-$orange: #ff9d0d;
-$bright_orange: #E84E0C;
-$blue: #1485CC;
-$purple: #690ce8;
-$gutter: .5vw;
-
-$primary-border: $dark solid 2px;
-$secondary-border: $orange solid 2px;
-
-//IMAGES & TEXTURES (REMOVE IF NOT NEEDED)
-$bg_texture: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/154088/geoBg.png);
-$bg_hover_texture: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/154088/stardust.png);
-$bg_diag: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/154088/congruent_pentagon.png);
-$bg_active: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/154088/diagmonds-light.png);
-$swirl: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/154088/diagonal_striped_brick.png);
-
-//ANIMATION INFO
-$speed: 2s all;
-
-body {
-  background-color: $white;
-  border: $primary-border;
-  color: $dark;
-  padding: $gutter;
-}
+// * {
+//   outline: 1px solid black;
+// }

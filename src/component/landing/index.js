@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 import { RaisedButton, TextField } from 'material-ui';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import AuthForm from '../auth-form';
 import PollList from '../poll-list';
@@ -33,32 +34,36 @@ class Landing extends Component {
 
     const signupLoginJSX = 
       (
-        <div>
-          <h2>Signup</h2>
-          <RaisedButton onClick={() => 
-            this.setState({
-              signingUp: true,
-              loggingIn: false,
-            })}
-          >Signup
-          </RaisedButton>
-
-          <h2>Login</h2>
-          <RaisedButton onClick={() =>
-            this.setState({
-              loggingIn: true,
-              signingUp: false,
-            })}
-          >Login
-          </RaisedButton>
-        </div>
+        <ul className="nav-items">
+          <li>
+            <RaisedButton onClick={() => 
+              this.setState({
+                signingUp: true,
+                loggingIn: false,
+              })}
+            >Signup
+            </RaisedButton>          
+          </li> 
+          <li>
+            <RaisedButton onClick={() =>
+              this.setState({
+                loggingIn: true,
+                signingUp: false,
+              })}
+            >Login
+            </RaisedButton>
+          </li>
+        </ul>
       );
     
     const logoutJSX =
       (
         <div>
-          <h2>Logout</h2>
-          <RaisedButton onClick={() => logout(socket.socket)}>Logout</RaisedButton>
+          <ul className="nav-items">
+            <li>
+              <RaisedButton onClick={() => logout(socket.socket)}>Logout</RaisedButton>
+            </li>
+          </ul>
         </div>
       );
     
@@ -66,34 +71,42 @@ class Landing extends Component {
       <Fragment>
         <div className="header">
           <div className="container-fluid">
-            <a href="http://www.google.com"><h1 className="logo"><span>F</span></h1></a>
-            <ul>
-              <li><a className="sign-up" href="http://www.google.com">Sign Up</a></li>
-              <li><a className="sign-up" href="http://www.google.com">Login</a></li>
-            </ul>
+            <a href="http://www.google.com">
+              <h1 className="logo">
+                <span>F</span>
+                firepolls
+              </h1>
+            </a>
+            {this.props.loggedIn ? logoutJSX : signupLoginJSX}
+          </div>
+          <div className="form-container">
+            {this.state.signingUp && !this.props.loggedIn ? <AuthForm type="signup" onComplete={signup} /> : null}
+            {this.state.loggingIn ? <AuthForm type="login" onComplete={login} /> : null}
           </div>
         </div>
-        <div 
-          className="signup-login" 
-          style={{
-            backgroundColor: 'green',
-          }}
-        >
-          {this.props.loggedIn ? logoutJSX : signupLoginJSX}
-          {this.state.signingUp ? <AuthForm type="signup" onComplete={signup} /> : null}
-          {this.state.loggingIn ? <AuthForm type="login" onComplete={login} /> : null}
-        </div>
+        <section className="jumbotron">
+          <h1><span>Welcome to Firepoll</span></h1>
+          <p>Create a poll below and invite your friends.</p>
+          <br />
+        </section>
 
-        <h3>Create Room</h3>
-
-        <SocketForm type="create" onComplete={socket.createRoomEmit} />
-
-        {/* TODO: Move this close room button to the Room component */}
-        {/* <RaisedButton onClick={socket.closeRoomEmit}>Close Room</RaisedButton> */}
-
-        <h3>Join Room</h3>
+        <section className="create-join">
   
-        <SocketForm type="join" onComplete={socket.joinRoomEmit} />
+          <SocketForm 
+            className="socket-room"
+            type="create" 
+            onComplete={socket.createRoomEmit} 
+          />
+
+          {/* TODO: Move this close room button to the Room component */}
+          {/* <RaisedButton onClick={socket.closeRoomEmit}>Close Room</RaisedButton> */}
+
+          <SocketForm 
+            className="socket-room"
+            type="join" 
+            onComplete={socket.joinRoomEmit} 
+          />
+        </section>
       </Fragment>
     );
   }
