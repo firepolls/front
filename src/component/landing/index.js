@@ -95,6 +95,8 @@ class Landing extends Component {
           <SocketForm 
             className="socket-room"
             type="create" 
+            fieldVar="roomName"
+            placeholderPartial="Room"
             onComplete={socket.createRoomEmit} 
           />
 
@@ -103,7 +105,9 @@ class Landing extends Component {
 
           <SocketForm 
             className="socket-room"
-            type="join" 
+            type="join"
+            fieldVar="roomName"
+            placeholderPartial="Room"
             onComplete={socket.joinRoomEmit} 
           />
         </section>

@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import PollList from '../poll-list';
 import Poll from '../../socket/poll';
+import SocketForm from '../socket-form';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
 import { addPollAction, createPollAction } from '../../action/room';
@@ -18,9 +19,8 @@ class Room extends Component {
     }
   }
 
-  handleAddPoll = () => {
+  handleAddPoll = question => {
     const { socket } = this.props;
-    const question = prompt('type your question');
     const poll = new Poll(question);
     // Anthony - emit poll to voters
     // Rob - MUST SEND JUST A QUESTION
@@ -35,10 +35,16 @@ class Room extends Component {
   }
  
   render() {
-    const { room } = this.props;
-    const ownerButtonsJSX = (
+    const { room, socket } = this.props;
+    const ownerJSX = (
       <Fragment>
-        <RaisedButton onClick={this.handleAddPoll} >Add Poll</RaisedButton>
+        <SocketForm 
+          className="create-poll-form"
+          type="create"
+          fieldVar="poll"
+          placeholderPartial="Poll"
+          onComplete={this.handleAddPoll} 
+        />
         <RaisedButton>Close Room</RaisedButton>
       </Fragment>);
 
@@ -48,10 +54,11 @@ class Room extends Component {
       </RaisedButton>
     );
 
+    // Rob - Don't try to access properties on room if it is null
     const roomJSX = room ? (
       <Fragment>
         <h1>{room.roomName}</h1>
-        {room.owner ? ownerButtonsJSX : voterButtonJSX}
+        {room.owner ? ownerJSX : voterButtonJSX}
         {room.polls.length ? <PollList /> : null}
       </Fragment>) : null;
       
