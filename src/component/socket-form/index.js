@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { RaisedButton, TextField } from 'material-ui';
+import { capitalizer } from '../../lib/util';
 
 import './_socket-form.scss';
 
@@ -48,12 +49,12 @@ class SocketForm extends Component {
   handleValidation = (name, value) =>
     (value.length === 0 ? 'Room name is required.' : null);
 
-  generateInput = formField => (
+  generateInput = (formField, placeholder) => (
     <Fragment>
       <TextField
         className={this.generateClassName(formField)}
         name={formField}
-        hintText={`${formField}...`}
+        hintText={`${capitalizer(placeholder)} Room...`}
         type="text"
         value={this.state[formField]}
         onChange={this.handleChange}
@@ -68,8 +69,8 @@ class SocketForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        {this.generateInput('roomName')}
-        <RaisedButton type="submit">{type}</RaisedButton>
+        {this.generateInput('roomName', type)}
+        <RaisedButton type="submit">{capitalizer(type)}</RaisedButton>
       </form>
     );
   }

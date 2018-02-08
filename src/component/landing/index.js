@@ -90,16 +90,15 @@ class Landing extends Component {
           <br />
         </section>
 
-        <h3>Create Room</h3>
-
-        <SocketForm type="create" onComplete={socket.createRoomEmit} />
-
-        {/* TODO: Move this close room button to the Room component */}
-        {/* <RaisedButton onClick={socket.closeRoomEmit}>Close Room</RaisedButton> */}
-
-        <h3>Join Room</h3>
+        <section className="create-join">
   
-        <SocketForm type="join" onComplete={socket.joinRoomEmit} />
+          <SocketForm type="create" onComplete={socket.createRoomEmit} />
+
+          {/* TODO: Move this close room button to the Room component */}
+          {/* <RaisedButton onClick={socket.closeRoomEmit}>Close Room</RaisedButton> */}
+
+          <SocketForm type="join" onComplete={socket.joinRoomEmit} />
+        </section>
       </Fragment>
     );
   }
