@@ -11,9 +11,6 @@ import { addPollAction, createPollAction } from '../../action/room';
 import './_room.scss';
 
 class Room extends Component {
-  state = {
-  };
-
   handleAddPoll = () => {
     const { socket } = this.props;
     const question = prompt('type your question');
@@ -31,23 +28,24 @@ class Room extends Component {
   }
  
   render() {
-    const buttonJSX = this.props.room.owner ?
-      (
-        <Fragment>
-          <RaisedButton onClick={this.handleAddPoll} >NEW POLL</RaisedButton>
-          <RaisedButton>SAVE</RaisedButton>
-          <RaisedButton>CLOSE</RaisedButton>
-        </Fragment>
-      )
-      : null;
+    const { room } = this.props;
+    const ownerButtonsJSX = (
+      <Fragment>
+        <RaisedButton onClick={this.handleAddPoll} >Add Poll</RaisedButton>
+        <RaisedButton>Close Room</RaisedButton>
+      </Fragment>);
+
+    const voterButtonJSX = (
+      <RaisedButton onClick={this.handleLeaveRoom}>
+        Leave Room
+      </RaisedButton>
+    );
 
     return (
       <Fragment>
-        <h1>{this.props.room.roomName}</h1>
-        <h2>{/* TODO: Placeholder for room description */}</h2>
-        {buttonJSX}
-        <PollList room={this.props.room} socket={this.props.socket} />
-        <button onClick={this.handleLeaveRoom}>LEAVE ROOM IF A VOTER</button>
+        <h1>{room.roomName}</h1>
+        { room.owner ? ownerButtonsJSX : voterButtonJSX }
+        { room.polls.length ? <PollList /> : null }
       </Fragment>
     );
   }
