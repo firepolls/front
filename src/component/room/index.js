@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 import { RaisedButton } from 'material-ui';
 import React, { Component, Fragment } from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import Poll from '../../socket/poll';
 import PollList from '../poll-list';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
 import { addPollAction, createPollAction } from '../../action/room';
+import AuthRedirect from '../auth-redirect';
 
 import './_room.scss';
 
@@ -54,7 +56,7 @@ class Room extends Component {
         {room.owner ? ownerButtonJSX : voterButtonJSX}
         {room.polls.length ? <PollList /> : null}
       </Fragment>)
-      : null;
+      : <Route path="*" component={AuthRedirect} />;
 
       
     return roomJSX;
