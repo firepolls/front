@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from 'react';
+import { RaisedButton, TextField } from 'material-ui';
 
 import './_socket-form.scss';
 
@@ -49,10 +50,10 @@ class SocketForm extends Component {
 
   generateInput = formField => (
     <Fragment>
-      <input
+      <TextField
         className={this.generateClassName(formField)}
         name={formField}
-        placeholder={`${formField}...`}
+        hintText={`${formField}...`}
         type="text"
         value={this.state[formField]}
         onChange={this.handleChange}
@@ -68,7 +69,7 @@ class SocketForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         {this.generateInput('roomName')}
-        <button type="submit">{type}</button>
+        <RaisedButton type="submit">{type}</RaisedButton>
       </form>
     );
   }
