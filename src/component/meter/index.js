@@ -8,17 +8,18 @@ class Meter extends Component {
     const height = 10;
     const rx = height / 2;
     const ry = height / 2;
-    const style = { transition: 'width 500ms, fill 250ms' };
+    const style = { transition: 'width 500ms, fill 250ms' }; 
 
     const { results } = this.props;
     const resultsArray = Object.keys(results).map(key => results[key]);
     const sum = resultsArray.reduce((a, b) => a + b) / 100 || 1;
     const percentages = resultsArray.map(result => result / sum);
+
     const svgProperties = [ 
-      { width: percentages[0], color: 'yellow', star: '★' },
-      { width: percentages[1], color: 'red', star: '★★' },
-      { width: percentages[2], color: 'green', star: '★★★' },
-      { width: percentages[3], color: 'blue', star: '★★★★' },
+      { width: percentages[0], color: 'blue', star: '★' },
+      { width: percentages[1], color: 'green', star: '★★' },
+      { width: percentages[2], color: 'red', star: '★★★' },
+      { width: percentages[3], color: 'yellow', star: '★★★★' },
     ];
 
     const meterJSX = svgProperties.map(properties => (

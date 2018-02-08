@@ -6,6 +6,7 @@ import { AppBar } from 'material-ui';
 
 import Room from '../room';
 import Landing from '../landing';
+import AuthRedirect from '../auth-redirect';
 import NavWrapper from '../material-ui/nav-wrapper';
 import { setSocketAction } from '../../action/socket';
 
@@ -28,6 +29,7 @@ class App extends Component {
         <BrowserRouter>
           <div className="app">
             <Switch>
+              <Route path="*" component={AuthRedirect} />
               <Route exact path="/" component={Landing} />
               <Route exact path="/room" component={Room} />
             </Switch>

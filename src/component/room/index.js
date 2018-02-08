@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import { RaisedButton } from 'material-ui';
 import React, { Component, Fragment } from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-import Poll from '../../socket/poll';
 import PollList from '../poll-list';
+import Poll from '../../socket/poll';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
 import { addPollAction, createPollAction } from '../../action/room';
@@ -11,6 +12,12 @@ import { addPollAction, createPollAction } from '../../action/room';
 import './_room.scss';
 
 class Room extends Component {
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.room) {
+      this.props.history.push('/');
+    }
+  }
+
   handleAddPoll = () => {
     const { socket } = this.props;
     const question = prompt('type your question');
@@ -41,13 +48,14 @@ class Room extends Component {
       </RaisedButton>
     );
 
-    return (
+    const roomJSX = room ? (
       <Fragment>
         <h1>{room.roomName}</h1>
-        { room.owner ? ownerButtonsJSX : voterButtonJSX }
-        { room.polls.length ? <PollList /> : null }
-      </Fragment>
-    );
+        {room.owner ? ownerButtonsJSX : voterButtonJSX}
+        {room.polls.length ? <PollList /> : null}
+      </Fragment>) : null;
+      
+    return roomJSX;
   }
 }
 

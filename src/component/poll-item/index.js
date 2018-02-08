@@ -11,9 +11,9 @@ class PollItem extends Component {
   handleVoteSubmit = (vote) => {
     const { socket, roomName, pollId } = this.props;
     const voteData = {
+      vote,
       pollId,
       roomName,
-      vote,
     };
 
     socket.castVoteEmit(voteData);

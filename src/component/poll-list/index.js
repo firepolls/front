@@ -15,7 +15,6 @@ class PollList extends Component {
       roomName,
     } = room;
 
-
     return ( 
       // Kerry - Here we are mapping each poll item as it is received from this UI state
       // or if the array is empty, it renders null
