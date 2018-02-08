@@ -19,10 +19,13 @@ class Landing extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.room) {
-      this.props.history.push('/room');
+    if (nextProps.room) this.props.history.push('/room');
+    if (nextProps.loggedIn) {
+      this.setState(this.emptyState);
     }
   }
+
+  emptyState = { ...this.state };
 
   render() {
     const {
@@ -47,8 +50,8 @@ class Landing extends Component {
           <li>
             <RaisedButton onClick={() =>
               this.setState({
-                loggingIn: true,
                 signingUp: false,
+                loggingIn: true,
               })}
             >Login
             </RaisedButton>
