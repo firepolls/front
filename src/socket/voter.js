@@ -3,9 +3,9 @@ import * as room from '../action/room';
 
 export default (socket, dispatch) => { // TODO: Rob - takes in dispatch to allow state changing
   // Anthony - Room successfully joined.
-  socket.on('room joined', roomName => {
+  socket.on('room joined', roomObject => {
     log('__JOINED_ROOM__');
-    dispatch(room.createRoomAction(roomName));
+    dispatch(room.createRoomAction(roomObject));
   });
 
   // Anthony - Room has been closed by owner.

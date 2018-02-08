@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import { RaisedButton } from 'material-ui';
 import React, { Component, Fragment } from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-import Poll from '../../socket/poll';
 import PollList from '../poll-list';
+import Poll from '../../socket/poll';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
 import { addPollAction, createPollAction } from '../../action/room';
@@ -11,8 +12,11 @@ import { addPollAction, createPollAction } from '../../action/room';
 import './_room.scss';
 
 class Room extends Component {
-  state = {
-  };
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.room) {
+      this.props.history.push('/');
+    }
+  }
 
   handleAddPoll = () => {
     const { socket } = this.props;
@@ -22,7 +26,7 @@ class Room extends Component {
     // Rob - MUST SEND JUST A QUESTION
     socket.createPollEmit(question);
     // Anthony - add poll to state
-    this.props.addPoll(poll);
+    this.props.createPoll(poll);
   };
   
   handleLeaveRoom = () => {
@@ -31,30 +35,32 @@ class Room extends Component {
   }
  
   render() {
-    const buttonJSX = this.props.room.owner ?
-      (
-        <Fragment>
-          <RaisedButton onClick={this.handleAddPoll} >NEW POLL</RaisedButton>
-          <RaisedButton>SAVE</RaisedButton>
-          <RaisedButton>CLOSE</RaisedButton>
-        </Fragment>
-      )
-      : null;
-
-    return (
+    const { room } = this.props;
+    const ownerButtonsJSX = (
       <Fragment>
-        <h1>{this.props.room.roomName}</h1>
-        <h2>{/* TODO: Placeholder for room description */}</h2>
-        {buttonJSX}
-        <PollList room={this.props.room} socket={this.props.socket} />
-        <button onClick={this.handleLeaveRoom}>LEAVE ROOM IF A VOTER</button>
-      </Fragment>
+        <RaisedButton onClick={this.handleAddPoll} >Add Poll</RaisedButton>
+        <RaisedButton>Close Room</RaisedButton>
+      </Fragment>);
+
+    const voterButtonJSX = (
+      <RaisedButton onClick={this.handleLeaveRoom}>
+        Leave Room
+      </RaisedButton>
     );
+
+    const roomJSX = room ? (
+      <Fragment>
+        <h1>{room.roomName}</h1>
+        {room.owner ? ownerButtonsJSX : voterButtonJSX}
+        {room.polls.length ? <PollList /> : null}
+      </Fragment>) : null;
+      
+    return roomJSX;
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  addPoll: poll => dispatch(createPollAction(poll)),
+  createPoll: poll => dispatch(createPollAction(poll)),
 });
 
 const mapStateToProps = state => ({
