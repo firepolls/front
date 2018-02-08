@@ -2,11 +2,11 @@ export const validateProfile = profile => {
   if (!profile) {
     throw new Error('__ERROR__ profile is required!');
   }
-  
-  const { 
-    firstName, 
-    lastName, 
-    email, 
+
+  const {
+    firstName,
+    lastName,
+    email,
     account_id,
   } = profile;
 
