@@ -19,10 +19,5 @@ export default (socket, dispatch) => {
       polls: [],
     }));
   });
-
-  // Anthony - Single result from a voter.
-  socket.on('poll result', poll => {
-    dispatch(updatePollAction(poll));
-  });
 };
 

@@ -17,10 +17,22 @@ class Socket {
     // ------------------- OWNER & VOTER ------------------- \\
     socket.on('voter joined', () => {
       dispatch(room.incrementVoterCountAction());
+      log('__VOTER_JOINED__');
     });
     
     socket.on('voter left', () => {
       dispatch(room.decrementVoterCountAction());
+      log('__VOTER_LEFT__');      
+    });
+    
+    socket.on('vote increment', pollData => {
+      dispatch(room.incrementVoteAction(pollData));
+      log('__VOTE_INCREMENT__');
+    });
+    
+    socket.on('vote decrement', pollData => {
+      dispatch(room.decrementVoteAction());
+      log('__VOTE_DECREMENT__');      
     });
   }
 
@@ -28,7 +40,7 @@ class Socket {
   // Anthony - Send room request to server.
   createRoomEmit = roomName => {
     this.socket.emit('create room', roomName);
-    log('__ROOM_CREATE_EMIT__');
+    log('__ROOM_CREATE_EMIT__', roomName);
   }
 
   closeRoomEmit = () => {
@@ -39,20 +51,26 @@ class Socket {
   // Anthony - Send poll creation request to server and emit to voters.
   createPollEmit = question => {
     this.socket.emit('create poll', question);
-    log('__POLL_CREATE_EMIT__');
+    log('__POLL_CREATE_EMIT__', question);
   }
 
   // ------------------- VOTER ------------------- \\
   // Anthony - Request to join room to server.
   joinRoomEmit = roomName => {
     this.socket.emit('join room', roomName);
-    log('__ROOM_JOIN_EMIT__');
+    log('__ROOM_JOIN_EMIT__', roomName);
   }
   
   leaveRoomEmit = roomName => {
     this.socket.emit('leave room', roomName);
     this.dispatch(room.removeRoomAction());
-    log('__ROOM_LEAVE_EMIT__');
+    log('__ROOM_LEAVE_EMIT__', roomName);
+  }
+
+  // Rob - voterData should be { roomName, pollId, vote }
+  castVoteEmit = voteData => {
+    this.socket.emit('vote cast', voteData);
+    log('__CAST_VOTE_EMIT__', voteData);
   }
 }
 

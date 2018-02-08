@@ -33,12 +33,22 @@ class PollItem extends Component {
     }
   }
 
-  handleStopSubmit() {
-    // on submit this needs to stop new votes from being rendered by changing a property on the object
+  handleVoteSubmit = (vote) => {
+    const { socket, room } = this.props;
+    const voteData = {
+      roomName: this.props.room.roomName,
+      pollId: this.props.pollId,
+      vote,
+    };
+
+    // console.log(voteData);
+    socket.castVoteEmit(voteData);
   }
 
   render() {
-    const starsJSX = this.props.owner ? <button> STOP POLL </button> : <Voting />;
+    const starsJSX = this.props.owner ?
+      <button> STOP POLL </button> :
+      <Voting handleVote={this.handleVoteSubmit} pollId={this.props.pollId} />;
     
     return (
       <Fragment>

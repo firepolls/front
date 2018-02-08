@@ -7,16 +7,16 @@ import SocketForm from '../socket-form';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
 import { addPollAction } from '../../action/room';
-import { signupAction, loginAction, logoutAction } from '../../action/auth' ;
+import { signupAction, loginAction, logoutAction } from '../../action/auth';
 
 import './_dashboard.scss';
 
 class Dashboard extends Component {
   state = {};
 
-  componentDidMount(){
+  // componentDidMount(){
     
-  }
+  // }
 
   render() {
     return (
