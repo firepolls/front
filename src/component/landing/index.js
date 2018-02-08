@@ -71,9 +71,25 @@ class Landing extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <Fragment>
-          {this.props.loggedIn ? logoutJSX : signupLoginJSX}
-          {this.state.signingUp ? <AuthForm type="signup" onComplete={signup} /> : null}
-          {this.state.loggingIn ? <AuthForm type="login" onComplete={login} /> : null}
+          <div className="header">
+            <div className="container-fluid">
+              <a href="http://www.google.com"><h1 className="logo"><span>F</span></h1></a>
+              <ul>
+                <li><a className="sign-up" href="http://www.google.com">Sign Up</a></li>
+                <li><a className="sign-up" href="http://www.google.com">Login</a></li>
+              </ul>
+            </div>
+          </div>
+          <div 
+            className="signup-login" 
+            style={{
+              backgroundColor: 'green',
+            }}
+          >
+            {this.props.loggedIn ? logoutJSX : signupLoginJSX}
+            {this.state.signingUp ? <AuthForm type="signup" onComplete={signup} /> : null}
+            {this.state.loggingIn ? <AuthForm type="login" onComplete={login} /> : null}
+          </div>
 
           <h3>Create Room</h3>
 
