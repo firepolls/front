@@ -1,5 +1,5 @@
 import { log } from '../lib/util';
-import { createRoomAction, updatePollAction, incrementVoterCountAction } from '../action/room';
+import { createRoomAction } from '../action/room';
 import { setStatusAction, removeStatusAction } from '../action/status';
 
 // Rob - takes in dispatch to allow state changing

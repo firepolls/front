@@ -19,7 +19,7 @@ export default (state = emptyState, { type, payload }) => {
       const updatedPolls = [...state.polls, payload];
       return Object.assign({}, state, { polls: updatedPolls });
     }
-    case 'POLL_VOTE_INCREMENT': { 
+    case 'POLL_VOTE_INCREMENT': {
       const { pollId, vote } = payload;
       const updatedPolls = state.polls.map(poll => {
         let pollToReturn = null;
@@ -38,7 +38,7 @@ export default (state = emptyState, { type, payload }) => {
       });
       return Object.assign({}, state, { polls: updatedPolls });
     }
-    case 'POLL_VOTE_DECREMENT': { 
+    case 'POLL_VOTE_DECREMENT': {
       const { pollId, lastVote } = payload;
       const updatedPolls = state.polls.map(poll => {
         let pollToReturn = null;
