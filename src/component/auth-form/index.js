@@ -104,7 +104,7 @@ class AuthForm extends React.Component {
     const emailInput = type === 'signup' ? this.generateInput('email') : null;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="auth-form" onSubmit={this.handleSubmit}>
         {this.generateInput('username')}
         {this.generateInput('password')}
         {emailInput}
