@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import { AppBar } from 'material-ui';
 
@@ -13,12 +13,9 @@ import { setSocketAction } from '../../action/socket';
 import './_app.scss';
 
 class App extends Component {
-  state = {};
-
   componentWillMount() {
     this.props.socketConnect();
   }
-  
   
   render() {
     return (
@@ -28,11 +25,11 @@ class App extends Component {
         </Fragment> */}
         <BrowserRouter>
           <div className="app">
-            <Switch>
+            <Fragment>
               <Route path="*" component={AuthRedirect} />
               <Route exact path="/" component={Landing} />
               <Route exact path="/room" component={Room} />
-            </Switch>
+            </Fragment>
           </div>
         </BrowserRouter>
       </Fragment>
