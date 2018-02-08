@@ -8,35 +8,19 @@ import { log } from '../../lib/util';
 import './_poll-item.scss';
 
 class PollItem extends Component {
-  state = {
-    poll: {
-      question: 'Test Question',
-      results: {
-        1: 10,
-        2: 20,
-        3: 30,
-        4: 40,
-      },
-      id: 'FAKE ID',
-      length: 1,
-    },
-  };
-
-  // -----------------___LIFE-CYCLE HOOKS___-----------------
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.poll !== nextProps.poll) {
-      this.setState({
-        poll: nextProps.poll,
-      });
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.poll !== nextProps.poll) {
+  //     this.setState({
+  //       poll: nextProps.poll,
+  //     });
+  //   }
+  // }
 
   handleVoteSubmit = (vote) => {
-    const { socket, room } = this.props;
+    const { socket, roomName, pollId } = this.props;
     const voteData = {
-      roomName: this.props.room.roomName,
-      pollId: this.props.pollId,
+      roomName,
+      pollId,
       vote,
     };
 
@@ -44,15 +28,27 @@ class PollItem extends Component {
   }
 
   render() {
-    const starsJSX = !this.props.owner 
-      ? <Voting handleVote={this.handleVoteSubmit} pollId={this.props.pollId} />
+    const {
+      pollId,
+      owner,
+      poll,
+    } = this.props;
+
+    const {
+      question,
+      results,
+      // pollId, TODO: Poll id should come from owner when fixed on back end.
+    } = poll;
+
+    const votingJSX = !owner 
+      ? <Voting handleVote={this.handleVoteSubmit} pollId={pollId} />
       : null;
     
     return (
       <Fragment>
-        <header>{this.props.poll.question}:</header>
-        {starsJSX}         
-        <Meter results={this.state.poll.results} />
+        <h2>{ question }:</h2>
+        { votingJSX }         
+        <Meter results={results} />
       </Fragment>
     );
   }

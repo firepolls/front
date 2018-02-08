@@ -11,8 +11,12 @@ import { addPollAction, createPollAction } from '../../action/room';
 import './_room.scss';
 
 class Room extends Component {
-  state = {
-  };
+  componentWillReceiveProps(nextProps) {
+    console.log('NEXT PROPS', nextProps);
+    if (!nextProps.room) {
+      this.props.history.push('/');
+    }
+  }
 
   handleAddPoll = () => {
     const { socket } = this.props;
@@ -31,25 +35,29 @@ class Room extends Component {
   }
  
   render() {
-    const buttonJSX = this.props.room.owner ?
-      (
-        <Fragment>
-          <RaisedButton onClick={this.handleAddPoll} >NEW POLL</RaisedButton>
-          <RaisedButton>SAVE</RaisedButton>
-          <RaisedButton>CLOSE</RaisedButton>
-        </Fragment>
-      )
+    const { room } = this.props;
+
+    const ownerButtonJSX = (
+      <Fragment>
+        <RaisedButton onClick={this.handleAddPoll} >Add Poll</RaisedButton>
+        <RaisedButton>Close</RaisedButton>
+      </Fragment>);
+
+    const voterButtonJSX = (
+      <RaisedButton onClick={this.handleLeaveRoom}>
+        Leave Room
+      </RaisedButton>);
+
+    const roomJSX = room ? (
+      <Fragment>
+        <h1>{room.roomName}</h1>
+        {room.owner ? ownerButtonJSX : voterButtonJSX}
+        {room.polls.length ? <PollList /> : null}
+      </Fragment>)
       : null;
 
-    return (
-      <Fragment>
-        <h1>{this.props.room.roomName}</h1>
-        <h2>{/* TODO: Placeholder for room description */}</h2>
-        {buttonJSX}
-        <PollList room={this.props.room} socket={this.props.socket} />
-        <button onClick={this.handleLeaveRoom}>LEAVE ROOM IF A VOTER</button>
-      </Fragment>
-    );
+      
+    return roomJSX;
   }
 }
 
