@@ -22,9 +22,9 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        {/* <Fragment>
-          <NavWrapper />
-        </Fragment> */}
+       
+        <NavWrapper />
+ 
         <BrowserRouter>
           <div className="app">
             <Switch>

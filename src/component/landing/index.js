@@ -85,19 +85,27 @@ class Landing extends Component {
           </div>
         </div>
         <section className="jumbotron">
-          <h1>We are <span>firepoll app</span>.</h1>
-          <p>Create free poll or join room to participate<strong>creators</strong>, <strong>innovators</strong>, and <strong>explorers</strong>.</p>
+          <h1><span>Welcome to Firepoll</span></h1>
+          <p>Create a poll below and invite your friends.</p>
           <br />
         </section>
 
         <section className="create-join">
   
-          <SocketForm type="create" onComplete={socket.createRoomEmit} />
+          <SocketForm 
+            className="socket-room"
+            type="create" 
+            onComplete={socket.createRoomEmit} 
+          />
 
           {/* TODO: Move this close room button to the Room component */}
           {/* <RaisedButton onClick={socket.closeRoomEmit}>Close Room</RaisedButton> */}
 
-          <SocketForm type="join" onComplete={socket.joinRoomEmit} />
+          <SocketForm 
+            className="socket-room"
+            type="join" 
+            onComplete={socket.joinRoomEmit} 
+          />
         </section>
       </Fragment>
     );
