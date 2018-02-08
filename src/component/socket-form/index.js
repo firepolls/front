@@ -1,8 +1,5 @@
-import { RaisedButton, TextField } from 'material-ui';
 import React, { Fragment, Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import muiTheme from '../../styles/mui-theme';
+import { RaisedButton, TextField } from 'material-ui';
 
 import './_socket-form.scss';
 

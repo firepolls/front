@@ -1,12 +1,30 @@
-import superagent from 'superagent';
-
 export const createRoomAction = room => ({
   type: 'ROOM_SET',
   payload: room,
 });
 
+export const incrementVoterCountAction = () => ({
+  type: 'ROOM_COUNT_INCREMENT',
+});
+
+export const decrementVoterCountAction = () => ({
+  type: 'ROOM_COUNT_DECREMENT',
+});
+
 export const removeRoomAction = () => ({
   type: 'ROOM_REMOVE',
+});
+
+// Rob - pollData is { pollId, vote }
+export const incrementVoteAction = pollData => ({
+  type: 'POLL_VOTE_INCREMENT',
+  payload: pollData,
+});
+
+// Rob - pollData is { pollId, lastVote }
+export const decrementVoteAction = pollData => ({
+  type: 'POLL_VOTE_DECREMENT',
+  payload: pollData,
 });
 
 export const addPollAction = poll => ({
@@ -14,7 +32,7 @@ export const addPollAction = poll => ({
   payload: poll,
 });
 
-export const updatePollAction = poll => ({
-  type: 'POLL_UPDATE',
+export const createPollAction = poll => ({
+  type: 'POLL_CREATE',
   payload: poll,
 });

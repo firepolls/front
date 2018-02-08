@@ -1,15 +1,18 @@
-import { render } from 'react-dom';
-import React, { Component } from 'react';
 import ReactStars from 'react-stars';
+import React, { Component } from 'react';
+
 import './_voting.scss';
 
 class Voting extends Component {
+  handleVote = (vote) => {
+    this.props.handleVote(vote, this.props.pollId);
+  }
   render() { 
     return ( 
       <div>
         <ReactStars
           count={4}
-          onChange={() => console.log('Value changed')}
+          onChange={this.handleVote}
           size={24}
           half={false} 
           color2="orange"

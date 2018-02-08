@@ -1,5 +1,3 @@
-import { v1 as uuid } from 'uuid';
-
 class Poll {
   constructor(question) {
     this.question = question;
@@ -9,7 +7,6 @@ class Poll {
       3: 0,
       4: 0,
     };
-    this.id = uuid();
   }
 }
 

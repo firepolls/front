@@ -5,12 +5,11 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-
 import './style/main.scss';
 import reducer from './reducer';
 import App from './component/app';
+import muiTheme from './style/mui-theme';
 import thunk from './middleware/redux-thunk';
-import muiTheme from './styles/mui-theme';
 import reporter from './middleware/redux-reporter';
 
 const store = process.env.NODE_ENV === 'production' ?

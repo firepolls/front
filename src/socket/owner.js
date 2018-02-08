@@ -1,12 +1,12 @@
 import { log } from '../lib/util';
-import { createRoomAction, updatePollAction } from '../action/room';
+import { createRoomAction, updatePollAction, incrementVoterCountAction } from '../action/room';
 import { setStatusAction, removeStatusAction } from '../action/status';
 
 // Rob - takes in dispatch to allow state changing
 export default (socket, dispatch) => {
   // Anthony - Room name already taken.
   socket.on('room status', data => {
-    log('Type: ', data.type, 'Room name: ', data.roomName, 'Status: ', data.status);
+    log('Type: ', data.type, 'Room name: ', data.roomName);
     dispatch(setStatusAction(data));
   });
 
@@ -19,10 +19,4 @@ export default (socket, dispatch) => {
       polls: [],
     }));
   });
-
-  // Anthony - Single result from a voter.
-  socket.on('poll result', poll => {
-    dispatch(updatePollAction(poll));
-  });
 };
-
