@@ -1,15 +1,9 @@
 import React, { Fragment } from 'react';
-import { log } from '../../lib/util';
 
 import './_meter.scss';
 
 class Meter extends React.Component {
-  state = {
-    r1: 10,
-    r2: 20,
-    r3: 50,
-    r4: 20,
-  };
+  state = {};
 
   componentWillReceiveProps(nextProps) {
     if (this.props.results !== nextProps.results) {
@@ -39,10 +33,8 @@ class Meter extends React.Component {
       { width: this.state.r3, color: 'red', star: '★★' },
       { width: this.state.r4, color: 'yellow', star: '★' },
     ];
-     
-    log('STARS?', svgProperties[0].star);
 
-    svgProperties = svgProperties.map((properties, index) => (
+    const meterJSX = svgProperties.map((properties, index) => (
       <Fragment key={index}>
         { properties.star }
         <svg width={width} height={height} >
@@ -61,7 +53,7 @@ class Meter extends React.Component {
 
     return (
       <div>
-        {svgProperties}
+        {meterJSX}
       </div>
     );
   }
