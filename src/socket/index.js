@@ -31,7 +31,7 @@ class Socket {
     });
     
     socket.on('vote decrement', pollData => {
-      dispatch(room.decrementVoteAction());
+      dispatch(room.decrementVoteAction(pollData));
       log('__VOTE_DECREMENT__');      
     });
   }

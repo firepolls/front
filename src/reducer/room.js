@@ -38,6 +38,25 @@ export default (state = emptyState, { type, payload }) => {
       });
       return Object.assign({}, state, { polls: updatedPolls });
     }
+    case 'POLL_VOTE_DECREMENT': { 
+      const { pollId, lastVote } = payload;
+      const updatedPolls = state.polls.map(poll => {
+        let pollToReturn = null;
+        if (poll.pollId === payload.pollId) {
+          const updatedResults = Object.assign(
+            {},
+            poll.results,
+            { [lastVote]: poll.results[lastVote] - 1 }
+          );
+          const updatedPoll = Object.assign({}, poll, { results: updatedResults });
+          pollToReturn = updatedPoll;
+        } else {
+          pollToReturn = poll;
+        }
+        return pollToReturn;
+      });
+      return Object.assign({}, state, { polls: updatedPolls });
+    }
     case 'TOKEN_REMOVE':
       return emptyState;
     default:
