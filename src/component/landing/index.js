@@ -25,7 +25,7 @@ class Landing extends Component {
     }
   }
 
-  // Rob - This is used for resetting the form
+  // Rob - This is used for resetting form
   emptyState = { ...this.state };
 
   render() {
