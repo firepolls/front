@@ -88,10 +88,6 @@ class Landing extends Component {
                 </h1>
               </a>
             </div>
-            <div className="form-container">
-              {this.state.signingUp && !this.props.loggedIn ? <AuthForm type="signup" onComplete={signup} /> : null}
-              {this.state.loggingIn ? <AuthForm type="login" onComplete={login} /> : null}
-            </div>
           </div>
           <section className="jumbotron">
             <h1><span>Welcome to Firepoll</span></h1>
