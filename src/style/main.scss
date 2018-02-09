@@ -1,4 +1,7 @@
 body {
   background-image: linear-gradient(to bottom, rgba(255,255,255,.45) 5%, rgba(255,255,255,.01) 35%, rgba(255,255,255,.35) 90%), 
         url('../../../static/images/bird-pattern.png');
+  font-family: Lato, sans-serif;
+  max-width: 960px;
+  margin: 0 auto;
 }

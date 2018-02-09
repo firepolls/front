@@ -89,7 +89,6 @@
     .auth-form {
       margin-right: 16px;
       display: block;
-      outline: 1px solid black;
       margin-bottom: 16px;
     }
     
@@ -156,37 +155,66 @@
 
 .grid {  
   margin-top: 2em;
+  img {
+    max-width: 200px;
+    height: auto;
+  }
 }
 
 .grid > * {
   padding: 2rem;
-  outline: 1px dotted black;
   margin-top: 2em;
 }
 
-@media screen and (min-width: 50em) {
+@media screen and (min-width: 60em) {
  .grid {
   display: grid;
-  grid-template-columns: 1fr minmax(2fr, 70em) 1fr;
+  grid-template-columns: 1fr minmax(2fr, 50em) 1fr;
   grid-template-rows: 20em;
-  grid-gap: 3rem;
+  grid-gap: 2rem;
   margin-top: 5em;
+  padding-bottom: 7em;
   grid-template-areas: 
     "left center right";
-  } 
+  }
+  .feature-desc {
+    padding: 0 17em;
+  }
+
+  
 }
 
 .feature-left {
   grid-area: left;
   text-align: center;
+  p {
+    padding: 0 1em;
+  }
+  img {
+    width: 100%;
+  }
 }
 
 .feature-center {
   grid-area: center;
+  text-align: center;
+  p {
+    padding: 0 1em;
+  }
+  img {
+    width: 100%;
+  }
 }
 
 .feature-right {
   grid-area: right;
+  text-align: center;
+  p {
+    padding: 0 1em;
+  }
+  img {
+    width: 100%;
+  }
 }
 
 .footer {
@@ -199,7 +227,6 @@
       text-decoration: underline;
       font-weight: bold;  
     }
-
   }
 
 }

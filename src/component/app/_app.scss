@@ -3,10 +3,3 @@
 .app {
   padding: $pad * 2;
 }
-
-@media screen and (min-width: 1200px) {
-  .app {
-    width: 1200;
-    margin: 0 auto;
-  }
-}

@@ -121,19 +121,26 @@ class Landing extends Component {
 
           <div className="grid">
             <div className="feature-left">
-              <img src="http://danielzawadzki.com/works/rocketmobile/img/feature2.png" alt="Instant Notifications" />
-              <h4>Business under Control</h4>
-              <p>Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <img src="../../../static/images/socket-io.svg" alt="Socket io" />
+              <h2>Socket.io</h2>
+              <p className="feature-desc">
+                Enables real-time bidirectional event-based communication and 
+                allow users to create or join room where polls can be created 
+              </p>
             </div>
             <div className="feature-center">
-              <img src="http://danielzawadzki.com/works/rocketmobile/img/feature2.png" alt="Instant Notifications" />
-              <h4>Business under Control</h4>
-              <p>Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <img src="../../../static/images/analytics.svg" alt="Instant Notifications" />
+              <h2>Real Time Analytics</h2>
+              <p className="feature-desc">
+                Push data to clients that gets represented as real-time vote counters
+              </p>
             </div>
             <div className="feature-right">
-              <img src="http://danielzawadzki.com/works/rocketmobile/img/feature2.png" alt="Instant Notifications" />
-              <h4>Business under Control</h4>
-              <p>Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <img src="../../../static/images/stars.svg" alt="Instant Notifications" />
+              <h2>Anonymous Voting</h2>
+              <p className="feature-desc">
+                Keep track of how many people have responded to a poll while keeping votes anonymous.
+              </p>
             </div>
           </div>
           <footer className="footer">
