@@ -65,17 +65,6 @@ class Landing extends Component {
       </ul>
     );
     
-    const logoutJSX =
-      (
-        <div>
-          <ul className="nav-items">
-            <li>
-              <RaisedButton onClick={() => logout(socket.socket)}>Logout</RaisedButton>
-            </li>
-          </ul>
-        </div>
-      );
-    
     return (
       <Fragment>
         <div className="landing-frag">
@@ -122,17 +111,17 @@ class Landing extends Component {
           <div className="grid">
             <div className="feature-left">
               <img src="../../../static/images/socket-io.svg" alt="Socket io" />
-              <h2>Socket.io</h2>
+              <h2>Real-Time</h2>
               <p className="feature-desc">
-                Enables real-time bidirectional event-based communication and 
-                allow users to create or join room where polls can be created 
+                Enables bi-directional, event-based communication and 
+                allows users to create polling rooms.
               </p>
             </div>
             <div className="feature-center">
               <img src="../../../static/images/analytics.svg" alt="Instant Notifications" />
-              <h2>Real Time Analytics</h2>
+              <h2>Analytics</h2>
               <p className="feature-desc">
-                Push data to clients that gets represented as real-time vote counters
+                Push data to clients and visualize results in real time.
               </p>
             </div>
             <div className="feature-right">
@@ -155,7 +144,6 @@ class Landing extends Component {
 const mapDispatchToProps = dispatch => ({
   signup: userData => dispatch(signupAction(userData)),
   login: userData => dispatch(loginAction(userData)),
-  logout: socket => dispatch(logoutAction(socket)),
   addPoll: poll => dispatch(addPollAction(poll)),
 });
 

@@ -17,7 +17,6 @@ export const removeTokenAction = () => ({
 
 export const logoutAction = (socket) => (store) => {
   cookieDelete(COOKIE);
-  if (socket) store.dispatch(removeSocketAction(socket));
   store.dispatch(removeTokenAction());
 };
 
@@ -29,7 +28,6 @@ export const signupAction = (user) => (store) =>
       store.dispatch(setTokenAction(text))
     )
     .catch(log);
-  // TODO: Rob - we need error handling here
 
 export const loginAction = (user) => (store) =>
   superagent.get(`${API_URL}/login`)
@@ -39,4 +37,3 @@ export const loginAction = (user) => (store) =>
       store.dispatch(setTokenAction(text))
     )
     .catch(log);
-  // TODO: Rob - we need error handling here

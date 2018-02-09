@@ -69,7 +69,7 @@ class Room extends Component {
         <RaisedButton 
           className="close-save-button"
           onClick={this.toggleModal}
-          label="Close or Save" 
+          label="Close Poll" 
         />
         <div className="create-poll-form">
           <SocketForm 
@@ -119,7 +119,7 @@ class Room extends Component {
         />
         <RaisedButton 
           onClick={this.handleSave}
-          label="save"
+          label="Save and exit"
           style={{ margin: '10px' }}
         />
       </Dialog>

@@ -7,11 +7,11 @@ import { signupAction, loginAction, logoutAction } from '../../../action/auth';
 
 class NavWrapper extends Component {
     state = {
-      open: false,
       signingUp: false,
       loggingIn: false,
       anchorEl: null,
       dialogOpen: true,
+      popoverOpen: false,
     }
 
   handleToggle = () => {
@@ -26,14 +26,18 @@ class NavWrapper extends Component {
     this.setState({ dialogOpen: false });
   }
 
-  handleSignup = () => {
-    this.props.signup();
+  handleSignup = (userData) => {
+    this.props.signup(userData);
     this.setState({ dialogOpen: false });
   }
 
-  handleLogin = () => {
-    this.props.login();
+  handleLogin = (userData) => {
+    this.props.login(userData);
     this.setState({ dialogOpen: false });
+  }
+
+  handlePopoverToggle = () => {
+    this.setState({ popoverOpen: !this.state.popoverOpen });
   }
 
   render() {
@@ -73,16 +77,25 @@ class NavWrapper extends Component {
           </Menu>
         );
 
-    const logoutJSX =
-        (
-          <div>
-            <ul className="nav-items">
-              <li>
-                <RaisedButton onClick={() => logout(socket.socket)}>Logout</RaisedButton>
-              </li>
-            </ul>
-          </div>
-        );
+    const logoutJSX = (
+      <RaisedButton 
+        onClick={() => logout()}
+      >
+        Logout
+      </RaisedButton>
+    );
+
+    const loginSignupJSX = (
+      <RaisedButton
+        label="Signup/Login"
+        onClick={(event) => this.setState({
+          anchorEl: event.target,
+          popoverOpen: true,
+        })}
+      />
+    );
+
+    const authButton = this.props.loggedIn ? logoutJSX : loginSignupJSX;
 
     return (
       <Paper
@@ -93,14 +106,7 @@ class NavWrapper extends Component {
           boxShadow: 'transparent',
         }}
       >
-
-        <RaisedButton
-          label="Signup/Login"
-          onClick={(event) => this.setState({
-            anchorEl: event.target,
-            open: true,
-          })}
-        />
+        { authButton }
         <Popover
           style={{
             marginTop: '1em',
@@ -118,7 +124,8 @@ class NavWrapper extends Component {
             }
           }
           anchorEl={this.state.anchorEl}
-          open={this.state.open}
+          open={this.state.popoverOpen}
+          onRequestClose={this.handlePopoverToggle}
         >
           {this.props.loggedIn ? logoutJSX : signupLoginJSX}
          
@@ -156,11 +163,15 @@ class NavWrapper extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  loggedIn: !!state.token,
+});
+
 const mapDispatchToProps = dispatch => ({
   signup: userData => dispatch(signupAction(userData)),
   login: userData => dispatch(loginAction(userData)),
-  logout: socket => dispatch(logoutAction(socket)),
+  logout: () => dispatch(logoutAction()),
 });
 
-export default connect(null, mapDispatchToProps)(NavWrapper);
+export default connect(mapStateToProps, mapDispatchToProps)(NavWrapper);
 
