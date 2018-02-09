@@ -14,10 +14,6 @@ class SocketForm extends Component {
     submitted: false,
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-  }
-
   emptyState = { ...this.state };
 
   generateClassName = formField => 
@@ -65,6 +61,7 @@ class SocketForm extends Component {
         style={
           {
             marginTop: '10px',
+            color: 'black',
           }
         }
         className={this.generateClassName(formField)}
