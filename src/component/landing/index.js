@@ -110,9 +110,6 @@ class Landing extends Component {
               onComplete={socket.createRoomEmit} 
             />
 
-            {/* TODO: Move this close room button to the Room component */}
-            {/* <RaisedButton onClick={socket.closeRoomEmit}>Close Room</RaisedButton> */}
-
             <SocketForm 
               className="socket-room"
               type="join"
