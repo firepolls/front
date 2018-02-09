@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <Fragment>
        
-        { /* <NavWrapper /> */}
+        <NavWrapper />
         <BrowserRouter>
           <div className="app">
             <MetaTags>
