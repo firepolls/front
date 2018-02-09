@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import './style/main.scss';
@@ -11,6 +12,8 @@ import App from './component/app';
 import muiTheme from './style/mui-theme';
 import thunk from './middleware/redux-thunk';
 import reporter from './middleware/redux-reporter';
+
+injectTapEventPlugin();
 
 const store = process.env.NODE_ENV === 'production' ?
   createStore(reducer, applyMiddleware(thunk)) :
