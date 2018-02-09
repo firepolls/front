@@ -1,10 +1,10 @@
 import validator from 'validator';
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import { RaisedButton, TextField } from 'material-ui';
 
 import './_auth-form.scss';
 
-class AuthForm extends React.Component {
+class AuthForm extends Component {
   // Rob - babel-preset-stage-2 includes class features that implicitly bind to the instance
   // Rob - This means no need for a constructor or props here
   state = {
@@ -42,19 +42,23 @@ class AuthForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    const { type } = this.props;
     const { usernameError, passwordError, emailError } = this.state;
-    const inputError = usernameError || emailError || passwordError;
+    let inputError = usernameError || passwordError;
+    inputError = type === 'login' ? 
+      inputError : 
+      inputError || emailError;
 
-    if (!inputError) { // Rob - If we add more logic need to make sure login is ok
+    if (!inputError) {
       this.props.onComplete(this.state);
       this.setState(this.emptyState);
+      console.log('heyee');
     } else {
       this.setState({
         usernameDirty: true,
         emailDirty: true,
         passwordDirty: true,
-        submitted: true, // TODO: Rob - I don't think we actually use this.
+        submitted: true,
       });
     }
   }

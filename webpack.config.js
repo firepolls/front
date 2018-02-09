@@ -18,7 +18,7 @@ webpackConfig.output = {
 
 webpackConfig.plugins = [
   new HTMLPlugin({
-    title: 'Socket Server',
+    title: 'Fire Polls',
   }),
   new EnvironmentPlugin(['NODE_ENV']),
   new DefinePlugin({

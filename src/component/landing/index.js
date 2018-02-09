@@ -65,17 +65,6 @@ class Landing extends Component {
       </ul>
     );
     
-    const logoutJSX =
-      (
-        <div>
-          <ul className="nav-items">
-            <li>
-              <RaisedButton onClick={() => logout(socket.socket)}>Logout</RaisedButton>
-            </li>
-          </ul>
-        </div>
-      );
-    
     return (
       <Fragment>
         <div className="landing-frag">
@@ -110,9 +99,6 @@ class Landing extends Component {
               onComplete={socket.createRoomEmit} 
             />
 
-            {/* TODO: Move this close room button to the Room component */}
-            {/* <RaisedButton onClick={socket.closeRoomEmit}>Close Room</RaisedButton> */}
-
             <SocketForm 
               className="socket-room"
               type="join"
@@ -124,19 +110,26 @@ class Landing extends Component {
 
           <div className="grid">
             <div className="feature-left">
-              <img src="http://danielzawadzki.com/works/rocketmobile/img/feature2.png" alt="Instant Notifications" />
-              <h4>Business under Control</h4>
-              <p>Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <img src="../../../static/images/socket-io.svg" alt="Socket io" />
+              <h2>Real-Time</h2>
+              <p className="feature-desc">
+                Enables bi-directional, event-based communication and 
+                allows users to create polling rooms.
+              </p>
             </div>
             <div className="feature-center">
-              <img src="http://danielzawadzki.com/works/rocketmobile/img/feature2.png" alt="Instant Notifications" />
-              <h4>Business under Control</h4>
-              <p>Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <img src="../../../static/images/analytics.svg" alt="Instant Notifications" />
+              <h2>Analytics</h2>
+              <p className="feature-desc">
+                Push data to clients and visualize results in real time.
+              </p>
             </div>
             <div className="feature-right">
-              <img src="http://danielzawadzki.com/works/rocketmobile/img/feature2.png" alt="Instant Notifications" />
-              <h4>Business under Control</h4>
-              <p>Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <img src="../../../static/images/stars.svg" alt="Instant Notifications" />
+              <h2>Anonymous Voting</h2>
+              <p className="feature-desc">
+                Keep track of how many people have responded to a poll while keeping votes anonymous.
+              </p>
             </div>
           </div>
           <footer className="footer">
@@ -151,7 +144,6 @@ class Landing extends Component {
 const mapDispatchToProps = dispatch => ({
   signup: userData => dispatch(signupAction(userData)),
   login: userData => dispatch(loginAction(userData)),
-  logout: socket => dispatch(logoutAction(socket)),
   addPoll: poll => dispatch(addPollAction(poll)),
 });
 
