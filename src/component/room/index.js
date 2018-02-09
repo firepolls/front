@@ -58,6 +58,7 @@ class Room extends Component {
     if (this.props.token) {
       const { token, room } = this.props;
       this.props.saveRoom({ token, roomData: room });
+      this.props.removeRoom();
     } else {
       this.toggleAlert();
     }

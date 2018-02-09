@@ -10,6 +10,7 @@ import Landing from '../landing';
 import AuthRedirect from '../auth-redirect';
 import NavWrapper from '../material-ui/nav-wrapper';
 import { setSocketAction } from '../../action/socket';
+import { getSavedRoomsAction } from '../../action/savedRooms';
 
 import './_app.scss';
 
@@ -17,11 +18,15 @@ class App extends Component {
   componentWillMount() {
     this.props.socketConnect();
   }
+
+  componentDidMount() {
+    const { token } = this.props;
+    if (token) this.props.getSavedRooms(token);
+  }
   
   render() {
     return (
       <Fragment>
-       
         <NavWrapper />
         <BrowserRouter>
           <div className="app">
@@ -40,8 +45,13 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  token: state.token,
+});
+
 const mapDispatchToProps = dispatch => ({
   socketConnect: () => dispatch(setSocketAction(dispatch)),
+  getSavedRooms: (token) => dispatch(getSavedRoomsAction(token)),
 }); 
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
