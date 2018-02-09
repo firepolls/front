@@ -1,3 +1,5 @@
+import superagent from 'superagent';
+
 export const createRoomAction = room => ({
   type: 'ROOM_SET',
   payload: room,
@@ -36,3 +38,12 @@ export const createPollAction = poll => ({
   type: 'POLL_CREATE',
   payload: poll,
 });
+
+export const saveRoomAction = ({ roomData, token }) => (store) =>
+  superagent.post(`${API_URL}/session`)
+    .set('Authorization', `Bearer ${token}`)
+    .send(roomData)
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(console.log);
