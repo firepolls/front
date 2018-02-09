@@ -80,7 +80,7 @@ class Landing extends Component {
       <Fragment>
         <div className="header">
           <div className="container-fluid">
-            <a href="http://www.google.com">
+            <a href="/">
               <h1 className="logo">
                 <span>F</span>
                 firepolls

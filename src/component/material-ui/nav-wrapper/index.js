@@ -1,7 +1,9 @@
+import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 import { AppBar, Drawer, MenuItem, RaisedButton, Popover, Menu, Paper } from 'material-ui';
 import AuthForm from '../../auth-form';
 import mastHead from '../nav-wrapper/navstyling';
+import { signupAction, loginAction, logoutAction } from '../../../action/auth';
 
 
 class NavWrapper extends Component {
@@ -111,5 +113,11 @@ class NavWrapper extends Component {
     }
 }
 
-export default NavWrapper;
+const mapDispatchToProps = dispatch => ({
+  signup: userData => dispatch(signupAction(userData)),
+  login: userData => dispatch(loginAction(userData)),
+  logout: socket => dispatch(logoutAction(socket)),
+});
+
+export default connect(null, mapDispatchToProps)(NavWrapper);
 
