@@ -46,8 +46,7 @@ class AuthForm extends React.Component {
     const { usernameError, passwordError, emailError } = this.state;
     const inputError = usernameError || emailError || passwordError;
 
-    // TODO: Rob - should not login if fields are empty!
-    if (this.props.type === 'login' || !inputError) {
+    if (!inputError) { // Rob - If we add more logic need to make sure login is ok
       this.props.onComplete(this.state);
       this.setState(this.emptyState);
     } else {
@@ -61,11 +60,8 @@ class AuthForm extends React.Component {
   }
 
   handleValidation = (name, value) => {
-    if (this.props.type === 'login') {
-      return null;
-    }
+    const { type } = this.props;
 
-    // TODO: Rob - Validation needs to be more extreme
     switch (name) {
       case 'username':
         return value.length === 0 ? 'Username is required.' : null;

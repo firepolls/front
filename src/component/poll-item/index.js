@@ -9,7 +9,8 @@ import './_poll-item.scss';
 
 class PollItem extends Component {
   handleVoteSubmit = (vote) => {
-    const { socket, roomName, pollId } = this.props;
+    const { socket, roomName } = this.props;
+    const { pollId } = this.props.poll;
     const voteData = {
       vote,
       pollId,
@@ -21,7 +22,6 @@ class PollItem extends Component {
 
   render() {
     const {
-      pollId,
       owner,
       poll,
     } = this.props;
@@ -29,7 +29,7 @@ class PollItem extends Component {
     const {
       question,
       results,
-      // pollId, TODO: Rob - pollId should come from poll when fixed on back end
+      pollId,
     } = poll;
 
     const votingJSX = !owner ? 
