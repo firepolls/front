@@ -55,10 +55,6 @@ webpackConfig.module = {
       loader: 'babel-loader',
     },
     {
-      test: /\.svg$/,
-      use: 'file-loader',
-    },
-    {
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',
