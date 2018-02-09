@@ -13,7 +13,8 @@ import { createPollAction, removeRoomAction } from '../../action/room';
 
 class Room extends Component {
   state = {
-    open: false,
+    modalOpen: false,
+    alertOpen: false,
   }
 
   componentWillReceiveProps(nextProps) {
@@ -22,11 +23,15 @@ class Room extends Component {
     }
   }
 
-  handleToggle = () => {
+  handleToggle = type => {
     this.setState(previousState => ({
-      open: !previousState.open,
+      [`${type}Open`]: !previousState[`${type}Open`],
     }));
-  }
+  };
+
+  toggleModal = () => this.handleToggle('modal');
+
+  toggleAlert = () => this.handleToggle('alert');
 
   handleAddPoll = question => {
     const { socket } = this.props;
@@ -40,12 +45,22 @@ class Room extends Component {
   handleLeaveRoom = () => {
     const { socket, room } = this.props;
     socket.leaveRoomEmit(room.roomName);
-  }
+  };
 
-  handleCloseRoom = () => {
+  handleRemoveRoom = () => {
     const { socket } = this.props;
     socket.closeRoomEmit();
-  }
+    this.props.removeRoom();
+  };
+
+  handleSave = () => {
+    if (this.props.token) {
+      console.log('save the stuff');
+    } else {
+      this.toggleModal();
+      this.toggleAlert();
+    }
+  };
 
   render() {
     const { room, socket } = this.props;
@@ -60,7 +75,7 @@ class Room extends Component {
         />
         <RaisedButton 
           className="close-save-button"
-          onClick={this.handleToggle}
+          onClick={this.toggleModal}
           label="Close or Save" 
         />
       </Fragment>);
@@ -87,17 +102,17 @@ class Room extends Component {
       <Dialog
         className="close-save"
         title="Would you like to save your session?"
-        modal={true}
-        open={this.state.open}
+        open={this.state.modalOpen}
+        onRequestClose={this.toggleModal}
       >
         <div className="cancel">
           <FlatButton
-            onClick={this.handleToggle}
+            onClick={this.toggleModal}
             label="x"
           />
         </div>
         <RaisedButton 
-          onClick={this.props.removeRoom}
+          onClick={this.handleRemoveRoom}
           label="Discard"
           style={{ margin: '10px' }}
         />
@@ -109,10 +124,24 @@ class Room extends Component {
       </Dialog>
     );
 
+    const alert = (
+      <Dialog
+        open={this.state.alertOpen}
+        onRequestClose={this.toggleAlert}
+        title="Error: You must be signed in to save your session."
+      >
+        <RaisedButton 
+          onClick={this.toggleAlert}
+          label="OK"
+        />
+      </Dialog>
+    );
+
     return (
       <Fragment>
         { roomJSX }
         { modal }
+        { alert }
       </Fragment>
     );
   }
