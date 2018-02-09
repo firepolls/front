@@ -18,19 +18,6 @@ class Room extends Component {
     alertOpen: false,
   }
 
-  // componentDidMount() {
-  //   // Get the components DOM node
-  //   const elem = this.getDOMNode();
-  //   // Set the opacity of the element to 0
-  //   elem.style.opacity = 0;
-  //   window.requestAnimationFrame(() => {
-  //     // Now set a transition on the opacity
-  //     elem.style.transition = 'opacity 250ms';
-  //     // and set the opacity to 1
-  //     elem.style.opacity = 1;
-  //   });
-  // }
-
   componentWillReceiveProps(nextProps) {
     if (!nextProps.room) {
       this.props.history.push('/');
