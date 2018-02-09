@@ -65,6 +65,7 @@ class SocketForm extends Component {
         style={
           {
             marginTop: '10px',
+            color: 'black',
           }
         }
         className={this.generateClassName(formField)}

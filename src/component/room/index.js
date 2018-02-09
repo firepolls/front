@@ -37,7 +37,6 @@ class Room extends Component {
     const { room, socket } = this.props;
     const ownerJSX = (
       <Fragment>
-        <div className="active-voters">Active voters: {room ? room.voters : 0}</div>
         <SocketForm 
           className="create-poll-form"
           type="create"
@@ -58,6 +57,7 @@ class Room extends Component {
     const roomJSX = room ? (
       <Fragment>
         <h1>{room.roomName}</h1>
+        <div className="active-voters">Active voters: {room ? room.voters : 0}</div>
         {room.owner ? ownerJSX : voterButtonJSX}
         {room.polls.length ? <PollList /> : null}
       </Fragment>) : null;

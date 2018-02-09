@@ -25,7 +25,7 @@ class Landing extends Component {
     }
   }
 
-  // Rob - This is used for resetting the form
+  // Rob - This is used for resetting form
   emptyState = { ...this.state };
 
   render() {
@@ -78,48 +78,71 @@ class Landing extends Component {
     
     return (
       <Fragment>
-        <div className="header">
-          <div className="container-fluid">
-            <a href="http://www.google.com">
-              <h1 className="logo">
-                <span>F</span>
-                firepolls
-              </h1>
-            </a>
-            {this.props.loggedIn ? logoutJSX : signupLoginJSX}
+        <div className="landing-frag">
+          <div className="header">
+            <div className="container-fluid">
+              <a href="/">
+                <h1 className="logo">
+                  <span>F</span>
+                  firepolls
+                </h1>
+              </a>
+            </div>
           </div>
-          <div className="form-container">
-            {this.state.signingUp && !this.props.loggedIn ? <AuthForm type="signup" onComplete={signup} /> : null}
-            {this.state.loggingIn ? <AuthForm type="login" onComplete={login} /> : null}
+          <section className="jumbotron">
+            <h1><span>Welcome to Firepoll</span></h1>
+            <p>Create a poll below and invite your friends.</p>
+            <br />
+          </section>
+          
+          <section className="create-join">
+    
+            <SocketForm 
+              className="socket-room"
+              style={
+                {
+                  top: 20,
+                }
+              }
+              type="create" 
+              fieldVar="roomName"
+              placeholderPartial="Room"
+              onComplete={socket.createRoomEmit} 
+            />
+
+            {/* TODO: Move this close room button to the Room component */}
+            {/* <RaisedButton onClick={socket.closeRoomEmit}>Close Room</RaisedButton> */}
+
+            <SocketForm 
+              className="socket-room"
+              type="join"
+              fieldVar="roomName"
+              placeholderPartial="Room"
+              onComplete={socket.joinRoomEmit} 
+            />
+          </section>
+
+          <div className="grid">
+            <div className="feature-left">
+              <img src="http://danielzawadzki.com/works/rocketmobile/img/feature2.png" alt="Instant Notifications" />
+              <h4>Business under Control</h4>
+              <p>Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+            <div className="feature-center">
+              <img src="http://danielzawadzki.com/works/rocketmobile/img/feature2.png" alt="Instant Notifications" />
+              <h4>Business under Control</h4>
+              <p>Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+            <div className="feature-right">
+              <img src="http://danielzawadzki.com/works/rocketmobile/img/feature2.png" alt="Instant Notifications" />
+              <h4>Business under Control</h4>
+              <p>Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
           </div>
+          <footer className="footer">
+            © 2018<a href="https://github.com/firepolls"> Firepoll on Github </a>
+          </footer>
         </div>
-        <section className="jumbotron">
-          <h1><span>Welcome to Firepoll</span></h1>
-          <p>Create a poll below and invite your friends.</p>
-          <br />
-        </section>
-
-        <section className="create-join">
-  
-          <SocketForm 
-            className="socket-room"
-            type="create" 
-            fieldVar="roomName"
-            placeholderPartial="Room"
-            onComplete={socket.createRoomEmit} 
-          />
-
-          {/* TODO: Move this close room button to the Room component */}
-          {/* <RaisedButton onClick={socket.closeRoomEmit}>Close Room</RaisedButton> */}
-
-          <SocketForm 
-            className="socket-room"
-            type="join"
-            fieldVar="roomName"
-            placeholderPartial="Room"
-            onComplete={socket.joinRoomEmit} 
-          />
-        </section>
       </Fragment>
     );
   }
