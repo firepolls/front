@@ -9,7 +9,7 @@ import Poll from '../../socket/poll';
 import SocketForm from '../socket-form';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
-import { createPollAction, removeRoomAction } from '../../action/room';
+import { createPollAction, removeRoomAction, saveRoomAction } from '../../action/room';
 
 class Room extends Component {
   state = {
@@ -55,11 +55,13 @@ class Room extends Component {
 
   handleSave = () => {
     if (this.props.token) {
-      console.log('save the stuff');
+      const { token, room } = this.props;
+      this.props.saveRoom({ token, roomData: room });
     } else {
-      this.toggleModal();
       this.toggleAlert();
     }
+    this.toggleModal();
+    console.log('hi');
   };
 
   render() {
@@ -151,10 +153,12 @@ class Room extends Component {
 const mapDispatchToProps = dispatch => ({
   createPoll: poll => dispatch(createPollAction(poll)),
   removeRoom: () => dispatch(removeRoomAction()),
+  saveRoom: (postObject) => dispatch(saveRoomAction(postObject)),
 });
 
 const mapStateToProps = state => ({
   socket: state.socket,
+  token: state.token,
   room: state.room,
 });
 
