@@ -8,10 +8,15 @@ class SocketForm extends Component {
   state = {
     [this.props.fieldVar]: '',
     [`${this.props.fieldVar}Dirty`]: false,
-    [`${this.props.fieldVar}Error`]: `${this.props.fieldVar} is required.`,
+    [`${this.props.fieldVar}Error`]: 
+      `${this.props.fieldVar === 'roomName' ? 'A room name' : 'A question'} is required.`,
   
     submitted: false,
   };
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+  }
 
   emptyState = { ...this.state };
 
@@ -31,16 +36,16 @@ class SocketForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-    const valueType = this.state[this.props.fieldVar];
-    const error = this.state[`${valueType}Error`];
+    const { fieldVar } = this.props;
+    const value = this.state[fieldVar];
+    const error = this.state[`${fieldVar}Error`];
 
     if (!error) {      
-      this.props.onComplete(valueType);
+      this.props.onComplete(value);
       this.setState(this.emptyState);
     } else {
       this.setState({
-        [`${valueType}Dirty`]: true,
+        [`${fieldVar}Dirty`]: true,
         // Rob - I don't think we use submitted anywhere
         submitted: true,
       });
@@ -48,7 +53,7 @@ class SocketForm extends Component {
   }
 
   handleValidation = (name, value) =>
-    (value.length === 0 ? `${name} is required.` : null);
+    (value.length === 0 ? `${name === 'roomName' ? 'A room name' : 'A question'} is required.` : null);
 
   generateError = formField => (
     this.state[`${formField}Dirty`] ? <p>{this.state[`${formField}Error`]}</p> : null
