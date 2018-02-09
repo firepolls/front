@@ -23,20 +23,38 @@ class Meter extends Component {
       { width: percentages[3], color: 'yellow', star: '★★★★' },
     ];
 
-    const meterJSX = svgProperties.map(svgProperty => (
-      <div key={Math.random()}>
-        <span>{ svgProperty.star }</span>
-        <svg width={width} height={height} >
-          <rect width={width} height={height} fill="#ccc" rx={rx} ry={ry} />
+    const meterJSX = svgProperties.map(properties => ( 
+      <div 
+        key={Math.random()}
+        className="single-meter"
+      >
+        <div>
+          <span>{ properties.star }</span>
+        </div>
+
+        <svg 
+          width={width} 
+          height={height}
+        >
+          <rect 
+            width={width} 
+            height={height} 
+            fill="#ccc" 
+            rx={rx} 
+            ry={ry} 
+          />
           <rect
-            width={Number(svgProperty.width)}
+            width={Number(properties.width)}
             height={height}
-            fill={svgProperty.color}
+            fill={properties.color}
             rx={rx}
             ry={ry}
             style={style}
           />
         </svg>
+        <div className="percentage">
+          {properties.width ? `${Math.floor(properties.width * 100) / 100}%` : <div className="percentage-placeholder" />} 
+        </div>
       </div>
     ));
 

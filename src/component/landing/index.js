@@ -25,7 +25,7 @@ class Landing extends Component {
     }
   }
 
-  // Rob - This is used for resetting the form
+  // Rob - This is used for resetting form
   emptyState = { ...this.state };
 
   render() {
@@ -80,7 +80,7 @@ class Landing extends Component {
       <Fragment>
         <div className="header">
           <div className="container-fluid">
-            <a href="http://www.google.com">
+            <a href="/">
               <h1 className="logo">
                 <span>F</span>
                 firepolls
@@ -103,6 +103,11 @@ class Landing extends Component {
   
           <SocketForm 
             className="socket-room"
+            style={
+              {
+                top: 20,
+              }
+            }
             type="create" 
             fieldVar="roomName"
             placeholderPartial="Room"

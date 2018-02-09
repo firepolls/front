@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Paper } from 'material-ui';
 import React, { Component, Fragment } from 'react';
 
 import './_poll-item.scss';
@@ -41,10 +42,20 @@ class PollItem extends Component {
 
     return (
       <Fragment>
-        <h2>{question}:</h2>
-        <div>Votes: {totalVotes}</div>
-        {votingJSX}     
-        <Meter resultsArray={resultsArray} totalVotes={totalVotes} />
+        <Paper
+          className="meter-and-stars-container"
+          zDepth={2}
+        >
+        
+          <h2 className="question-render">{question}:</h2>
+          <div>Votes: {totalVotes}</div>
+          <div className="voting-container">
+            {votingJSX}         
+          </div>
+          <div className="meter-and-stars">
+            <Meter resultsArray={resultsArray} totalVotes={totalVotes} />
+          </div>
+        </Paper>
       </Fragment>
     );
   }

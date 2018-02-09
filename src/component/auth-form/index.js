@@ -81,8 +81,9 @@ class AuthForm extends React.Component {
     return (
       <Fragment>
         <TextField
-          className={this.generateClassName(formField)}
+          className={`auth-form-text ${this.generateClassName(formField)}`}
           name={formField}
+          fullWidth
           hintText={`${formField}...`}
           type={type}
           value={this.state[formField]}
