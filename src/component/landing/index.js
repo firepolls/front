@@ -79,7 +79,7 @@ class Landing extends Component {
             </div>
           </div>
           <section className="jumbotron">
-            <h1><span>Welcome to Firepoll</span></h1>
+            <h1><span>Welcome to Firepolls</span></h1>
             <p>Create a poll below and invite your friends.</p>
             <br />
           </section>
