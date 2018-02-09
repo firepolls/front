@@ -42,18 +42,19 @@ class PollItem extends Component {
 
     return (
       <Fragment>
-        <Paper
-          className="meter-and-stars-container"
+        <Paper 
+          className="question-container"
           zDepth={2}
         >
-        
-          <h2 className="question-render">{question}:</h2>
-          <div>Votes: {totalVotes}</div>
-          <div className="voting-container">
-            {votingJSX}         
-          </div>
-          <div className="meter-and-stars">
-            <Meter resultsArray={resultsArray} totalVotes={totalVotes} />
+          <div className="meter-and-stars-container">
+            <h2 className="question-render">{question}:</h2>
+            <div>Votes: {totalVotes}</div>
+            <div className="voting-container">
+              {votingJSX}         
+            </div>
+            <div className="meter-and-stars">
+              <Meter resultsArray={resultsArray} totalVotes={totalVotes} />
+            </div>
           </div>
         </Paper>
       </Fragment>

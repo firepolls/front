@@ -37,14 +37,15 @@ class Room extends Component {
     const { room, socket } = this.props;
     const ownerJSX = (
       <Fragment>
-        <SocketForm 
-          className="create-poll-form"
-          type="create"
-          fieldVar="poll"
-          placeholderPartial="Poll"
-          onComplete={this.handleAddPoll} 
-        />
         <RaisedButton>Close Room</RaisedButton>
+        <div className="create-poll-form">
+          <SocketForm 
+            type="create"
+            fieldVar="poll"
+            placeholderPartial="Poll"
+            onComplete={this.handleAddPoll} 
+          />
+        </div>
       </Fragment>);
 
     const voterButtonJSX = (
