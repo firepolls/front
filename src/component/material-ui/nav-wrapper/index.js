@@ -100,6 +100,7 @@ class NavWrapper extends Component {
             }
             anchorEl={this.state.anchorEl}
             open={this.state.open}
+            onRequestClose={this.handleToggle}
           >
             {this.props.loggedIn ? logoutJSX : signupLoginJSX}
          

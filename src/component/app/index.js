@@ -9,6 +9,7 @@ import Room from '../room';
 import Landing from '../landing';
 import AuthRedirect from '../auth-redirect';
 import NavWrapper from '../material-ui/nav-wrapper';
+import Sidebar from '../sidebar';
 import { setSocketAction } from '../../action/socket';
 
 import './_app.scss';
@@ -21,8 +22,8 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-       
-        <NavWrapper />
+      <NavWrapper />
+      <Sidebar />
         <BrowserRouter>
           <div className="app">
             <MetaTags>
