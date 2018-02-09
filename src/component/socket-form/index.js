@@ -14,10 +14,6 @@ class SocketForm extends Component {
     submitted: false,
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-  }
-
   emptyState = { ...this.state };
 
   generateClassName = formField => 

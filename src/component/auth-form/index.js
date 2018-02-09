@@ -52,7 +52,6 @@ class AuthForm extends Component {
     if (!inputError) {
       this.props.onComplete(this.state);
       this.setState(this.emptyState);
-      console.log('heyee');
     } else {
       this.setState({
         usernameDirty: true,
