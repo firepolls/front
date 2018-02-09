@@ -129,12 +129,12 @@ class Landing extends Component {
               <p className="feature-desc">Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
             </div>
             <div className="feature-center">
-              <img src="../../../static/images/socket-io.svg" alt="Instant Notifications" />
+              <img src="../../../static/images/analytics.svg" alt="Instant Notifications" />
               <h4>Business under Control</h4>
               <p className="feature-desc">Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
             </div>
             <div className="feature-right">
-              <img src="../../../static/images/socket-io.svg" alt="Instant Notifications" />
+              <img src="../../../static/images/stars.svg" alt="Instant Notifications" />
               <h4>Business under Control</h4>
               <p className="feature-desc">Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
             </div>
