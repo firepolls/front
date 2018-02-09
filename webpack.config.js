@@ -40,7 +40,7 @@ if (PRODUCTION) {
 webpackConfig.module = {
   rules: [
     {
-      test: /\.(jpg|gif|png)$/,
+      test: /\.(jpg|gif|png|svg)$/,
       use: [{
         loader: 'url-loader',
         options: {
@@ -53,6 +53,10 @@ webpackConfig.module = {
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader',
+    },
+    {
+      test: /\.svg$/,
+      use: 'file-loader',
     },
     {
       test: /\.scss$/,
