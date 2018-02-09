@@ -99,7 +99,7 @@ class Room extends Component {
           className="active-voters" 
           zDepth={1}
           style={{
-            fontSize: '1.25em',
+            fontSize: '1.25em', margin: '1vw', padding: '1vw',
           }}
         >
           Active voters: {room && room.voters > 0 ? room.voters : 0}
