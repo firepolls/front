@@ -23,7 +23,6 @@ class Room extends Component {
     const { socket } = this.props;
     const poll = new Poll(question);
     // Anthony - emit poll to voters
-    // Rob - MUST SEND JUST A QUESTION
     socket.createPollEmit(question);
     // Anthony - add poll to state
     this.props.createPoll(poll);
@@ -38,6 +37,7 @@ class Room extends Component {
     const { room, socket } = this.props;
     const ownerJSX = (
       <Fragment>
+        <div className="active-voters">Active voters: {room ? room.voters : 0}</div>
         <SocketForm 
           className="create-poll-form"
           type="create"

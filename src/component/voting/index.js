@@ -2,9 +2,8 @@ import ReactStars from 'react-stars';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
-import { storeVoteAction } from '../../action/votes';
-
 import './_voting.scss';
+import { storeVoteAction } from '../../action/votes';
 
 class Voting extends Component {
   state = {
