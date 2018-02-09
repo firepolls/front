@@ -3,12 +3,14 @@ import React, { Component, Fragment } from 'react';
 import './_meter.scss';
 
 class Meter extends Component {
+
   render() {
+    const animate = false;
     const width = 100;
     const height = 10;
     const rx = height / 2;
     const ry = height / 2;
-    const style = { transition: 'width 500ms, fill 250ms' }; 
+    const style = animate ? { transition: 'width 500ms, fill 250ms' } : null; 
 
     const { resultsArray, totalVotes } = this.props;
     // Rob - totalVotes or 1, because of math, divided by 100 because of percents
@@ -44,7 +46,7 @@ class Meter extends Component {
             ry={ry} 
           />
           <rect
-            width={Number(properties.width)}
+            width={}
             height={height}
             fill={properties.color}
             rx={rx}
