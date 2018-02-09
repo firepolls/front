@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { RaisedButton, FlatButton, Dialog } from 'material-ui';
+import { RaisedButton, FlatButton, Dialog, Paper } from 'material-ui';
 
 import './_room.scss';
 import PollList from '../poll-list';
@@ -66,18 +66,19 @@ class Room extends Component {
     const { room, socket } = this.props;
     const ownerJSX = (
       <Fragment>
-        <SocketForm 
-          className="create-poll-form"
-          type="create"
-          fieldVar="poll"
-          placeholderPartial="Poll"
-          onComplete={this.handleAddPoll} 
-        />
         <RaisedButton 
           className="close-save-button"
           onClick={this.toggleModal}
           label="Close or Save" 
         />
+        <div className="create-poll-form">
+          <SocketForm 
+            type="create"
+            fieldVar="poll"
+            placeholderPartial="Poll"
+            onComplete={this.handleAddPoll} 
+          />
+        </div>
       </Fragment>);
 
     const voterButtonJSX = (
@@ -91,9 +92,15 @@ class Room extends Component {
     const roomJSX = room ? (
       <Fragment>
         <h1>{room.roomName}</h1>
-        <div className="active-voters">
+        <Paper 
+          className="active-voters" 
+          zDepth={1}
+          style={{
+            fontSize: '1.25em',
+          }}
+        >
           Active voters: {room && room.voters > 0 ? room.voters : 0}
-        </div>
+        </Paper>
         {room.owner ? ownerJSX : voterButtonJSX}
         {room.polls.length ? <PollList /> : null}
       </Fragment>) : null;
@@ -105,12 +112,6 @@ class Room extends Component {
         open={this.state.modalOpen}
         onRequestClose={this.toggleModal}
       >
-        <div className="cancel">
-          <FlatButton
-            onClick={this.toggleModal}
-            label="x"
-          />
-        </div>
         <RaisedButton 
           onClick={this.handleRemoveRoom}
           label="Discard"
