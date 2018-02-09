@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Paper } from 'material-ui';
 import React, { Component, Fragment } from 'react';
 
 import Meter from '../meter';
@@ -33,14 +34,29 @@ class PollItem extends Component {
     } = poll;
 
     const votingJSX = !owner ? 
-      <Voting handleVote={this.handleVoteSubmit} pollId={pollId} /> :
+      (
+        // <Paper
+        //   zDepth={2}
+        // >
+          <Voting handleVote={this.handleVoteSubmit} pollId={pollId} />
+        // </Paper>
+      ) :
       null;
 
     return (
       <Fragment>
-        <h2>{question}:</h2>
-        {votingJSX}         
-        <Meter results={results} />
+        <Paper
+          className="meter-and-stars-container"
+          zDepth={2}
+        >
+          <h2 className="question-render">{question}:</h2>
+          <div className="voting-container">
+            {votingJSX}         
+          </div>
+          <div className="meter-and-stars">
+            <Meter results={results} />
+          </div>
+        </Paper>
       </Fragment>
     );
   }
