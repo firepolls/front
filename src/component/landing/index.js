@@ -124,19 +124,19 @@ class Landing extends Component {
 
           <div className="grid">
             <div className="feature-left">
-              <img src="http://danielzawadzki.com/works/rocketmobile/img/feature2.png" alt="Instant Notifications" />
-              <h4>Business under Control</h4>
-              <p>Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <img src="../../../static/images/socket-io.svg" alt="Socket io" />
+              <h4>socket.io</h4>
+              <p className="feature-desc">Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
             </div>
             <div className="feature-center">
-              <img src="http://danielzawadzki.com/works/rocketmobile/img/feature2.png" alt="Instant Notifications" />
+              <img src="../../../static/images/socket-io.svg" alt="Instant Notifications" />
               <h4>Business under Control</h4>
-              <p>Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <p className="feature-desc">Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
             </div>
             <div className="feature-right">
-              <img src="http://danielzawadzki.com/works/rocketmobile/img/feature2.png" alt="Instant Notifications" />
+              <img src="../../../static/images/socket-io.svg" alt="Instant Notifications" />
               <h4>Business under Control</h4>
-              <p>Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              <p className="feature-desc">Lorem ipsum dolor amet, consect etur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
             </div>
           </div>
           <footer className="footer">
