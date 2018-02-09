@@ -19,10 +19,14 @@ class Landing extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.room) {
-      this.props.history.push('/room');
+    if (nextProps.room) this.props.history.push('/room');
+    if (nextProps.loggedIn) {
+      this.setState(this.emptyState);
     }
   }
+
+  // Rob - This is used for resetting the form
+  emptyState = { ...this.state };
 
   render() {
     const {
@@ -32,29 +36,34 @@ class Landing extends Component {
       logout,
     } = this.props;
 
-    const signupLoginJSX = 
-      (
-        <ul className="nav-items">
-          <li>
-            <RaisedButton onClick={() => 
-              this.setState({
-                signingUp: true,
+    const signupLoginJSX = (
+      <ul className="nav-items">
+        <li>
+          <RaisedButton
+            onClick={() => 
+              this.setState(previousState => ({
+                signingUp: !previousState.signingUp,
                 loggingIn: false,
-              })}
-            >Signup
-            </RaisedButton>          
-          </li> 
-          <li>
-            <RaisedButton onClick={() =>
-              this.setState({
-                loggingIn: true,
+              }))
+            }
+          >
+            Signup
+          </RaisedButton>          
+        </li> 
+        <li>
+          <RaisedButton 
+            onClick={() =>
+              this.setState(previousState => ({
                 signingUp: false,
-              })}
-            >Login
-            </RaisedButton>
-          </li>
-        </ul>
-      );
+                loggingIn: !previousState.loggingIn,
+              }))
+            }
+          >
+            Login
+          </RaisedButton>
+        </li>
+      </ul>
+    );
     
     const logoutJSX =
       (
@@ -95,6 +104,8 @@ class Landing extends Component {
           <SocketForm 
             className="socket-room"
             type="create" 
+            fieldVar="roomName"
+            placeholderPartial="Room"
             onComplete={socket.createRoomEmit} 
           />
 
@@ -103,7 +114,9 @@ class Landing extends Component {
 
           <SocketForm 
             className="socket-room"
-            type="join" 
+            type="join"
+            fieldVar="roomName"
+            placeholderPartial="Room"
             onComplete={socket.joinRoomEmit} 
           />
         </section>

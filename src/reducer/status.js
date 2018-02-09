@@ -15,6 +15,8 @@ export default (state = initialState, { type, payload }) => {
     }
     case 'ROOM_SET':
       return initialState;
+    case 'TOKEN_REMOVE':
+      return initialState;
     default:
       return state;
   }
