@@ -9,7 +9,8 @@ import Poll from '../../socket/poll';
 import SocketForm from '../socket-form';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
-import { createPollAction, removeRoomAction, saveRoomAction } from '../../action/room';
+import { saveRoomAction } from '../../action/savedRooms';
+import { createPollAction, removeRoomAction } from '../../action/room';
 
 class Room extends Component {
   state = {
@@ -61,7 +62,6 @@ class Room extends Component {
       this.toggleAlert();
     }
     this.toggleModal();
-    console.log('hi');
   };
 
   render() {
