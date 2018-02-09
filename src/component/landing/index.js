@@ -110,7 +110,7 @@ class Landing extends Component {
 
           <div className="grid">
             <div className="feature-left">
-              <img src="../../../static/images/socket-io.svg" alt="Real Time" />
+              <img src="../../../static/images/socket-io.png" alt="Real Time" />
               <h2>Real-Time</h2>
               <p className="feature-desc">
                 Enables bi-directional, event-based communication and 
@@ -118,14 +118,14 @@ class Landing extends Component {
               </p>
             </div>
             <div className="feature-center">
-              <img src="../../../static/images/analytics.svg" alt="Analytics" />
+              <img src="../../../static/images/analytics.png" alt="Analytics" />
               <h2>Analytics</h2>
               <p className="feature-desc">
                 Push data to clients and visualize results in real time.
               </p>
             </div>
             <div className="feature-right">
-              <img src="../../../static/images/stars.svg" alt="Anonymous Voting" />
+              <img src="../../../static/images/stars.png" alt="Anonymous Voting" />
               <h2>Anonymous Voting</h2>
               <p className="feature-desc">
                 Keep track of how many people have responded to a poll while keeping votes anonymous.
