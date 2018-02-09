@@ -3,3 +3,6 @@ export const log = (...args) =>
 
 export const capitalizer = (str) => 
   (str[0].toUpperCase() + str.slice(1));
+
+export const curry = (fn, ...binds) =>
+  (...args) => fn(...binds, ...args);

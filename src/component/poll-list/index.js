@@ -23,7 +23,6 @@ class PollList extends Component {
         (
           <PollItem 
             key={Math.random()}
-            pollId={index}
             poll={poll}
             owner={owner}
             roomName={roomName}
