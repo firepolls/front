@@ -4,22 +4,21 @@
   .container-fluid {
     display: flex;
     flex-direction: column;
-    margin-top: -40px;
     
     @media only screen and (min-width: 600px) {
-      margin-top: 20px;
-      height: 120px;
+      // height: 120px;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;  
       flex-direction: row;
+      
     }
     a {
       text-decoration: none;
     }
 
     h1 {
-      color: $primary-red;
+      color: $primary-red;    
     }
   }
 
@@ -86,13 +85,20 @@
       justify-content: space-between;
       align-items: flex-end;
     }
+
+    .auth-form {
+      margin-right: 16px;
+      display: block;
+      outline: 1px solid black;
+      margin-bottom: 16px;
+    }
     
   }
 }
 
 .jumbotron {
   padding-top: 20px;
-  height: 50px;
+  height: 100px;
   text-align: center;
   background-color: transparent;
   
@@ -115,7 +121,7 @@
   
   h1 {
     margin-bottom: 20px;
-    font-size: 28px;
+    font-size: 35px;
     line-height: 1;
   }
   
@@ -146,4 +152,58 @@
       width: 100%;
     }
   }
+  p {
+    color: $primary-red;
+  }
 }
+
+.grid {  
+  margin-top: 2em;
+}
+
+.grid > * {
+  padding: 2rem;
+  outline: 1px dotted black;
+  margin-top: 2em;
+}
+
+@media screen and (min-width: 50em) {
+ .grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(2fr, 70em) 1fr;
+  grid-template-rows: 20em;
+  grid-gap: 3rem;
+  margin-top: 5em;
+  grid-template-areas: 
+    "left center right";
+  } 
+}
+
+.feature-left {
+  grid-area: left;
+  text-align: center;
+}
+
+.feature-center {
+  grid-area: center;
+}
+
+.feature-right {
+  grid-area: right;
+}
+
+.footer {
+  margin-top: 5em;
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: black;
+    &:hover {
+      text-decoration: underline;
+      font-weight: bold;  
+    }
+
+  }
+
+}
+

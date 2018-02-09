@@ -5,7 +5,6 @@ import AuthForm from '../../auth-form';
 import mastHead from '../nav-wrapper/navstyling';
 import { signupAction, loginAction, logoutAction } from '../../../action/auth';
 
-
 class NavWrapper extends Component {
     state = {
       open: false,
@@ -71,6 +70,8 @@ class NavWrapper extends Component {
           style={{
             marginLeft: 'auto',
             textAlign: 'right',
+            backgroundColor: 'transparent',
+            boxShadow: 'transparent',
           }}
         >
 
