@@ -3,6 +3,18 @@ import React, { Component, Fragment } from 'react';
 import './_meter.scss';
 
 class Meter extends Component {
+
+  componentDidMount() {
+    this.interval = setInterval(() => this.setState({
+      resultsArray: this.props.resultsArray,
+      totalVotes: this.props.totalVotes,
+    }), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   render() {
     const width = 100;
     const height = 10;
@@ -10,7 +22,7 @@ class Meter extends Component {
     const ry = height / 2;
     const style = { transition: 'width 500ms, fill 250ms' }; 
 
-    const { resultsArray, totalVotes } = this.props;
+    const { resultsArray, totalVotes } = this.state;
     // Rob - totalVotes or 1, because of math, divided by 100 because of percents
     const divisor = totalVotes / 100 || 1;
     
