@@ -3,17 +3,23 @@ import React, { Component, Fragment } from 'react';
 import './_meter.scss';
 
 class Meter extends Component {
-
-  componentDidMount() {
-    this.interval = setInterval(() => this.setState({
-      resultsArray: this.props.resultsArray,
-      totalVotes: this.props.totalVotes,
-    }), 1000);
+  constructor() {
+    super();
+    this.lastUpdateDate = new Date();
   }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
+  shouldComponentUpdate() {
+    const now = new Date();
+    const seconds = (now.getTime() - this.lastUpdateDate.getTime()) / 1000;
+    console.log('HITTING SHOULD');
+    return seconds >= 1;
   }
+
+  componentDidUpdate() {
+    console.log('MOUNTED');
+    this.lastUpdateDate = new Date();
+  }
+
 
   render() {
     const width = 100;
@@ -22,7 +28,7 @@ class Meter extends Component {
     const ry = height / 2;
     const style = { transition: 'width 500ms, fill 250ms' }; 
 
-    const { resultsArray, totalVotes } = this.state;
+    const { resultsArray, totalVotes } = this.props;
     // Rob - totalVotes or 1, because of math, divided by 100 because of percents
     const divisor = totalVotes / 100 || 1;
     
