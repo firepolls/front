@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { log } from '../../lib/util';
@@ -10,12 +10,14 @@ class AuthRedirect extends Component {
     const { pathname } = location;
     let destinationRoute = null;
 
-    if (pathname === '/room' && !room) {
-      destinationRoute = '/';
-      log('__REDIRECT__');
-    } else if (pathname === '/' && room) {
+    if (pathname === '/room') {
+      if (!room) destinationRoute = '/';
+    } else if (pathname === '/') {
+      if (room) destinationRoute = '/room';
+    } else if (room) {
       destinationRoute = '/room';
-      log('__REDIRECT__');
+    } else {
+      destinationRoute = '/';
     }
 
     return (

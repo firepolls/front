@@ -10,10 +10,11 @@ class Meter extends Component {
     const ry = height / 2;
     const style = { transition: 'width 500ms, fill 250ms' }; 
 
-    const { results } = this.props;
-    const resultsArray = Object.keys(results).map(key => results[key]);
-    const sum = resultsArray.reduce((a, b) => a + b) / 100 || 1;
-    const percentages = resultsArray.map(result => result / sum);
+    const { resultsArray, totalVotes } = this.props;
+    // Rob - totalVotes or 1, because of math, divided by 100 because of percents
+    const divisor = totalVotes / 100 || 1;
+    
+    const percentages = resultsArray.map(result => result / divisor);
 
     const svgProperties = [ 
       { width: percentages[0], color: 'blue', star: '★' },
@@ -22,11 +23,26 @@ class Meter extends Component {
       { width: percentages[3], color: 'yellow', star: '★★★★' },
     ];
 
-    const meterJSX = svgProperties.map(properties => (
-      <div key={Math.random()}>
-        <span>{ properties.star }</span>
-        <svg width={width} height={height} >
-          <rect width={width} height={height} fill="#ccc" rx={rx} ry={ry} />
+    const meterJSX = svgProperties.map(properties => ( 
+      <div 
+        key={Math.random()}
+        className="single-meter"
+      >
+        <div>
+          <span>{ properties.star }</span>
+        </div>
+
+        <svg 
+          width={width} 
+          height={height}
+        >
+          <rect 
+            width={width} 
+            height={height} 
+            fill="#ccc" 
+            rx={rx} 
+            ry={ry} 
+          />
           <rect
             width={Number(properties.width)}
             height={height}
@@ -36,6 +52,9 @@ class Meter extends Component {
             style={style}
           />
         </svg>
+        <div className="percentage">
+          {properties.width ? `${Math.floor(properties.width * 100) / 100}%` : <div className="percentage-placeholder" />} 
+        </div>
       </div>
     ));
 

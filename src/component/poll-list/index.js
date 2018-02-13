@@ -15,15 +15,16 @@ class PollList extends Component {
       roomName,
     } = room;
 
+    const reversedOrderPolls = polls.slice().reverse();
+
     return ( 
       // Kerry - Here we are mapping each poll item as it is received from this UI state
       // or if the array is empty, it renders null
       // TODO: Remember to remove pollId once back end attaches it to poll
-      polls.map((poll, index) => 
+      reversedOrderPolls.map((poll, index) => 
         (
           <PollItem 
             key={Math.random()}
-            pollId={index}
             poll={poll}
             owner={owner}
             roomName={roomName}

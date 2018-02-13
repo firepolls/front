@@ -1,15 +1,17 @@
 import { connect } from 'react-redux';
+import { Paper } from 'material-ui';
 import React, { Component, Fragment } from 'react';
 
+import './_poll-item.scss';
 import Meter from '../meter';
 import Voting from '../voting';
 import { log } from '../../lib/util';
 
-import './_poll-item.scss';
 
 class PollItem extends Component {
   handleVoteSubmit = (vote) => {
-    const { socket, roomName, pollId } = this.props;
+    const { socket, roomName } = this.props;
+    const { pollId } = this.props.poll;
     const voteData = {
       vote,
       pollId,
@@ -21,7 +23,6 @@ class PollItem extends Component {
 
   render() {
     const {
-      pollId,
       owner,
       poll,
     } = this.props;
@@ -29,8 +30,11 @@ class PollItem extends Component {
     const {
       question,
       results,
-      // pollId, TODO: Rob - pollId should come from poll when fixed on back end
+      pollId,
     } = poll;
+
+    const resultsArray = Object.keys(results).map(key => results[key]);
+    const totalVotes = resultsArray.reduce((a, b) => a + b);
 
     const votingJSX = !owner ? 
       <Voting handleVote={this.handleVoteSubmit} pollId={pollId} /> :
@@ -38,9 +42,21 @@ class PollItem extends Component {
 
     return (
       <Fragment>
-        <h2>{question}:</h2>
-        {votingJSX}         
-        <Meter results={results} />
+        <Paper 
+          className="question-container"
+          zDepth={2}
+        >
+          <div className="meter-and-stars-container">
+            <h2 className="question-render">{question}:</h2>
+            <div>Votes: {totalVotes}</div>
+            <div className="voting-container">
+              {votingJSX}         
+            </div>
+            <div className="meter-and-stars">
+              <Meter resultsArray={resultsArray} totalVotes={totalVotes} />
+            </div>
+          </div>
+        </Paper>
       </Fragment>
     );
   }

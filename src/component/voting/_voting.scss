@@ -1,3 +1,16 @@
-span {
-  padding-right: 1vw;
+.react-stars-container {
+  display: flex;
+  width: 100%;
+  margin-left: auto;
+
+  @media only screen and (min-width: 600px) {
+
+    }
+}
+
+.react-stars {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+
 }

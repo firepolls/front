@@ -3,6 +3,7 @@ import superagent from 'superagent';
 import { log } from '../lib/util';
 import { cookieDelete } from '../lib/cookie';
 import { removeSocketAction } from './socket';
+import { getSavedRoomsAction } from './savedRooms';
 
 const COOKIE = 'Socket-Token';
 
@@ -17,7 +18,6 @@ export const removeTokenAction = () => ({
 
 export const logoutAction = (socket) => (store) => {
   cookieDelete(COOKIE);
-  if (socket) store.dispatch(removeSocketAction(socket));
   store.dispatch(removeTokenAction());
 };
 
@@ -29,14 +29,13 @@ export const signupAction = (user) => (store) =>
       store.dispatch(setTokenAction(text))
     )
     .catch(log);
-  // TODO: Rob - we need error handling here
 
 export const loginAction = (user) => (store) =>
   superagent.get(`${API_URL}/login`)
     .auth(user.username, user.password)
     .withCredentials()
-    .then(({ text }) =>
-      store.dispatch(setTokenAction(text))
-    )
+    .then(({ text }) => {
+      store.dispatch(setTokenAction(text));
+      store.dispatch(getSavedRoomsAction(text));
+    })
     .catch(log);
-  // TODO: Rob - we need error handling here

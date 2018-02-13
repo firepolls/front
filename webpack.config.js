@@ -18,7 +18,7 @@ webpackConfig.output = {
 
 webpackConfig.plugins = [
   new HTMLPlugin({
-    title: 'Socket Server',
+    title: 'Fire Polls',
   }),
   new EnvironmentPlugin(['NODE_ENV']),
   new DefinePlugin({
@@ -40,7 +40,7 @@ if (PRODUCTION) {
 webpackConfig.module = {
   rules: [
     {
-      test: /\.(jpg|gif|png)$/,
+      test: /\.(jpg|gif|png|svg)$/,
       use: [{
         loader: 'url-loader',
         options: {

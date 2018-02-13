@@ -6,16 +6,17 @@ import './_socket-form.scss';
 
 class SocketForm extends Component {
   state = {
-    roomName: '',
-    roomNameDirty: false,
-    roomNameError: 'roomName is required',
+    [this.props.fieldVar]: '',
+    [`${this.props.fieldVar}Dirty`]: false,
+    [`${this.props.fieldVar}Error`]: 
+      `${this.props.fieldVar === 'roomName' ? 'A room name' : 'A question'} is required.`,
   
     submitted: false,
   };
 
   emptyState = { ...this.state };
 
-  generateClassName = (formField) => 
+  generateClassName = formField => 
     (this.state[`${formField}Dirty`] &&
       this.state[`${formField}Error`] ? 'error' : null);
 
@@ -31,15 +32,16 @@ class SocketForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { fieldVar } = this.props;
+    const value = this.state[fieldVar];
+    const error = this.state[`${fieldVar}Error`];
 
-    const { roomNameError, roomName } = this.state;
-
-    if (!roomNameError) {      
-      this.props.onComplete(roomName);
+    if (!error) {      
+      this.props.onComplete(value);
       this.setState(this.emptyState);
     } else {
       this.setState({
-        roomNameDirty: true,
+        [`${fieldVar}Dirty`]: true,
         // Rob - I don't think we use submitted anywhere
         submitted: true,
       });
@@ -47,7 +49,7 @@ class SocketForm extends Component {
   }
 
   handleValidation = (name, value) =>
-    (value.length === 0 ? 'Room name is required.' : null);
+    (value.length === 0 ? `${name === 'roomName' ? 'A room name' : 'A question'} is required.` : null);
 
   generateError = formField => (
     this.state[`${formField}Dirty`] ? <p>{this.state[`${formField}Error`]}</p> : null
@@ -59,12 +61,13 @@ class SocketForm extends Component {
         style={
           {
             marginTop: '10px',
+            color: 'black',
           }
         }
         className={this.generateClassName(formField)}
         name={formField}
-        hintText={`${capitalizer(placeholder)} Room...`}
-        floatingLabelText={`${capitalizer(placeholder)} Room...`}
+        hintText={placeholder}
+        floatingLabelText={placeholder}
         type="text"
         value={this.state[formField]}
         onChange={this.handleChange}
@@ -74,15 +77,19 @@ class SocketForm extends Component {
 
   render() {
     // Rob - type should be either join or create
-    const { type } = this.props;
+    const {
+      type,
+      fieldVar,
+      placeholderPartial,
+    } = this.props;
 
     return (
       <Fragment>
         <form onSubmit={this.handleSubmit}>
-          {this.generateInput('roomName', type)}
+          {this.generateInput(fieldVar, `${capitalizer(type)} ${placeholderPartial}...`)}
           <RaisedButton type="submit">{capitalizer(type)}</RaisedButton>
         </form>
-        {this.generateError('roomName')}
+        {this.generateError(fieldVar)}
       </Fragment>
     );
   }
