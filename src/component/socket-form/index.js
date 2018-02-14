@@ -14,6 +14,15 @@ class SocketForm extends Component {
     submitted: false,
   };
 
+  componentWillReceiveProps(props) {
+    if (props.status) {
+      this.setState({
+        roomNameDirty: true,
+        roomNameError: `The room "${props.status}" is not available.`,
+      });
+    }
+  }
+  
   emptyState = { ...this.state };
 
   generateClassName = formField => 
@@ -49,11 +58,13 @@ class SocketForm extends Component {
   }
 
   handleValidation = (name, value) =>
-    (value.length === 0 ? `${name === 'roomName' ? 'A room name' : 'A question'} is required.` : null);
+    (value.length === 0 ?
+      `${name === 'roomName' ? 'A room name' : 'A question'} is required.` 
+      : null);
 
   generateError = formField => (
     this.state[`${formField}Dirty`] ? <p>{this.state[`${formField}Error`]}</p> : null
-  )
+  );
 
   generateInput = (formField, placeholder) => (
     <Fragment>
