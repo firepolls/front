@@ -93,15 +93,17 @@ class Landing extends Component {
                   top: 20,
                 }
               }
-              type="create" 
+              type="create"
+              status={this.props.status.create}
               fieldVar="roomName"
               placeholderPartial="Room"
-              onComplete={socket.createRoomEmit} 
+              onComplete={socket.createRoomEmit}
             />
 
             <SocketForm 
               className="socket-room"
               type="join"
+              status={this.props.status.join}
               fieldVar="roomName"
               placeholderPartial="Room"
               onComplete={socket.joinRoomEmit} 
@@ -128,12 +130,13 @@ class Landing extends Component {
               <img src="https://i.imgur.com/DwpqLpv.png" alt="Anonymous Voting" />
               <h2>Anonymous Voting</h2>
               <p className="feature-desc">
-                Keep track of how many people have responded to a poll while keeping votes anonymous.
+                Keep track of how many people have responded
+                to a poll while keeping votes anonymous.
               </p>
             </div>
           </div>
           <footer className="footer">
-            © 2018<a href="https://github.com/firepolls"> Firepoll on Github </a>
+            © 2018<a href="https://github.com/firepolls"> firepolls on Github </a>
           </footer>
         </div>
       </Fragment>
@@ -151,6 +154,7 @@ const mapStateToProps = state => ({
   loggedIn: !!state.token,
   socket: state.socket,
   room: state.room,
+  status: state.status,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Landing);
