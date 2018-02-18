@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+// import uuidv1 from 'uuid/v1';
 
 import './_poll-item.scss';
 import Meter from '../meter';
@@ -9,6 +10,14 @@ import { log } from '../../lib/util';
 
 
 class PollItem extends Component {
+  componentWillMount() {
+    console.log("ITEM mounted");
+  }
+
+  componentWillUnmount() {
+    console.log("ITEM will umount");
+  }
+  
   handleVoteSubmit = (vote) => {
     const { socket, roomName } = this.props;
     const { pollId } = this.props.poll;
@@ -41,10 +50,11 @@ class PollItem extends Component {
       null;
 
     return (
-      <Fragment>
+      <li className="poll-item">
         <Paper 
           className="question-container"
           zDepth={2}
+          key={pollId.toString()}
         >
           <div className="meter-and-stars-container">
             <h2 className="question-render">{question}:</h2>
@@ -57,7 +67,7 @@ class PollItem extends Component {
             </div>
           </div>
         </Paper>
-      </Fragment>
+      </li>
     );
   }
 }

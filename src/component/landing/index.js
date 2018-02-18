@@ -4,8 +4,6 @@ import { RaisedButton, TextField } from 'material-ui';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import AuthForm from '../auth-form';
-import PollList from '../poll-list';
-import Poll from '../../socket/poll';
 import SocketForm from '../socket-form';
 import { addPollAction } from '../../action/room';
 import { signupAction, loginAction, logoutAction } from '../../action/auth';
