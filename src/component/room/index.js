@@ -56,8 +56,9 @@ class Room extends Component {
 
   handleSave = () => {
     if (this.props.token) {
-      const { token, room } = this.props;
+      const { socket, token, room } = this.props;
       this.props.saveRoom({ token, roomData: room });
+      socket.closeRoomEmit();
       this.props.removeRoom();
     } else {
       this.toggleAlert();
