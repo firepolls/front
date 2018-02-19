@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
 import React, { Component } from 'react';
-// import uuidv1 from 'uuid/v1';
 
 import './_poll-item.scss';
 import Meter from '../meter';

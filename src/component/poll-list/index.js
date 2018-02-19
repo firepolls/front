@@ -16,9 +16,6 @@ class PollList extends Component {
     } = room;
 
     return ( 
-      // Kerry - Here we are mapping each poll item as it is received from this UI state
-      // or if the array is empty, it renders null
-      // TODO: Remember to remove pollId once back end attaches it to poll
       <ul className="poll-list">
         {polls.map((poll, index) => 
           (

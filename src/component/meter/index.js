@@ -1,39 +1,8 @@
 import React, { Component, Fragment } from 'react';
-// import uuidv1 from 'uuid/v1';
 
 import './_meter.scss';
 
 class Meter extends Component {
-  constructor(props) {
-    super(props);
-    this.lastUpdateDate = new Date();
-    // this.id = uuidv1();
-    // console.log("FUCK YOUR COUCH");
-  }
-
-  componentDidMount() {
-    console.log(' METER MOUNTED');
-  }
-
-
-  // shouldComponentUpdate() {
-    // console.log("Do not update");
-    // return false;
-    // const now = new Date();
-    // const seconds = (now.getTime() - this.lastUpdateDate.getTime()) / 1000;
-    // console.log('HITTING SHOULD');
-    // return seconds >= 1;
-  // }
-  
-  componentDidUpdate() {
-    console.log('METER DID UPDATE');
-    this.lastUpdateDate = new Date();
-  }
-  
-  componentWillUnmount() {
-    console.log('METER unmounting............');
-  }
-
   render() {
     const width = 100;
     const height = 10;
