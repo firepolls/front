@@ -13,6 +13,7 @@ class Voting extends Component {
   handleVote = (vote) => {
     // Rob - only cast a vote if it is different
     if (vote !== this.state.vote) {
+      this.setState({ vote });      
       const { pollId } = this.props;
       this.props.handleVote(vote, pollId);
       this.props.storeVote({ vote, pollId });
