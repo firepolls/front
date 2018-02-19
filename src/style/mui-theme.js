@@ -9,7 +9,7 @@ import { fade } from 'material-ui/utils/colorManipulator';
 import spacing from 'material-ui/styles/spacing';
 
 const muiTheme = getMuiTheme({
-  spacing: spacing,
+  spacing,
   fontFamily: 'Lato, sans-serif',
   palette: {
     primary1Color: cyan500,
