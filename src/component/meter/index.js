@@ -23,9 +23,9 @@ class Meter extends Component {
       { width: percentages[3], color: 'yellow', star: '★★★★' },
     ];
 
-    const meterJSX = svgProperties.map(properties => ( 
+    const meterJSX = svgProperties.map((properties, index) => ( 
       <div 
-        key={Math.random()}
+        key={index.toString()}
         className="single-meter"
       >
         <div>

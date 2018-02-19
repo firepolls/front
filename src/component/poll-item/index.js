@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import './_poll-item.scss';
 import Meter from '../meter';
@@ -8,7 +8,7 @@ import Voting from '../voting';
 import { log } from '../../lib/util';
 
 
-class PollItem extends Component {
+class PollItem extends Component {  
   handleVoteSubmit = (vote) => {
     const { socket, roomName } = this.props;
     const { pollId } = this.props.poll;
@@ -41,7 +41,7 @@ class PollItem extends Component {
       null;
 
     return (
-      <Fragment>
+      <li className="poll-item">
         <Paper 
           className="question-container"
           zDepth={2}
@@ -57,7 +57,7 @@ class PollItem extends Component {
             </div>
           </div>
         </Paper>
-      </Fragment>
+      </li>
     );
   }
 }
