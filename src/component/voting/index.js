@@ -10,9 +10,19 @@ class Voting extends Component {
     vote: this.props.votes[this.props.pollId] || 0,
   }
 
+  componentWillReceiveProps(props) {
+    if (this.props.votes) {
+      console.log("HIt Will Receive:", this.props);
+      // this.setState({
+      //   vote: this.props.votes[this.props.pollId],
+      // });
+    }
+  }
+
   handleVote = (vote) => {
     // Rob - only cast a vote if it is different
     if (vote !== this.state.vote) {
+      this.setState({ vote });      
       const { pollId } = this.props;
       this.props.handleVote(vote, pollId);
       this.props.storeVote({ vote, pollId });

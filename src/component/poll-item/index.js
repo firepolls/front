@@ -9,15 +9,7 @@ import Voting from '../voting';
 import { log } from '../../lib/util';
 
 
-class PollItem extends Component {
-  componentWillMount() {
-    console.log("ITEM mounted");
-  }
-
-  componentWillUnmount() {
-    console.log("ITEM will umount");
-  }
-  
+class PollItem extends Component {  
   handleVoteSubmit = (vote) => {
     const { socket, roomName } = this.props;
     const { pollId } = this.props.poll;
@@ -54,7 +46,6 @@ class PollItem extends Component {
         <Paper 
           className="question-container"
           zDepth={2}
-          key={pollId.toString()}
         >
           <div className="meter-and-stars-container">
             <h2 className="question-render">{question}:</h2>

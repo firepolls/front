@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
-import uuidv1 from 'uuid/v1';
 
 import PollItem from '../poll-item';
 
@@ -16,8 +15,6 @@ class PollList extends Component {
       roomName,
     } = room;
 
-    // const reversedOrderPolls = polls.slice().reverse();
-
     return ( 
       // Kerry - Here we are mapping each poll item as it is received from this UI state
       // or if the array is empty, it renders null
@@ -26,7 +23,7 @@ class PollList extends Component {
         {polls.map((poll, index) => 
           (
             <PollItem 
-              key={index.toString()}
+              key={poll.pollId}
               poll={poll}
               owner={owner}
               roomName={roomName}
