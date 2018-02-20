@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 import PollItem from '../poll-item';
 
@@ -18,19 +17,17 @@ class PollList extends Component {
 
     return ( 
       <ul className="poll-list">
-        <TransitionGroup component={PollList}>
-          { polls.map((poll, index) => 
-            (
-              <PollItem 
-                key={poll.pollId}
-                poll={poll}
-                owner={owner}
-                roomName={roomName}
-                socket={socket}
-              />
-            )
-          )}
-        </TransitionGroup>
+        { polls.map((poll, index) => 
+          (
+            <PollItem 
+              key={poll.pollId}
+              poll={poll}
+              owner={owner}
+              roomName={roomName}
+              socket={socket}
+            />
+          )
+        )}
       </ul>
     );
   }
