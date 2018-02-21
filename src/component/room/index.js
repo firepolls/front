@@ -113,9 +113,10 @@ class Room extends Component {
             transitionAppear={true}
             transitionAppearTimeout={500}
             transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
           >
             <PollList />
-          </ReactCSSTransitionGroup>
+          </ReactCSSTransitionGroup>                  
           : null}
       </Fragment>) : null;
       

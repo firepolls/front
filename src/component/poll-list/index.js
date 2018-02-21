@@ -21,10 +21,12 @@ class PollList extends Component {
         { polls.map((poll, index) => 
           (
             <ReactCSSTransitionGroup
+              key={poll.pollId}
               transitionName="fade"
               transitionAppear={true}
               transitionAppearTimeout={500}
               transitionEnterTimeout={500}
+              transitionLeaveTimeout={500}
             >
 
               <PollItem 
