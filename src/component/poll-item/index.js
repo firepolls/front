@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
 import React, { Component } from 'react';
+import Transition from 'react-transition-group/Transition';
 
 import './_poll-item.scss';
 import Meter from '../meter';

@@ -48,6 +48,7 @@
     "material-ui": "^0.20.0",
     "node-sass": "^4.7.2",
     "react": "^16.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.2.0",
     "react-meta-tags": "^0.3.0",
     "react-redux": "^5.0.6",

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import PollItem from '../poll-item';
 
@@ -19,13 +20,21 @@ class PollList extends Component {
       <ul className="poll-list">
         { polls.map((poll, index) => 
           (
-            <PollItem 
-              key={poll.pollId}
-              poll={poll}
-              owner={owner}
-              roomName={roomName}
-              socket={socket}
-            />
+            <ReactCSSTransitionGroup
+              transitionName="fade"
+              transitionAppear={true}
+              transitionAppearTimeout={500}
+              transitionEnterTimeout={500}
+            >
+
+              <PollItem 
+                key={poll.pollId}
+                poll={poll}
+                owner={owner}
+                roomName={roomName}
+                socket={socket}
+              />
+            </ReactCSSTransitionGroup>
           )
         )}
       </ul>

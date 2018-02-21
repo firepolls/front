@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { RaisedButton, FlatButton, Dialog, Paper } from 'material-ui';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './_room.scss';
 import PollList from '../poll-list';
@@ -106,7 +107,16 @@ class Room extends Component {
           Active voters: {room && room.voters > 0 ? room.voters : 0}
         </Paper>
         {room.owner ? ownerJSX : voterButtonJSX}
-        {room.polls.length ? <PollList /> : null}
+        {room.polls.length ?
+          <ReactCSSTransitionGroup
+            transitionName="fade"
+            transitionAppear={true}
+            transitionAppearTimeout={500}
+            transitionEnterTimeout={500}
+          >
+            <PollList />
+          </ReactCSSTransitionGroup>
+          : null}
       </Fragment>) : null;
       
     const modal = (
