@@ -20,17 +20,16 @@
 .fade-appear.fade-appear-active {
   opacity: 1;
   transition: all 1000ms ease;
-  // transition: max-height 1000ms ease-in;
   max-height: 750px;    
 }
 
-.fade-leave {
-  opacity: 1;
-  max-height: 750px;    
-}
+// .fade-enter {
+//   opacity: 0;
+//   max-height: 0; 
+// }
 
-.fade-leave.fade-leave-active {
-  opacity: 0.01;
-  max-height: 0; 
-  transition: opacity 500ms ease-out;
-}
+// .fade-enter.fade-enter-active {
+//   opacity: 1;
+//   transition: all 1000ms ease;
+//   max-height: 750px;    
+// }

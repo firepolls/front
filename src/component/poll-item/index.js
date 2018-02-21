@@ -9,7 +9,7 @@ import Voting from '../voting';
 import { log } from '../../lib/util';
 
 
-class PollItem extends Component {  
+class PollItem extends Component {
   handleVoteSubmit = (vote) => {
     const { socket, roomName } = this.props;
     const { pollId } = this.props.poll;
