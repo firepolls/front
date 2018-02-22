@@ -11,3 +11,14 @@
     width: 200px;
     text-align: center;
 }
+
+.fade-appear {
+  opacity: 0;
+  max-height: 0; 
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: all 1000ms ease;
+  max-height: 750px;    
+}
