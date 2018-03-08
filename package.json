@@ -63,6 +63,7 @@
     "serve-favicon": "^2.4.5",
     "socket.io": "^2.0.4",
     "socket.io-client": "^2.0.4",
+    "ssri": "^5.2.4",
     "style-loader": "^0.20.1",
     "superagent": "^3.8.2",
     "uglifyjs-webpack-plugin": "^1.1.8",
