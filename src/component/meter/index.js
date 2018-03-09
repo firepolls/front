@@ -53,7 +53,7 @@ class Meter extends Component {
           />
         </svg>
         <div className="percentage">
-          {properties.width ? `${Math.round((properties.width * 100) / 100)}%` : <div className="percentage-placeholder" />} 
+          {properties.width ? `${Math.round(properties.width)}%` : <div className="percentage-placeholder" />} 
         </div>
       </div>
     ));
