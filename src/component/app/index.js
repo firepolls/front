@@ -1,13 +1,13 @@
+import { AppBar } from 'material-ui';
 import { connect } from 'react-redux';
+import MetaTags from 'react-meta-tags';
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import MetaTags from 'react-meta-tags';
-
-import { AppBar } from 'material-ui';
 
 import Room from '../room';
 import Landing from '../landing';
 import AuthRedirect from '../auth-redirect';
+import SavedSessions from '../saved-sessions';
 import NavWrapper from '../material-ui/nav-wrapper';
 import { setSocketAction } from '../../action/socket';
 import { getSavedRoomsAction } from '../../action/savedRooms';
@@ -37,6 +37,7 @@ class App extends Component {
               <Route path="*" component={AuthRedirect} />
               <Route exact path="/" component={Landing} />
               <Route exact path="/room" component={Room} />
+              <Route exact path="/saved" component={SavedSessions} />
             </Fragment>
           </div>
         </BrowserRouter>
