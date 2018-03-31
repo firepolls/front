@@ -1,27 +1,36 @@
+import { AppBar } from 'material-ui';
 import { connect } from 'react-redux';
+import MetaTags from 'react-meta-tags';
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import MetaTags from 'react-meta-tags';
 
-import { AppBar } from 'material-ui';
-
+import './_app.scss';
 import Room from '../room';
 import Landing from '../landing';
 import AuthRedirect from '../auth-redirect';
+import SavedSessions from '../saved-sessions';
+import { setTokenAction } from '../../action/auth';
 import NavWrapper from '../material-ui/nav-wrapper';
 import { setSocketAction } from '../../action/socket';
 import { getSavedRoomsAction } from '../../action/savedRooms';
 
-import './_app.scss';
-
 class App extends Component {
   componentWillMount() {
     this.props.socketConnect();
+    const { firePollsToken } = localStorage;
+
+    if (firePollsToken) {
+      this.props.setToken(firePollsToken);
+    }
   }
 
   componentDidMount() {
-    const { token } = this.props;
-    if (token) this.props.getSavedRooms(token);
+    const { firePollsToken } = localStorage;
+
+    if (firePollsToken) {
+      this.props.setToken(firePollsToken);
+      this.props.getSavedRooms(firePollsToken);
+    }
   }
   
   render() {
@@ -37,6 +46,7 @@ class App extends Component {
               <Route path="*" component={AuthRedirect} />
               <Route exact path="/" component={Landing} />
               <Route exact path="/room" component={Room} />
+              <Route exact path="/saved" component={SavedSessions} />
             </Fragment>
           </div>
         </BrowserRouter>
@@ -50,6 +60,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  setToken: (token) => dispatch(setTokenAction(token)),
   socketConnect: () => dispatch(setSocketAction(dispatch)),
   getSavedRooms: (token) => dispatch(getSavedRoomsAction(token)),
 }); 

@@ -20,7 +20,7 @@ class Room extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.room) {
+    if (!nextProps.room && !nextProps.savedRoom) {
       this.props.history.push('/');
     }
   }
@@ -68,7 +68,12 @@ class Room extends Component {
   };
 
   render() {
-    const { room, socket } = this.props;
+    const { 
+      room,
+      socket, 
+      savedRoom, 
+    } = this.props;
+
     const ownerJSX = (
       <Fragment>
         <RaisedButton 
@@ -115,7 +120,23 @@ class Room extends Component {
             transitionEnterTimeout={500}
             transitionLeaveTimeout={500}
           >
-            <PollList />
+            <PollList room={room} />
+          </ReactCSSTransitionGroup>                  
+          : null}
+      </Fragment>) : null;
+
+    const savedRoomJSX = savedRoom ? (
+      <Fragment>
+        <h1>{savedRoom.roomName}</h1>
+        {savedRoom.polls.length ?
+          <ReactCSSTransitionGroup
+            transitionName="fade"
+            transitionAppear={true}
+            transitionAppearTimeout={500}
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
+          >
+            <PollList room={savedRoom} />
           </ReactCSSTransitionGroup>                  
           : null}
       </Fragment>) : null;
@@ -153,11 +174,17 @@ class Room extends Component {
       </Dialog>
     );
 
-    return (
+    const liveRoomJSX = (
       <Fragment>
         { roomJSX }
         { modal }
         { alert }
+      </Fragment>
+    );
+
+    return (
+      <Fragment>
+        { savedRoom ? savedRoomJSX : liveRoomJSX }
       </Fragment>
     );
   }

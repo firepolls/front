@@ -2,11 +2,15 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { log } from '../../lib/util';
-
 class AuthRedirect extends Component {
   render() {
-    const { location, history, room } = this.props;
+    const { 
+      room,
+      history,
+      location,
+      loggedIn,
+    } = this.props;
+
     const { pathname } = location;
     let destinationRoute = null;
 
@@ -16,6 +20,8 @@ class AuthRedirect extends Component {
       if (room) destinationRoute = '/room';
     } else if (room) {
       destinationRoute = '/room';
+    } else if (pathname === '/saved') {
+      if (!loggedIn) destinationRoute = '/';
     } else {
       destinationRoute = '/';
     }
@@ -28,6 +34,9 @@ class AuthRedirect extends Component {
   }
 }
 
-const mapStateToProps = state => ({ room: state.room });
+const mapStateToProps = state => ({ 
+  room: state.room,
+  loggedIn: !!state.token, 
+});
 
 export default connect(mapStateToProps)(AuthRedirect);
