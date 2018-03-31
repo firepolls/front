@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
-import { AppBar, Drawer, MenuItem, RaisedButton, Popover, Menu, Paper, Dialog } from 'material-ui';
+import { Link } from 'react-router-dom';
+
+import { MenuItem, RaisedButton, Popover, Menu, Paper, Dialog } from 'material-ui';
 import AuthForm from '../../auth-form';
 import mastHead from '../nav-wrapper/navstyling';
 import { signupAction, loginAction, logoutAction } from '../../../action/auth';
@@ -38,6 +40,10 @@ class NavWrapper extends Component {
 
   handlePopoverToggle = () => {
     this.setState({ popoverOpen: !this.state.popoverOpen });
+  }
+
+  handleGoToSaved = () => {
+    this.props.history.push('/saved');
   }
 
   render() {
@@ -97,14 +103,23 @@ class NavWrapper extends Component {
 
     const authButton = this.props.loggedIn ? logoutJSX : loginSignupJSX;
 
+    const goToSavedButtonJSX = this.props.loggedIn ? (
+      <RaisedButton
+        className="saved-button"
+        onClick={this.handleGoToSaved}
+      >
+        <Link to="/saved" href="/saved">Saved Rooms</Link>
+      </RaisedButton>) : null;
+    
     return (
-      <Paper
-        style={{
-          marginLeft: 'auto',
-          textAlign: 'right',
-          backgroundColor: 'transparent',
-          boxShadow: 'transparent',
-        }}
+      <div
+        className="nav-wrapper"
+        // style={{
+        //   marginLeft: 'auto',
+        //   textAlign: 'right',
+        //   backgroundColor: 'transparent',
+        //   boxShadow: 'transparent',
+        // }}
       >
         { authButton }
         <Popover
@@ -158,7 +173,8 @@ class NavWrapper extends Component {
             </Dialog> : null}
               
         </div>
-      </Paper>
+        {goToSavedButtonJSX}
+      </div>
     );
   }
 }
