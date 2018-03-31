@@ -76,6 +76,22 @@ class Room extends Component {
       savedRoom, 
     } = this.props;
 
+    const redShadowStyle = { boxShadow: '0 2px 6px rgba(255, 0, 0, 0.12), 0 2px 4px rgba(255, 0, 0, 0.12)' };
+
+    // Seth - Instructions for if the room exists but no polls exist yet
+    const ownerInstructionJSX = 'Create your first poll above...';
+
+    const voterInstructionJSX = 'Please wait for the Room Owner to create a poll...';
+
+    const instructionJSX = room && !room.polls.length ? (
+      <Paper
+        className="instructions"
+        style={redShadowStyle}
+      >
+        {room.owner ? ownerInstructionJSX : voterInstructionJSX }
+      </Paper>
+    ) : null;
+
     const ownerJSX = (
       <Fragment>
         <RaisedButton 
@@ -113,6 +129,7 @@ class Room extends Component {
           Active Voters: {room && room.voters > 0 ? <strong>{room.voters}</strong> : 0}
           </Paper>
           {room.owner ? ownerJSX : voterButtonJSX}
+          {instructionJSX}
         </section>
 
         {room.polls.length ?
