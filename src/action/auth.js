@@ -18,6 +18,7 @@ export const removeTokenAction = () => ({
 
 export const logoutAction = (socket) => (store) => {
   cookieDelete(COOKIE);
+  delete localStorage.firePollsToken;
   store.dispatch(removeTokenAction());
 };
 
@@ -25,9 +26,10 @@ export const signupAction = (user) => (store) =>
   superagent.post(`${API_URL}/signup`)
     .send(user)
     .withCredentials()
-    .then(({ text }) =>
-      store.dispatch(setTokenAction(text))
-    )
+    .then(({ text }) => {
+      localStorage.firePollsToken = text;
+      store.dispatch(setTokenAction(text));
+    })
     .catch(log);
 
 export const loginAction = (user) => (store) =>
@@ -35,6 +37,7 @@ export const loginAction = (user) => (store) =>
     .auth(user.username, user.password)
     .withCredentials()
     .then(({ text }) => {
+      localStorage.firePollsToken = text;
       store.dispatch(setTokenAction(text));
       store.dispatch(getSavedRoomsAction(text));
     })
