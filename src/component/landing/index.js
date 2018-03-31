@@ -1,3 +1,7 @@
+// TODO: ADD button that appears when logged in to to go SAVED ROOMS/SESSIONS
+// TODO: FIX invisibile DIV that appears when beginning input for CREATE or JOIN room fields
+
+
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 import { RaisedButton, TextField } from 'material-ui';

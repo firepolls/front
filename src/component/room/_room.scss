@@ -1,15 +1,49 @@
-.close-save {
-  text-align: center;
-  position: relative;
+@import '_vars';
 
-}
-.create-poll-form {
-  text-align: center;
+// * {
+//   border: solid red .25px;
+// }
+
+.info-button-container {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  grid-template-rows: repeat(2, 50%);
 }
 
 .active-voters {
-    width: 200px;
-    text-align: center;
+  grid-row: 1 / 1; 
+  grid-column: 1 / span 2;
+  align-self: center;
+  line-height: 36px;
+  text-align: center;
+  margin: $default-button-margin;
+  font-size: 1.25em;
+  @media only screen and (min-width: 600px) {
+    grid-column: 1 / span 1;
+  }
+}
+
+.close-save-button {
+  align-self: center;
+  margin: 2vw;
+  grid-row: 1; 
+  grid-column: 3 / span 2;
+
+  @media only screen and (min-width: 600px) {
+    grid-column: 4 / span 1;
+  }
+}
+
+.create-poll-form {
+  text-align: center;
+  grid-row: 4 / 4;
+  grid-column: 2 / span 2; 
+  
+}
+
+.close-save {
+  text-align: center;
+  position: relative;
 }
 
 .fade-appear {

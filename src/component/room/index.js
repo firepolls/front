@@ -1,3 +1,7 @@
+// TODO: CORRECT div alignment for voters and leave room button via CSS
+// TODO: REMOVE unnecessary imports
+// TODO: ADD INTRUSTIONS for owner/voter when poll list is empty
+
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
@@ -79,7 +83,7 @@ class Room extends Component {
         <RaisedButton 
           className="close-save-button"
           onClick={this.toggleModal}
-          label="Close Poll" 
+          label="Close Room" 
         />
         <div className="create-poll-form">
           <SocketForm 
@@ -92,7 +96,8 @@ class Room extends Component {
       </Fragment>);
 
     const voterButtonJSX = (
-      <RaisedButton 
+      <RaisedButton
+        className="close-save-button"       
         onClick={this.handleLeaveRoom} 
         label="Leave Room"
       />
@@ -102,16 +107,15 @@ class Room extends Component {
     const roomJSX = room ? (
       <Fragment>
         <h1>{room.roomName}</h1>
+        <section className="info-button-container">
         <Paper 
           className="active-voters" 
           zDepth={1}
-          style={{
-            fontSize: '1.25em', margin: '1vw', padding: '1vw',
-          }}
         >
           Active voters: {room && room.voters > 0 ? room.voters : 0}
         </Paper>
         {room.owner ? ownerJSX : voterButtonJSX}
+        </section>
         {room.polls.length ?
           <ReactCSSTransitionGroup
             transitionName="fade"
