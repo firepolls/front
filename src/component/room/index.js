@@ -108,13 +108,13 @@ class Room extends Component {
       <Fragment>
         <h1>{room.roomName}</h1>
         <section className="info-button-container">
-        <Paper 
-          className="active-voters" 
-          zDepth={1}
-        >
-          Active voters: {room && room.voters > 0 ? room.voters : 0}
-        </Paper>
-        {room.owner ? ownerJSX : voterButtonJSX}
+          <Paper 
+            className="active-voters" 
+            zDepth={1}
+          >
+          Active Voters: {room && room.voters > 0 ? <strong>{room.voters}</strong> : 0}
+          </Paper>
+          {room.owner ? ownerJSX : voterButtonJSX}
         </section>
         {room.polls.length ?
           <ReactCSSTransitionGroup
