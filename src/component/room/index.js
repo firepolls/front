@@ -1,10 +1,7 @@
-// TODO: CORRECT div alignment for voters and leave room button via CSS
-// TODO: REMOVE unnecessary imports
 // TODO: ADD INTRUSTIONS for owner/voter when poll list is empty
 
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { RaisedButton, FlatButton, Dialog, Paper } from 'material-ui';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -116,6 +113,7 @@ class Room extends Component {
           </Paper>
           {room.owner ? ownerJSX : voterButtonJSX}
         </section>
+
         {room.polls.length ?
           <ReactCSSTransitionGroup
             transitionName="fade"
