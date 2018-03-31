@@ -1,14 +1,12 @@
-import { connect } from 'react-redux';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import PollItem from '../poll-item';
-
 import './_poll-list.scss';
+import PollItem from '../poll-item';
 
 class PollList extends Component {
   render() {
-    const { socket, room } = this.props;
+    const { room } = this.props;
 
     const {
       owner,
@@ -18,10 +16,10 @@ class PollList extends Component {
 
     return ( 
       <ul className="poll-list">
-        { polls.map((poll, index) => 
+        { polls.map(poll => 
           (
             <ReactCSSTransitionGroup
-              key={poll.pollId}    
+              key={poll.pollId}
               transitionName="fade"
               transitionAppear={true}
               transitionAppearTimeout={500}
@@ -29,11 +27,9 @@ class PollList extends Component {
               transitionLeaveTimeout={500}
             >
               <PollItem 
-                // key={poll.pollId}
                 poll={poll}
-                owner={owner}
                 roomName={roomName}
-                socket={socket}
+                owner={owner}
               />
             </ReactCSSTransitionGroup>
           )
@@ -43,9 +39,4 @@ class PollList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  room: state.room,
-  socket: state.socket,
-});
-
-export default connect(mapStateToProps)(PollList);
+export default PollList;

@@ -1,7 +1,7 @@
 import { log } from '../lib/util';
 import * as room from '../action/room';
 
-export default (socket, dispatch) => { // TODO: Rob - takes in dispatch to allow state changing
+export default (socket, dispatch) => {
   // Anthony - Room successfully joined.
   socket.on('room joined', roomObject => {
     log('__JOINED_ROOM__');
