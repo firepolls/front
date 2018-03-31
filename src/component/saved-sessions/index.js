@@ -10,7 +10,11 @@ class SavedSessions extends Component {
         <ul>
           {
             this.props.savedRooms
-              .map(room => <li key={room._id} ><Room savedRoom={room} /></li>)
+              .map(savedRoom => (
+                <li key={savedRoom._id} >
+                  <Room savedRoom={savedRoom} />
+                </li>
+              ))
           }
         </ul>
       </section>
