@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
-import { RaisedButton, FlatButton, Dialog, Paper } from 'material-ui';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { RaisedButton, FlatButton, Dialog, Paper } from 'material-ui';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './_room.scss';

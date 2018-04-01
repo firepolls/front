@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-
 import { MenuItem, RaisedButton, Popover, Menu, Paper, Dialog } from 'material-ui';
+
 import AuthForm from '../../auth-form';
 import mastHead from '../nav-wrapper/navstyling';
 import { signupAction, loginAction, logoutAction } from '../../../action/auth';
@@ -14,15 +14,10 @@ class NavWrapper extends Component {
       anchorEl: null,
       dialogOpen: true,
       popoverOpen: false,
-      viewingSaved: false,
     }
 
   handleToggle = () => {
     this.setState({ open: !this.state.open });
-  }
-
-  toggleViewingSaved = () => {
-    this.setState({ viewingSaved: !this.state.viewingSaved });
   }
 
   handleDialogOpen = () => {
@@ -55,7 +50,6 @@ class NavWrapper extends Component {
             to="/" 
             href="/"
             className="saved-link"
-            onClick={this.toggleViewingSaved}
           >
             <RaisedButton className="saved-button">
               Home
@@ -68,7 +62,6 @@ class NavWrapper extends Component {
             to="/saved"
             href="/saved"
             className="saved-link"
-            onClick={this.toggleViewingSaved}
           >
             <RaisedButton className="saved-button">
                 Saved Rooms
