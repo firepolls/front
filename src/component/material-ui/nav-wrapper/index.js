@@ -47,6 +47,39 @@ class NavWrapper extends Component {
     this.setState({ popoverOpen: !this.state.popoverOpen });
   }
 
+  renderSavedSwitch = (location) => {
+    switch (location) {
+      case '/saved':
+        return (
+          <Link
+            to="/" 
+            href="/"
+            className="saved-link"
+            onClick={this.toggleViewingSaved}
+          >
+            <RaisedButton className="saved-button">
+              Home
+            </RaisedButton>
+          </Link>);
+        
+      case '/':
+        return (
+          <Link
+            to="/saved"
+            href="/saved"
+            className="saved-link"
+            onClick={this.toggleViewingSaved}
+          >
+            <RaisedButton className="saved-button">
+                Saved Rooms
+            </RaisedButton>
+          </Link>);
+        
+      default:
+        return null;
+    }
+  }
+
   render() {
     const { 
       socket,
@@ -107,28 +140,10 @@ class NavWrapper extends Component {
 
     const authButton = this.props.loggedIn ? logoutJSX : loginSignupJSX;
     
-    const savedButtonJSX = this.props.location.pathname === '/saved' ? (
-      <Link
-        to="/" 
-        href="/"
-        className="saved-link"
-        onClick={this.toggleViewingSaved}
-      >
-        <RaisedButton className="saved-button">
-        Home
-        </RaisedButton>
-      </Link>
-    ) : (
-      <Link 
-        to="/saved"
-        href="/saved"
-        className="saved-link"
-        onClick={this.toggleViewingSaved}
-      >
-        <RaisedButton className="saved-button">
-          Saved Rooms
-        </RaisedButton>
-      </Link>);
+    const savedButtonJSX = this.renderSavedSwitch(this.props.location.pathname);
+
+    console.log(savedButtonJSX);
+    console.log(this.props.location.pathname);
 
     const savedButton = this.props.loggedIn ? savedButtonJSX : null;
     
