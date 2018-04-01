@@ -8,6 +8,7 @@ import './_room.scss';
 import PollList from '../poll-list';
 import Poll from '../../socket/poll';
 import SocketForm from '../socket-form';
+import Instruction from '../instructions';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
 import { saveRoomAction } from '../../action/savedRooms';
@@ -74,25 +75,29 @@ class Room extends Component {
       savedRoom, 
     } = this.props;
 
-    const redShadowStyle = { boxShadow: '0 2px 6px rgba(255, 0, 0, 0.12), 0 2px 4px rgba(255, 0, 0, 0.12)' };
 
     // Seth - Instructions for if the room exists but no polls exist yet
 
     // TODO: ADD warning to instructions AND separate out instructions to it's own component
-    // Warning: Refreshing the page willclose the Room and remove all Voters
-    // Warning: Refreshing the page will remove you from the room.
-    const ownerInstructionJSX = `Create your first poll above...`;
+    const ownerInstructionJSX = (
+      <Fragment>      
+        <p>Create your first poll above...</p>
+        <p><strong>Note:</strong> Refreshing the page will close the Room and remove all Voters.
+        </p>
+      </Fragment>);
 
-    const voterInstructionJSX = 'Please wait for the Room Owner to create a poll...';
+    const voterInstructionJSX = (
+      <Fragment>
+        <p>Please wait for the Room Owner to create a poll...</p>
+        <p><strong>Note:</strong> Refreshing the page will remove you from the room.
+        </p>
+      </Fragment>);
+
+    const instructionText = room && room.owner ? ownerInstructionJSX : voterInstructionJSX;
 
     const instructionJSX = room && !room.polls.length ? (
-      <Paper
-        className="instructions"
-        style={redShadowStyle}
-      >
-        {room.owner ? ownerInstructionJSX : voterInstructionJSX }
-      </Paper>
-    ) : null;
+      <Instruction content={instructionText} />)
+      : null;
 
     const ownerJSX = (
       <Fragment>
