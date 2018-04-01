@@ -1,3 +1,4 @@
+// TODO: I don't think this is used anywhere. What's the deal with this?
 import Transition from 'react-transition-group/Transition';
 
 function FadeAndSlideTransition({ children, duration, in: inProp }) {
