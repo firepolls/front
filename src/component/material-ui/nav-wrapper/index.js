@@ -141,6 +141,8 @@ class NavWrapper extends Component {
     
     return (
       <div className="nav-wrapper" >
+        { /* TODO: ADD animations with ReactCSStransitionGroup to these
+        buttons so that they fade in on mounting */ }
         { savedButton }
         { authButton }
         <Popover

@@ -77,7 +77,11 @@ class Room extends Component {
     const redShadowStyle = { boxShadow: '0 2px 6px rgba(255, 0, 0, 0.12), 0 2px 4px rgba(255, 0, 0, 0.12)' };
 
     // Seth - Instructions for if the room exists but no polls exist yet
-    const ownerInstructionJSX = 'Create your first poll above...';
+
+    // TODO: ADD warning to instructions AND separate out instructions to it's own component
+    // Warning: Refreshing the page willclose the Room and remove all Voters
+    // Warning: Refreshing the page will remove you from the room.
+    const ownerInstructionJSX = `Create your first poll above...`;
 
     const voterInstructionJSX = 'Please wait for the Room Owner to create a poll...';
 
