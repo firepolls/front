@@ -36,9 +36,9 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <NavWrapper />
         <BrowserRouter>
           <div className="app">
+            <NavWrapper />
             <MetaTags>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
             </MetaTags>

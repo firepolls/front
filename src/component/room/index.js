@@ -74,12 +74,28 @@ class Room extends Component {
       savedRoom, 
     } = this.props;
 
+    const redShadowStyle = { boxShadow: '0 2px 6px rgba(255, 0, 0, 0.12), 0 2px 4px rgba(255, 0, 0, 0.12)' };
+
+    // Seth - Instructions for if the room exists but no polls exist yet
+    const ownerInstructionJSX = 'Create your first poll above...';
+
+    const voterInstructionJSX = 'Please wait for the Room Owner to create a poll...';
+
+    const instructionJSX = room && !room.polls.length ? (
+      <Paper
+        className="instructions"
+        style={redShadowStyle}
+      >
+        {room.owner ? ownerInstructionJSX : voterInstructionJSX }
+      </Paper>
+    ) : null;
+
     const ownerJSX = (
       <Fragment>
         <RaisedButton 
           className="close-save-button"
           onClick={this.toggleModal}
-          label="Close Poll" 
+          label="Close Room" 
         />
         <div className="create-poll-form">
           <SocketForm 
@@ -92,7 +108,8 @@ class Room extends Component {
       </Fragment>);
 
     const voterButtonJSX = (
-      <RaisedButton 
+      <RaisedButton
+        className="close-save-button"       
         onClick={this.handleLeaveRoom} 
         label="Leave Room"
       />
@@ -102,16 +119,17 @@ class Room extends Component {
     const roomJSX = room ? (
       <Fragment>
         <h1>{room.roomName}</h1>
-        <Paper 
-          className="active-voters" 
-          zDepth={1}
-          style={{
-            fontSize: '1.25em', margin: '1vw', padding: '1vw',
-          }}
-        >
-          Active voters: {room && room.voters > 0 ? room.voters : 0}
-        </Paper>
-        {room.owner ? ownerJSX : voterButtonJSX}
+        <section className="info-button-container">
+          <Paper 
+            className="active-voters" 
+            zDepth={1}
+          >
+          Active Voters: {room && room.voters > 0 ? <strong>{room.voters}</strong> : 0}
+          </Paper>
+          {room.owner ? ownerJSX : voterButtonJSX}
+          {instructionJSX}
+        </section>
+
         {room.polls.length ?
           <ReactCSSTransitionGroup
             transitionName="fade"

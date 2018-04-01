@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
-import { AppBar, Drawer, MenuItem, RaisedButton, Popover, Menu, Paper, Dialog } from 'material-ui';
+import { Link, withRouter } from 'react-router-dom';
+import { MenuItem, RaisedButton, Popover, Menu, Paper, Dialog } from 'material-ui';
+
 import AuthForm from '../../auth-form';
 import mastHead from '../nav-wrapper/navstyling';
 import { signupAction, loginAction, logoutAction } from '../../../action/auth';
@@ -38,6 +40,37 @@ class NavWrapper extends Component {
 
   handlePopoverToggle = () => {
     this.setState({ popoverOpen: !this.state.popoverOpen });
+  }
+
+  renderSavedSwitch = (location) => {
+    switch (location) {
+      case '/saved':
+        return (
+          <Link
+            to="/" 
+            href="/"
+            className="saved-link"
+          >
+            <RaisedButton className="saved-button">
+              Home
+            </RaisedButton>
+          </Link>);
+        
+      case '/':
+        return (
+          <Link
+            to="/saved"
+            href="/saved"
+            className="saved-link"
+          >
+            <RaisedButton className="saved-button">
+                Saved Rooms
+            </RaisedButton>
+          </Link>);
+        
+      default:
+        return null;
+    }
   }
 
   render() {
@@ -78,34 +111,37 @@ class NavWrapper extends Component {
         );
 
     const logoutJSX = (
-      <RaisedButton 
+      <RaisedButton
+        className="login-logout-button"
         onClick={() => logout()}
       >
+        { /* TODO: MOVE this text to the "label" or "primaryText" props for
+        this and other raised buttons/papers */ }
         Logout
       </RaisedButton>
     );
 
     const loginSignupJSX = (
       <RaisedButton
-        label="Signup/Login"
+        className="login-logout-button"      
         onClick={(event) => this.setState({
           anchorEl: event.target,
           popoverOpen: true,
         })}
-      />
+      >
+        Signup / Login
+      </RaisedButton>
     );
 
     const authButton = this.props.loggedIn ? logoutJSX : loginSignupJSX;
-
+    
+    // Seth - Using location.pathname to conditional render savedButton with switch function
+    const savedButton = this.props.loggedIn ?
+      this.renderSavedSwitch(this.props.location.pathname) : null;
+    
     return (
-      <Paper
-        style={{
-          marginLeft: 'auto',
-          textAlign: 'right',
-          backgroundColor: 'transparent',
-          boxShadow: 'transparent',
-        }}
-      >
+      <div className="nav-wrapper" >
+        { savedButton }
         { authButton }
         <Popover
           style={{
@@ -158,7 +194,7 @@ class NavWrapper extends Component {
             </Dialog> : null}
               
         </div>
-      </Paper>
+      </div>
     );
   }
 }
@@ -173,5 +209,5 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logoutAction()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavWrapper);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavWrapper));
 

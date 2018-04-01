@@ -1,3 +1,7 @@
+// TODO: ADD button that appears when logged in to to go SAVED ROOMS/SESSIONS
+// TODO: FIX invisibile DIV that appears when beginning input for CREATE or JOIN room fields
+
+
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 import { RaisedButton, TextField } from 'material-ui';
@@ -33,7 +37,7 @@ class Landing extends Component {
       login,
       logout,
     } = this.props;
-
+    
     const signupLoginJSX = (
       <ul className="nav-items">
         <li>
@@ -78,7 +82,7 @@ class Landing extends Component {
           </div>
           <section className="jumbotron">
             <h1><span>Welcome to Firepolls</span></h1>
-            <p>Create a poll below and invite your friends.</p>
+            <p>Create a room below and invite your friends.</p>
             <br />
           </section>
           
