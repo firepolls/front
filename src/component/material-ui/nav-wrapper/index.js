@@ -42,6 +42,20 @@ class NavWrapper extends Component {
     this.setState({ popoverOpen: !this.state.popoverOpen });
   }
 
+  // Rob - This is curred for use below in handleLoggingInOpen and handleSigningUpOpen
+  _handlePopoverOpen = (loggingIn) => () =>
+    this.setState({
+      loggingIn,
+      signingUp: !loggingIn,
+      open: false,
+      dialogOpen: true,
+      popoverOpen: false,
+    });
+
+  handleLoggingInOpen = this._handlePopoverOpen(true);
+
+  handleSigningUpOpen = this._handlePopoverOpen(false);
+
   renderSavedSwitch = (location) => {
     switch (location) {
       case '/saved':
@@ -89,23 +103,11 @@ class NavWrapper extends Component {
       
             <MenuItem 
               primaryText="Signup"
-              onClick={() =>
-                this.setState({
-                  signingUp: true,
-                  loggingIn: false,
-                  open: false,
-                  dialogOpen: true,
-                })}
+              onClick={this.handleSigningUpOpen}
             />
             <MenuItem 
               primaryText="Login"
-              onClick={() =>
-                this.setState({
-                  loggingIn: true,
-                  signingUp: false,
-                  open: false,
-                  dialogOpen: true,
-                })}
+              onClick={this.handleLoggingInOpen}
             />
           </Menu>
         );
@@ -174,7 +176,7 @@ class NavWrapper extends Component {
               open={this.state.dialogOpen}
               onRequestClose={this.handleDialogClose}
             >
-              <h2>Please sign into Firepolls</h2>
+              <h2>Sign up for a Firepolls account.</h2>
               <AuthForm 
                 type="signup" 
                 onComplete={this.handleSignup} 
@@ -186,7 +188,7 @@ class NavWrapper extends Component {
               open={this.state.dialogOpen}
               onRequestClose={this.handleDialogClose}
             >
-              <h2>Welcome back to Firepolls</h2>
+              <h2>Welcome back to Firepolls!</h2>
               <AuthForm 
                 type="login" 
                 onComplete={this.handleLogin}
