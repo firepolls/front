@@ -42,7 +42,7 @@ class NavWrapper extends Component {
     this.setState({ popoverOpen: !this.state.popoverOpen });
   }
 
-  // Rob - This is curred for use below in handleLoggingInOpen and handleSigningUpOpen
+  // Rob - This is curried for use below in handleLoggingInOpen and handleSigningUpOpen
   _handlePopoverOpen = (loggingIn) => () =>
     this.setState({
       loggingIn,
