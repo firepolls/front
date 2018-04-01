@@ -140,12 +140,9 @@ class NavWrapper extends Component {
 
     const authButton = this.props.loggedIn ? logoutJSX : loginSignupJSX;
     
-    const savedButtonJSX = this.renderSavedSwitch(this.props.location.pathname);
-
-    console.log(savedButtonJSX);
-    console.log(this.props.location.pathname);
-
-    const savedButton = this.props.loggedIn ? savedButtonJSX : null;
+    // Seth - Using location.pathname to conditional render savedButton with switch function
+    const savedButton = this.props.loggedIn ?
+      this.renderSavedSwitch(this.props.location.pathname) : null;
     
     return (
       <div className="nav-wrapper" >
