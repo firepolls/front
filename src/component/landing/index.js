@@ -36,35 +36,6 @@ class Landing extends Component {
       logout,
     } = this.props;
     
-    const signupLoginJSX = (
-      <ul className="nav-items">
-        <li>
-          <RaisedButton
-            onClick={() => 
-              this.setState(previousState => ({
-                signingUp: !previousState.signingUp,
-                loggingIn: false,
-              }))
-            }
-          >
-            Signup
-          </RaisedButton>          
-        </li> 
-        <li>
-          <RaisedButton 
-            onClick={() =>
-              this.setState(previousState => ({
-                signingUp: false,
-                loggingIn: !previousState.loggingIn,
-              }))
-            }
-          >
-            Login
-          </RaisedButton>
-        </li>
-      </ul>
-    );
-    
     return (
       <Fragment>
         <div className="landing-frag">
