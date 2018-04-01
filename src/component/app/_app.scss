@@ -22,7 +22,6 @@
   right: 0;
   width: 40%;
   @media only screen and (min-width: 600px) {
-    right: 0;
     width: 20%;
   }
 }
@@ -38,8 +37,5 @@
   @media only screen and (min-width: 600px) {
     width: 20%;
     left: 55%;
-    .saved-button {
-      width: 100%;
-    }
   }
 }
