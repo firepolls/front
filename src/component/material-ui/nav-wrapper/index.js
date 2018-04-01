@@ -14,10 +14,15 @@ class NavWrapper extends Component {
       anchorEl: null,
       dialogOpen: true,
       popoverOpen: false,
+      viewingSaved: false,
     }
 
   handleToggle = () => {
     this.setState({ open: !this.state.open });
+  }
+
+  toggleViewingSaved = () => {
+    this.setState({ viewingSaved: !this.state.viewingSaved });
   }
 
   handleDialogOpen = () => {
@@ -91,26 +96,45 @@ class NavWrapper extends Component {
     const loginSignupJSX = (
       <RaisedButton
         className="login-logout-button"      
-        label="Signup/Login"
         onClick={(event) => this.setState({
           anchorEl: event.target,
           popoverOpen: true,
         })}
-      />
+      >
+        Signup / Login
+      </RaisedButton>
     );
 
     const authButton = this.props.loggedIn ? logoutJSX : loginSignupJSX;
-
-    const goToSavedButtonJSX = this.props.loggedIn ? (
-      <Link to="/saved" href="/saved" className="saved-link" >
+    
+    const savedButtonJSX = this.state.viewingSaved ? (
+      <Link
+        to="/" 
+        href="/"
+        className="saved-link"
+        onClick={this.toggleViewingSaved}
+      >
+        <RaisedButton className="saved-button">
+        Home
+        </RaisedButton>
+      </Link>
+    ) : (
+      <Link 
+        to="/saved"
+        href="/saved"
+        className="saved-link"
+        onClick={this.toggleViewingSaved}
+      >
         <RaisedButton className="saved-button">
           Saved Rooms
         </RaisedButton>
-      </Link>) : null;
+      </Link>);
+
+    const savedButton = this.props.loggedIn ? savedButtonJSX : null;
     
     return (
       <div className="nav-wrapper" >
-        { goToSavedButtonJSX }
+        { savedButton }
         { authButton }
         <Popover
           style={{
