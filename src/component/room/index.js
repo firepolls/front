@@ -8,7 +8,6 @@ import './_room.scss';
 import PollList from '../poll-list';
 import Poll from '../../socket/poll';
 import SocketForm from '../socket-form';
-import Instruction from '../instructions';
 import * as owner from '../../socket/owner';
 import * as voter from '../../socket/voter';
 import { saveRoomAction } from '../../action/savedRooms';
@@ -77,8 +76,6 @@ class Room extends Component {
 
 
     // Seth - Instructions for if the room exists but no polls exist yet
-
-    // TODO: ADD warning to instructions AND separate out instructions to it's own component
     const ownerInstructionJSX = (
       <Fragment>      
         <p>Create your first poll above...</p>
@@ -94,10 +91,6 @@ class Room extends Component {
       </Fragment>);
 
     const instructionText = room && room.owner ? ownerInstructionJSX : voterInstructionJSX;
-
-    const instructionJSX = room && !room.polls.length ? (
-      <Instruction content={instructionText} />)
-      : null;
 
     const ownerJSX = (
       <Fragment>
@@ -136,7 +129,13 @@ class Room extends Component {
           Active Voters: {room && room.voters > 0 ? <strong>{room.voters}</strong> : 0}
           </Paper>
           {room.owner ? ownerJSX : voterButtonJSX}
-          {instructionJSX}
+          {room && !room.polls.length ? (
+            <Paper
+              zDepth={4}
+              className="instruction"
+            >
+              {instructionText}
+            </Paper>) : null}
         </section>
 
         {room.polls.length ?
