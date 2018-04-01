@@ -115,6 +115,8 @@ class NavWrapper extends Component {
         className="login-logout-button"
         onClick={() => logout()}
       >
+        { /* TODO: MOVE this text to the "label" or "primaryText" props for
+        this and other raised buttons/papers */ }
         Logout
       </RaisedButton>
     );
