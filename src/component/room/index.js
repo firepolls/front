@@ -1,5 +1,3 @@
-// TODO: ADD INTRUSTIONS for owner/voter when poll list is empty
-
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 import { RaisedButton, FlatButton, Dialog, Paper } from 'material-ui';

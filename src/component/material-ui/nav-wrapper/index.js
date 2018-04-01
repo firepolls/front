@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { MenuItem, RaisedButton, Popover, Menu, Paper, Dialog } from 'material-ui';
 import AuthForm from '../../auth-form';
@@ -107,7 +107,7 @@ class NavWrapper extends Component {
 
     const authButton = this.props.loggedIn ? logoutJSX : loginSignupJSX;
     
-    const savedButtonJSX = this.state.viewingSaved ? (
+    const savedButtonJSX = this.props.location.pathname === '/saved' ? (
       <Link
         to="/" 
         href="/"
@@ -202,5 +202,5 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logoutAction()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavWrapper);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavWrapper));
 
