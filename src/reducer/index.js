@@ -9,11 +9,11 @@ import profile from './profile';
 import savedRooms from './savedRooms';
 
 export default combineReducers({
-  token,
-  profile,
   room,
-  socket,
-  status,
+  token,
   votes,
+  status,
+  socket,
+  profile,
   savedRooms,
 });
