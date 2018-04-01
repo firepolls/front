@@ -42,10 +42,6 @@ class NavWrapper extends Component {
     this.setState({ popoverOpen: !this.state.popoverOpen });
   }
 
-  handleGoToSaved = () => {
-    this.props.history.push('/saved');
-  }
-
   render() {
     const { 
       socket,
@@ -84,7 +80,8 @@ class NavWrapper extends Component {
         );
 
     const logoutJSX = (
-      <RaisedButton 
+      <RaisedButton
+        className="login-logout-button"
         onClick={() => logout()}
       >
         Logout
@@ -93,6 +90,7 @@ class NavWrapper extends Component {
 
     const loginSignupJSX = (
       <RaisedButton
+        className="login-logout-button"      
         label="Signup/Login"
         onClick={(event) => this.setState({
           anchorEl: event.target,
@@ -104,23 +102,15 @@ class NavWrapper extends Component {
     const authButton = this.props.loggedIn ? logoutJSX : loginSignupJSX;
 
     const goToSavedButtonJSX = this.props.loggedIn ? (
-      <RaisedButton
-        className="saved-button"
-        onClick={this.handleGoToSaved}
-      >
-        <Link to="/saved" href="/saved">Saved Rooms</Link>
-      </RaisedButton>) : null;
+      <Link to="/saved" href="/saved" className="saved-link" >
+        <RaisedButton className="saved-button">
+          Saved Rooms
+        </RaisedButton>
+      </Link>) : null;
     
     return (
-      <div
-        className="nav-wrapper"
-        // style={{
-        //   marginLeft: 'auto',
-        //   textAlign: 'right',
-        //   backgroundColor: 'transparent',
-        //   boxShadow: 'transparent',
-        // }}
-      >
+      <div className="nav-wrapper" >
+        { goToSavedButtonJSX }
         { authButton }
         <Popover
           style={{
@@ -173,7 +163,6 @@ class NavWrapper extends Component {
             </Dialog> : null}
               
         </div>
-        {goToSavedButtonJSX}
       </div>
     );
   }

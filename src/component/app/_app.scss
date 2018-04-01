@@ -1,10 +1,45 @@
 @import 'vars';
 
 .app {
+  // margin-top: 5px;
   padding: $medium-pad;
 }
 
 .nav-wrapper {
+  position: relative;
   margin-left: auto;
   text-align: right;
+  height: 40px;
+}
+
+.saved-link, .login-logout-button {
+  position: absolute;
+  margin: 0.5vw;
+}
+
+.login-logout-button {
+  top: 0;
+  right: 0;
+  width: 40%;
+  @media only screen and (min-width: 600px) {
+    right: 0;
+    width: 20%;
+  }
+}
+
+.saved-link {
+  top: 0;
+  left: 0;
+  width: 40%;
+  .saved-button {
+    width: 100%;
+  }
+
+  @media only screen and (min-width: 600px) {
+    width: 20%;
+    left: 55%;
+    .saved-button {
+      width: 100%;
+    }
+  }
 }
