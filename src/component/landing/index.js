@@ -7,19 +7,14 @@ import React, { Component, Fragment } from 'react';
 import { RaisedButton, TextField } from 'material-ui';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
+import './_landing.scss';
 import AuthForm from '../auth-form';
 import SocketForm from '../socket-form';
 import { addPollAction } from '../../action/room';
 import { signupAction, loginAction, logoutAction } from '../../action/auth';
 
-import './_landing.scss';
 
 class Landing extends Component { 
-  state = {
-    signingUp: false,
-    loggingIn: false,
-  };
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.room) this.props.history.push('/room');
     if (nextProps.loggedIn) {
@@ -27,45 +22,8 @@ class Landing extends Component {
     }
   }
 
-  // Rob - This is used for resetting form
-  emptyState = { ...this.state };
-
   render() {
-    const {
-      socket,
-      signup,
-      login,
-      logout,
-    } = this.props;
-    
-    const signupLoginJSX = (
-      <ul className="nav-items">
-        <li>
-          <RaisedButton
-            onClick={() => 
-              this.setState(previousState => ({
-                signingUp: !previousState.signingUp,
-                loggingIn: false,
-              }))
-            }
-          >
-            Signup
-          </RaisedButton>          
-        </li> 
-        <li>
-          <RaisedButton 
-            onClick={() =>
-              this.setState(previousState => ({
-                signingUp: false,
-                loggingIn: !previousState.loggingIn,
-              }))
-            }
-          >
-            Login
-          </RaisedButton>
-        </li>
-      </ul>
-    );
+    const { socket } = this.props;
     
     return (
       <Fragment>
