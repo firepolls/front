@@ -1,4 +1,3 @@
-import validator from 'validator';
 import React, { Fragment, Component } from 'react';
 import { RaisedButton, TextField } from 'material-ui';
 
@@ -84,21 +83,20 @@ class AuthForm extends Component {
     return (
       <Fragment>
         <TextField
-          className={`auth-form-text ${this.generateClassName(formField)}`}
-          name={formField}
           fullWidth
-          hintText={`${formField}...`}
           type={type}
-          value={this.state[formField]}
+          name={formField}
+          hintText={`${formField}...`}
           onChange={this.handleChange}
+          value={this.state[formField]}
+          className={`auth-form-text ${this.generateClassName(formField)}`}
         />
-        {this.state[`${formField}Dirty`] ? <p>{this.state[`${formField}Error`]}</p> : null}
+        {this.state[`${formField}Dirty`] ? <p className="form-error">{this.state[`${formField}Error`]}</p> : null}
       </Fragment>
     );
   }
 
   render() {
-    // Rob - type must be either login or signup
     const { type } = this.props;
 
     const emailInput = type === 'signup' ? this.generateInput('email') : null;

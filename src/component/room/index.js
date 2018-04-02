@@ -1,15 +1,12 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { RaisedButton, FlatButton, Dialog, Paper } from 'material-ui';
+import { RaisedButton, Dialog, Paper } from 'material-ui';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './_room.scss';
 import PollList from '../poll-list';
 import Poll from '../../socket/poll';
 import SocketForm from '../socket-form';
-import * as owner from '../../socket/owner';
-import * as voter from '../../socket/voter';
 import { saveRoomAction } from '../../action/savedRooms';
 import { createPollAction, removeRoomAction } from '../../action/room';
 
@@ -74,19 +71,20 @@ class Room extends Component {
       savedRoom, 
     } = this.props;
 
-
     // Seth - Instructions for if the room exists but no polls exist yet
     const ownerInstructionJSX = (
       <Fragment>      
         <p>Create your first poll above...</p>
-        <p><strong>Note:</strong> Refreshing the page will close the Room and remove all Voters.
+        <p>
+          <strong>Note:</strong> Refreshing the page will close the Room and remove all Voters.
         </p>
       </Fragment>);
 
     const voterInstructionJSX = (
       <Fragment>
         <p>Please wait for the Room Owner to create a poll...</p>
-        <p><strong>Note:</strong> Refreshing the page will remove you from the room.
+        <p>
+          <strong>Note:</strong> Refreshing the page will remove you from the room.
         </p>
       </Fragment>);
 
@@ -217,15 +215,15 @@ class Room extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  createPoll: poll => dispatch(createPollAction(poll)),
   removeRoom: () => dispatch(removeRoomAction()),
+  createPoll: poll => dispatch(createPollAction(poll)),
   saveRoom: (postObject) => dispatch(saveRoomAction(postObject)),
 });
 
 const mapStateToProps = state => ({
-  socket: state.socket,
-  token: state.token,
   room: state.room,
+  token: state.token,
+  socket: state.socket,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Room);

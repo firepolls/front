@@ -10,7 +10,9 @@ class SavedSessions extends Component {
     const instructionsText = (
       <Fragment>
         <p>No Saved Rooms...</p>
-        <p><strong>Note:</strong> Create a room with at least one Poll and Save it for it to show here.
+        <p>
+          <strong>Note: </strong>
+          Create a room with at least one Poll and Save it for it to show here.
         </p>
       </Fragment>);
 
@@ -24,16 +26,12 @@ class SavedSessions extends Component {
             {instructionsText}
           </Paper>) : null}
         <ul>
-          { 
-            (
-              this.props.savedRooms
-                .map(savedRoom => (
-                  <li key={savedRoom._id} >
-                    <Room savedRoom={savedRoom} />
-                  </li>
-                ))
-            )
-          }
+          { this.props.savedRooms.map(savedRoom => (
+            <li key={savedRoom._id || savedRoom.roomName + savedRoom.polls.length} >
+              { /* TODO: Need to fix key issue for "fresh" rooms */ }
+              <Room savedRoom={savedRoom} />
+            </li>
+          ))}
         </ul>
       </section>
     );

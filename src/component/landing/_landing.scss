@@ -1,100 +1,5 @@
 @import '_vars';
 
-.header {
-  .container-fluid {
-    display: flex;
-    flex-direction: column;
-    
-    @media only screen and (min-width: 600px) {
-      // height: 120px;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;  
-      flex-direction: row;
-      
-    }
-    a {
-      text-decoration: none;
-    }
-
-    h1 {
-      color: $primary-red;    
-    }
-  }
-
-  .logo {
-    align-items: center;
-    font-size: 50px;
-    text-align: center;
-    font-weight: 800;
-    margin-bottom: 10px;
-    
-    @media only screen and (min-width: 600px) {
-      margin-top: 20px;
-      margin-left: 20px;
-    }
-    span {
-      display: inline-block;
-      margin-right: .5em;
-      padding: 4px;
-      border: 4px solid #111;
-      color: #111;
-    }
-  }
-
-  .nav-items {
-    padding: 0;
-    border-bottom: 0;
-    margin-top: 5px;
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    
-    li {
-      margin-right: 16px;
-      display: block;
-      margin-bottom: 16px;
-      @media only screen and (min-width: 600px) {
-        display: inline-block;
-        margin-bottom: 0;
-      }
-    }
-    
-    @media only screen and (min-width: 600px) {
-      width: 70%;
-      margin-left: auto;    
-      flex-direction: row;
-      justify-content: flex-end;
-    }
-  }
-
-  .form-container {
-    display: flex;
-    justify-content: center;
-    // align-items: center;
-
-    @media only screen and (min-width: 600px) {
-      width: 100%;
-      height: 200px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    .auth-form {
-      margin-right: 16px;
-      display: block;
-      margin-bottom: 16px;
-    }
-    
-  }
-}
-
 .jumbotron {
   padding-top: 20px;
   text-align: center;
@@ -141,13 +46,14 @@
   justify-content: space-between;
   align-items: center;
 
-    .socket-room {
-      width: 50%;
+  .socket-room {
+    width: 50%;
 
     @media only screen and (min-width: 600px) {
       width: 100%;
     }
   }
+
   p {
     color: $primary-red;
   }
@@ -155,6 +61,7 @@
 
 .grid {  
   margin-top: 2em;
+
   img {
     max-width: 200px;
     height: auto;
@@ -220,14 +127,15 @@
 .footer {
   margin-top: 5em;
   text-align: center;
+  
   a {
     text-decoration: none;
     color: black;
+
     &:hover {
       text-decoration: underline;
       font-weight: bold;  
     }
   }
-
 }
 
