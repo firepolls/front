@@ -27,8 +27,7 @@ class SavedSessions extends Component {
           </Paper>) : null}
         <ul>
           { this.props.savedRooms.map(savedRoom => (
-            <li key={savedRoom._id || savedRoom.roomName + savedRoom.polls.length} >
-              { /* TODO: Need to fix key issue for "fresh" rooms */ }
+            <li key={savedRoom._id} >
               <Room savedRoom={savedRoom} />
             </li>
           ))}
