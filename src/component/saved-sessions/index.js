@@ -16,8 +16,15 @@ class SavedSessions extends Component {
 
     return (
       <section className="saved-sessions">
+        { !this.props.savedRooms.length ? (
+          <Paper
+            zDepth={4}
+            className="instruction"
+          >
+            {instructionsText}
+          </Paper>) : null}
         <ul>
-          { this.props.savedRooms.length ?
+          { 
             (
               this.props.savedRooms
                 .map(savedRoom => (
@@ -25,13 +32,7 @@ class SavedSessions extends Component {
                     <Room savedRoom={savedRoom} />
                   </li>
                 ))
-            ) : (
-              <Paper
-                zDepth={4}
-                className="instruction"
-              >
-                {instructionsText}
-              </Paper>)
+            )
           }
         </ul>
       </section>
