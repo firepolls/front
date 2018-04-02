@@ -1,0 +1,17 @@
+@import '_vars';
+// * {
+//   border: red solid .25px;
+// }
+.instruction {
+  // grid-row: 4 / span 1;
+  // grid-column: 1 / span 4; 
+  margin: 20%;
+  padding: $large-pad;
+  @media only screen and (min-width: 600px) {
+    margin: 10% 20%;    
+  }
+}
+
+ul {
+  padding: 0 2vw 0 2vw;
+}
