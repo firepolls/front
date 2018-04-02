@@ -74,8 +74,8 @@ class Landing extends Component {
 }
 
 const mapStateToProps = state => ({
-  socket: state.socket,
   room: state.room,
+  socket: state.socket,
   status: state.status,
 });
 

@@ -74,9 +74,9 @@ class NavWrapper extends Component {
 
     const loginSignupButton = (
       <RaisedButton
-        className="login-logout-button"      
-        onClick={this.toggleModal}
         label="Signup / Login"
+        onClick={this.toggleModal}
+        className="login-logout-button"      
       />
     );
 
@@ -140,9 +140,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  signup: userData => dispatch(signupAction(userData)),
-  login: userData => dispatch(loginAction(userData)),
   logout: () => dispatch(logoutAction()),
+  login: userData => dispatch(loginAction(userData)),
+  signup: userData => dispatch(signupAction(userData)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavWrapper));

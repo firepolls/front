@@ -1,7 +1,6 @@
 @import 'vars';
 
 .app {
-  // margin-top: 5px;
   padding: $medium-pad;
 }
 
@@ -9,9 +8,7 @@
   position: relative;
   margin-left: auto;
   text-align: right;
-  // height: 50px;
   display: grid;
-  // grid-template-rows: 60px;
   grid-template-columns: repeat(10, auto);
   grid-gap: 10px;
 }
