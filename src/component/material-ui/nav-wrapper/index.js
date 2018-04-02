@@ -65,9 +65,10 @@ class NavWrapper extends Component {
             href="/"
             className="saved-link"
           >
-            <RaisedButton className="saved-button">
-              Home
-            </RaisedButton>
+            <RaisedButton
+              className="saved-button"
+              label="Home"
+            />
           </Link>);
         
       case '/':
@@ -77,9 +78,10 @@ class NavWrapper extends Component {
             href="/saved"
             className="saved-link"
           >
-            <RaisedButton className="saved-button">
-                Saved Rooms
-            </RaisedButton>
+            <RaisedButton
+              className="saved-button"
+              label="Saved Rooms"
+            />
           </Link>);
         
       default:
@@ -116,11 +118,8 @@ class NavWrapper extends Component {
       <RaisedButton
         className="login-logout-button"
         onClick={() => logout()}
-      >
-        { /* TODO: MOVE this text to the "label" or "primaryText" props for
-        this and other raised buttons/papers */ }
-        Logout
-      </RaisedButton>
+        label="Logout"
+      />
     );
 
     const loginSignupJSX = (
@@ -130,9 +129,8 @@ class NavWrapper extends Component {
           anchorEl: event.target,
           popoverOpen: true,
         })}
-      >
-        Signup / Login
-      </RaisedButton>
+        label="Signup / Login"
+      />
     );
 
     const authButton = this.props.loggedIn ? logoutJSX : loginSignupJSX;
@@ -143,6 +141,8 @@ class NavWrapper extends Component {
     
     return (
       <div className="nav-wrapper" >
+        { /* TODO: ADD animations with ReactCSStransitionGroup to these
+        buttons so that they fade in on mounting */ }
         { savedButton }
         { authButton }
         <Popover
