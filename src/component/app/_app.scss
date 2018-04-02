@@ -9,33 +9,27 @@
   position: relative;
   margin-left: auto;
   text-align: right;
-  height: 40px;
+  // height: 50px;
+  display: grid;
+  // grid-template-rows: 60px;
+  grid-template-columns: repeat(10, auto);
+  grid-gap: 10px;
 }
 
 .saved-link, .login-logout-button {
-  position: absolute;
-  margin: 0.5vw;
+  margin: $small-pad;
 }
 
 .login-logout-button {
-  top: 0;
-  right: 0;
-  width: 40%;
-  @media only screen and (min-width: 600px) {
-    width: 20%;
-  }
+  grid-column: 10 / span 1;
 }
 
 .saved-link {
-  top: 0;
-  left: 0;
-  width: 40%;
+  grid-column: 1 / span 1;
   .saved-button {
     width: 100%;
   }
-
   @media only screen and (min-width: 600px) {
-    width: 20%;
-    left: 55%;
+  grid-column: 9 / span 1;    
   }
 }

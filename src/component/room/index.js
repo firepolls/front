@@ -74,21 +74,23 @@ class Room extends Component {
       savedRoom, 
     } = this.props;
 
-    const redShadowStyle = { boxShadow: '0 2px 6px rgba(255, 0, 0, 0.12), 0 2px 4px rgba(255, 0, 0, 0.12)' };
 
     // Seth - Instructions for if the room exists but no polls exist yet
-    const ownerInstructionJSX = 'Create your first poll above...';
+    const ownerInstructionJSX = (
+      <Fragment>      
+        <p>Create your first poll above...</p>
+        <p><strong>Note:</strong> Refreshing the page will close the Room and remove all Voters.
+        </p>
+      </Fragment>);
 
-    const voterInstructionJSX = 'Please wait for the Room Owner to create a poll...';
+    const voterInstructionJSX = (
+      <Fragment>
+        <p>Please wait for the Room Owner to create a poll...</p>
+        <p><strong>Note:</strong> Refreshing the page will remove you from the room.
+        </p>
+      </Fragment>);
 
-    const instructionJSX = room && !room.polls.length ? (
-      <Paper
-        className="instructions"
-        style={redShadowStyle}
-      >
-        {room.owner ? ownerInstructionJSX : voterInstructionJSX }
-      </Paper>
-    ) : null;
+    const instructionText = room && room.owner ? ownerInstructionJSX : voterInstructionJSX;
 
     const ownerJSX = (
       <Fragment>
@@ -127,7 +129,13 @@ class Room extends Component {
           Active Voters: {room && room.voters > 0 ? <strong>{room.voters}</strong> : 0}
           </Paper>
           {room.owner ? ownerJSX : voterButtonJSX}
-          {instructionJSX}
+          {room && !room.polls.length ? (
+            <Paper
+              zDepth={4}
+              className="instruction"
+            >
+              {instructionText}
+            </Paper>) : null}
         </section>
 
         {room.polls.length ?

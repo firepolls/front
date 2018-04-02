@@ -1,6 +1,4 @@
-// TODO: ADD button that appears when logged in to to go SAVED ROOMS/SESSIONS
 // TODO: FIX invisibile DIV that appears when beginning input for CREATE or JOIN room fields
-
 
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
@@ -37,35 +35,6 @@ class Landing extends Component {
       login,
       logout,
     } = this.props;
-    
-    const signupLoginJSX = (
-      <ul className="nav-items">
-        <li>
-          <RaisedButton
-            onClick={() => 
-              this.setState(previousState => ({
-                signingUp: !previousState.signingUp,
-                loggingIn: false,
-              }))
-            }
-          >
-            Signup
-          </RaisedButton>          
-        </li> 
-        <li>
-          <RaisedButton 
-            onClick={() =>
-              this.setState(previousState => ({
-                signingUp: false,
-                loggingIn: !previousState.loggingIn,
-              }))
-            }
-          >
-            Login
-          </RaisedButton>
-        </li>
-      </ul>
-    );
     
     return (
       <Fragment>
