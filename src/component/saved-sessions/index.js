@@ -1,6 +1,6 @@
 import { Paper } from 'material-ui';
-import { connect, Fragment } from 'react-redux';
-import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import React, { Component, Fragment } from 'react';
 
 import Room from '../room';
 import './_saved-sessions.scss';
@@ -11,7 +11,7 @@ class SavedSessions extends Component {
       <Fragment>
         <p>No Saved Rooms...</p>
         <p>
-          <strong>Note:</strong>
+          <strong>Note: </strong>
           Create a room with at least one Poll and Save it for it to show here.
         </p>
       </Fragment>);
@@ -27,7 +27,8 @@ class SavedSessions extends Component {
           </Paper>) : null}
         <ul>
           { this.props.savedRooms.map(savedRoom => (
-            <li key={savedRoom._id} >
+            <li key={savedRoom._id || savedRoom.roomName + savedRoom.polls.length} >
+              { /* TODO: Need to fix key issue for "fresh" rooms */ }
               <Room savedRoom={savedRoom} />
             </li>
           ))}
