@@ -1,3 +1,5 @@
+// TODO: Remove profile
+
 export const validateProfile = profile => {
   if (!profile) {
     throw new Error('__ERROR__ profile is required!');

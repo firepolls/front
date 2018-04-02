@@ -5,7 +5,6 @@ import token from './auth';
 import votes from './votes';
 import socket from './socket';
 import status from './status';
-import profile from './profile';
 import savedRooms from './savedRooms';
 
 export default combineReducers({
@@ -14,6 +13,5 @@ export default combineReducers({
   votes,
   status,
   socket,
-  profile,
   savedRooms,
 });
