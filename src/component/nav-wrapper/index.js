@@ -100,7 +100,7 @@ class NavWrapper extends Component {
         onRequestClose={this.toggleModal}
       >
         <h2>Sign up for a Firepolls account.</h2>
-        <p>Need to login instead?</p>
+        <p>Already have an account?</p>
         { authToggleButton('Login') }
         <AuthForm 
           type="signup" 
@@ -116,7 +116,7 @@ class NavWrapper extends Component {
         onRequestClose={this.toggleModal}
       >
         <h2>Welcome back to Firepolls!</h2>
-        <p>Need to sign up instead?</p>
+        <p>Need an account?</p>
         { authToggleButton('Sign up') }
         <AuthForm 
           type="login" 
