@@ -1,0 +1,13 @@
+@import '_vars';
+
+.instruction {
+  margin: 20%;
+  padding: $large-pad;
+  @media only screen and (min-width: 600px) {
+    margin: 10% 20%;    
+  }
+}
+
+ul {
+  padding: 0 2vw 0 2vw;
+}
