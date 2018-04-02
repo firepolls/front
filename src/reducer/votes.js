@@ -1,3 +1,5 @@
+// Rob - this reducer is used specifically for managing re-voting
+
 const initialState = {};
 
 export default (state = initialState, { type, payload }) => {
@@ -7,9 +9,7 @@ export default (state = initialState, { type, payload }) => {
       const updatedState = { ...state, [pollId]: vote };
       return updatedState;
     }
-    case 'ROOM_SET':
-      return initialState;
-    case 'TOKEN_REMOVE':
+    case 'ROOM_REMOVE':
       return initialState;
     default:
       return state;
