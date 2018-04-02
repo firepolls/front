@@ -1,7 +1,14 @@
+@import '../../style/_vars.scss';
+
 .auth-form {
   width: 50%;
   float: right;
   text-align: center;
+
+  .form-error {
+    color: $primary-red;
+  }
+
   @media only screen and (min-width: 600px) {
     margin-right: 5%;
     width: 200px;

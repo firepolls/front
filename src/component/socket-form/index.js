@@ -1,8 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { RaisedButton, TextField } from 'material-ui';
-import { capitalizer } from '../../lib/util';
 
-import './_socket-form.scss';
+import { capitalizer } from '../../lib/util';
 
 class SocketForm extends Component {
   state = {
@@ -10,8 +9,6 @@ class SocketForm extends Component {
     [`${this.props.fieldVar}Dirty`]: false,
     [`${this.props.fieldVar}Error`]: 
       `${this.props.fieldVar === 'roomName' ? 'A room name' : 'A question'} is required.`,
-  
-    submitted: false,
   };
 
   componentWillReceiveProps(props) {
@@ -51,8 +48,6 @@ class SocketForm extends Component {
     } else {
       this.setState({
         [`${fieldVar}Dirty`]: true,
-        // Rob - I don't think we use submitted anywhere
-        submitted: true,
       });
     }
   }
@@ -75,19 +70,18 @@ class SocketForm extends Component {
             color: 'black',
           }
         }
-        className={this.generateClassName(formField)}
+        type="text"
         name={formField}
         hintText={placeholder}
-        floatingLabelText={placeholder}
-        type="text"
-        value={this.state[formField]}
         onChange={this.handleChange}
+        value={this.state[formField]}
+        floatingLabelText={placeholder}
+        className={this.generateClassName(formField)}
       />
     </Fragment>
   );
 
   render() {
-    // Rob - type should be either join or create
     const {
       type,
       fieldVar,

@@ -24,13 +24,13 @@ class Voting extends Component {
     return ( 
       <div className="react-stars-container">
         <ReactStars
-          className="react-stars"
-          count={4}
-          onChange={this.handleVote}
           size={48}
+          count={4}
           half={false} 
           color2="orange"
           value={this.state.vote}
+          className="react-stars"
+          onChange={this.handleVote}
         />
       </div>
     );

@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
 import './_poll-item.scss';
@@ -21,16 +21,15 @@ class PollItem extends Component {
 
   render() {
     const {
-      owner,
       poll,
+      owner,
     } = this.props;
 
     const {
-      question,
-      results,
-      pollId,
       _id,
-
+      pollId,
+      results,
+      question,
     } = poll;
 
     const resultsArray = Object.keys(results).map(key => results[key]);
