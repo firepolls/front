@@ -81,7 +81,7 @@ class AuthForm extends Component {
     const type = formField === 'password' ? 'password' : 'text';
     
     return (
-      <Fragment>
+      <div className="input-field" >
         <TextField
           fullWidth
           type={type}
@@ -92,7 +92,7 @@ class AuthForm extends Component {
           className={`auth-form-text ${this.generateClassName(formField)}`}
         />
         {this.state[`${formField}Dirty`] ? <p className="form-error">{this.state[`${formField}Error`]}</p> : null}
-      </Fragment>
+      </div>
     );
   }
 
@@ -106,7 +106,12 @@ class AuthForm extends Component {
         {this.generateInput('username')}
         {this.generateInput('password')}
         {emailInput}
-        <RaisedButton type="submit">{type}</RaisedButton>
+        <RaisedButton 
+          type="submit"
+          style={{ marginBottom: '10px' }}
+        >
+          {type.toUpperCase()}
+        </RaisedButton>
       </form>
     );
   }

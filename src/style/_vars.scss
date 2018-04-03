@@ -1,14 +1,18 @@
 
 // Colors
 $primary-red: #EC1940;
+$primary-red-light: rgb(236, 104, 128);
 
 // Margin and Padding
 $small-pad: 0.5vw;
-$medium-pad: 1vw;
-$large-pad: 3vw;
-$default-button-margin: 0.5vw;
+$medium-pad: 2 * $small-pad;
+$medium-large-pad: 4 * $small-pad;
+$large-pad: 6 * $small-pad;
+$xl-pad: 10 * $small-pad;
+$default-button-margin: $small-pad;
 $large-fixed-margin: 20px;
 
 // Font
 $font-main: 'Lato', sans-serif;
 $font-mono: 'Roboto Mono', monospace;
+$font-size-error: 14px;

@@ -1,21 +1,20 @@
 @import '../../style/_vars.scss';
 
 .auth-form {
-  width: 50%;
-  float: right;
   text-align: center;
 
+  .input-field {
+    margin: 0 auto;
+    max-width: 300px;
+    position: relative;
+    padding-bottom: 25px;
+  }
+
   .form-error {
-    color: $primary-red;
-  }
-
-  @media only screen and (min-width: 600px) {
-    margin-right: 5%;
-    width: 200px;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    color: $primary-red-light;
+    font-size: $font-size-error;
   }
 }
-
-.auth-form-text {
-  height: 1px;
-}
-
