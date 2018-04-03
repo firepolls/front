@@ -1,0 +1,19 @@
+@import '../../style/_vars.scss';
+
+.room-form {
+  text-align: center;
+
+  .room-form-input {
+    display: inline-block;
+    position: relative;
+  }
+
+  .form-error {
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    color: $primary-red-light;
+    font-size: $font-size-error;
+  }
+}
