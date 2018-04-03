@@ -129,7 +129,7 @@ class Room extends Component {
           {room.owner ? ownerJSX : voterButtonJSX}
           {room && !room.polls.length ? (
             <Paper
-              zDepth={4}
+              zDepth={2}
               className="instruction"
             >
               {instructionText}
