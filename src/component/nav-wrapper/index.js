@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { RaisedButton, Dialog } from 'material-ui';
 import { Link, withRouter } from 'react-router-dom';
 
+import './_nav-wrapper.scss';
 import AuthForm from '../auth-form';
 import { signupAction, loginAction, logoutAction } from '../../action/auth';
 
@@ -96,12 +97,17 @@ class NavWrapper extends Component {
     // Rob - This shows when state.modalOpen === true and state.authType === 'signup'
     const signupModal = (
       <Dialog 
+        className="auth-modal"
         open={this.state.modalOpen}
         onRequestClose={this.toggleModal}
       >
-        <h2>Sign up for a Firepolls account.</h2>
-        <p>Already have an account?</p>
-        { authToggleButton('Login') }
+        <h2 className="signup-login-header">
+          Sign up for a Firepolls account.
+        </h2>
+        <div className="signup-login-toggle" >
+          <p>Already have an account?</p>
+          { authToggleButton('Login') }
+        </div>
         <AuthForm 
           type="signup" 
           onComplete={this.handleSignup} 
@@ -112,13 +118,16 @@ class NavWrapper extends Component {
     // Rob - This shows when state.modalOpen === true and state.authType === 'login'
     const loginModal = (
       <Dialog
+        className="auth-modal"
         open={this.state.modalOpen}
         onRequestClose={this.toggleModal}
       >
-        <h2>Welcome back to Firepolls!</h2>
-        <p>Need an account?</p>
-        { authToggleButton('Sign up') }
-        <AuthForm 
+        <h2 className="signup-login-header" >Welcome back to Firepolls!</h2>
+        <div className="signup-login-toggle" >
+          <p>Need an account?</p>
+          { authToggleButton('Sign up') }
+        </div>
+        <AuthForm
           type="login" 
           onComplete={this.handleLogin}
         /> 

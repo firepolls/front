@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { RaisedButton, TextField } from 'material-ui';
 
+import './_socket-form.scss';
 import { capitalizer } from '../../lib/util';
 
 class SocketForm extends Component {
@@ -58,26 +59,28 @@ class SocketForm extends Component {
       : null);
 
   generateError = formField => (
-    this.state[`${formField}Dirty`] ? <p>{this.state[`${formField}Error`]}</p> : null
+    this.state[`${formField}Dirty`] ? <p className="form-error">{this.state[`${formField}Error`]}</p> : null
   );
 
   generateInput = (formField, placeholder) => (
     <Fragment>
-      <TextField
-        style={
-          {
-            marginTop: '10px',
-            color: 'black',
+      <div className="room-form-input">
+        <TextField
+          style={
+            {
+              marginTop: '10px',
+              color: 'black',
+            }
           }
-        }
-        type="text"
-        name={formField}
-        hintText={placeholder}
-        onChange={this.handleChange}
-        value={this.state[formField]}
-        floatingLabelText={placeholder}
-        className={this.generateClassName(formField)}
-      />
+          type="text"
+          name={formField}
+          hintText={placeholder}
+          onChange={this.handleChange}
+          value={this.state[formField]}
+          floatingLabelText={placeholder}
+          className={this.generateClassName(formField)}
+        />
+      </div>
     </Fragment>
   );
 
@@ -89,13 +92,13 @@ class SocketForm extends Component {
     } = this.props;
 
     return (
-      <Fragment>
+      <div className="room-form">
         <form onSubmit={this.handleSubmit}>
           {this.generateInput(fieldVar, `${capitalizer(type)} ${placeholderPartial}...`)}
           <RaisedButton type="submit">{capitalizer(type)}</RaisedButton>
         </form>
         {this.generateError(fieldVar)}
-      </Fragment>
+      </div>
     );
   }
 }
