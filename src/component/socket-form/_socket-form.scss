@@ -1,19 +1,18 @@
 @import '../../style/_vars.scss';
 
-.auth-form {
+.room-form {
   text-align: center;
 
-  .input-field {
-    margin: 0 auto;
-    max-width: 300px;
+  .room-form-input {
+    display: inline-block;
     position: relative;
-    padding-bottom: 25px;
   }
 
   .form-error {
-    margin: 0;
-    width: 100%;
+    margin: 0 auto;
     position: absolute;
+    left: 0;
+    width: 100%;
     color: $primary-red-light;
     font-size: $font-size-error;
   }
