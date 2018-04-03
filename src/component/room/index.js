@@ -1,15 +1,12 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { RaisedButton, FlatButton, Dialog, Paper } from 'material-ui';
+import { RaisedButton, Dialog, Paper } from 'material-ui';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './_room.scss';
 import PollList from '../poll-list';
 import Poll from '../../socket/poll';
 import SocketForm from '../socket-form';
-import * as owner from '../../socket/owner';
-import * as voter from '../../socket/voter';
 import { saveRoomAction } from '../../action/savedRooms';
 import { createPollAction, removeRoomAction } from '../../action/room';
 
@@ -74,12 +71,31 @@ class Room extends Component {
       savedRoom, 
     } = this.props;
 
+    // Seth - Instructions for if the room exists but no polls exist yet
+    const ownerInstructionJSX = (
+      <Fragment>      
+        <p>Create your first poll above...</p>
+        <p>
+          <strong>Note:</strong> Refreshing the page will close the Room and remove all Voters.
+        </p>
+      </Fragment>);
+
+    const voterInstructionJSX = (
+      <Fragment>
+        <p>Please wait for the Room Owner to create a poll...</p>
+        <p>
+          <strong>Note:</strong> Refreshing the page will remove you from the room.
+        </p>
+      </Fragment>);
+
+    const instructionText = room && room.owner ? ownerInstructionJSX : voterInstructionJSX;
+
     const ownerJSX = (
       <Fragment>
         <RaisedButton 
           className="close-save-button"
           onClick={this.toggleModal}
-          label="Close Poll" 
+          label="Close Room" 
         />
         <div className="create-poll-form">
           <SocketForm 
@@ -92,7 +108,8 @@ class Room extends Component {
       </Fragment>);
 
     const voterButtonJSX = (
-      <RaisedButton 
+      <RaisedButton
+        className="close-save-button"       
         onClick={this.handleLeaveRoom} 
         label="Leave Room"
       />
@@ -101,24 +118,31 @@ class Room extends Component {
     // Rob - Don't try to access properties on room if it is null
     const roomJSX = room ? (
       <Fragment>
-        <h1>{room.roomName}</h1>
-        <Paper 
-          className="active-voters" 
-          zDepth={1}
-          style={{
-            fontSize: '1.25em', margin: '1vw', padding: '1vw',
-          }}
-        >
-          Active voters: {room && room.voters > 0 ? room.voters : 0}
-        </Paper>
-        {room.owner ? ownerJSX : voterButtonJSX}
+        <h1>{room.roomNameRaw}</h1>
+        <section className="info-button-container">
+          <Paper 
+            className="active-voters" 
+            zDepth={1}
+          >
+          Active Voters: {room && room.voters > 0 ? <strong>{room.voters}</strong> : 0}
+          </Paper>
+          {room.owner ? ownerJSX : voterButtonJSX}
+          {room && !room.polls.length ? (
+            <Paper
+              zDepth={4}
+              className="instruction"
+            >
+              {instructionText}
+            </Paper>) : null}
+        </section>
+
         {room.polls.length ?
           <ReactCSSTransitionGroup
             transitionName="fade"
             transitionAppear={true}
-            transitionAppearTimeout={500}
             transitionEnterTimeout={500}
             transitionLeaveTimeout={500}
+            transitionAppearTimeout={500}
           >
             <PollList room={room} />
           </ReactCSSTransitionGroup>                  
@@ -127,14 +151,14 @@ class Room extends Component {
 
     const savedRoomJSX = savedRoom ? (
       <Fragment>
-        <h1>{savedRoom.roomName}</h1>
+        <h1>{savedRoom.roomNameRaw}</h1>
         {savedRoom.polls.length ?
           <ReactCSSTransitionGroup
             transitionName="fade"
             transitionAppear={true}
-            transitionAppearTimeout={500}
             transitionEnterTimeout={500}
             transitionLeaveTimeout={500}
+            transitionAppearTimeout={500}
           >
             <PollList room={savedRoom} />
           </ReactCSSTransitionGroup>                  
@@ -191,15 +215,15 @@ class Room extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  createPoll: poll => dispatch(createPollAction(poll)),
   removeRoom: () => dispatch(removeRoomAction()),
-  saveRoom: (postObject) => dispatch(saveRoomAction(postObject)),
+  createPoll: poll => dispatch(createPollAction(poll)),
+  saveRoom: postObject => dispatch(saveRoomAction(postObject)),
 });
 
 const mapStateToProps = state => ({
-  socket: state.socket,
-  token: state.token,
   room: state.room,
+  token: state.token,
+  socket: state.socket,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Room);

@@ -1,6 +1,6 @@
 import reducer from '../src/reducer/room';
 
-describe('Profile Reducer', () => {
+describe('Room Reducer', () => {
   test('ROOM_SET should return a room payload', () => {
     const action = {
       type: 'ROOM_SET',

@@ -1,15 +1,56 @@
-.close-save {
-  text-align: center;
-  position: relative;
+@import '_vars';
 
-}
-.create-poll-form {
-  text-align: center;
+.info-button-container {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  grid-template-rows: repeat(4, 25%);
 }
 
 .active-voters {
-    width: 200px;
-    text-align: center;
+  grid-row: 1 / span 1; 
+  grid-column: 1 / span 2;
+  align-self: center;
+  line-height: 36px;
+  text-align: center;
+  margin: $default-button-margin;
+  font-size: 1.15em;
+  font-family: $font-main;
+  @media only screen and (min-width: 600px) {
+    grid-column: 1 / span 1;
+  }
+}
+
+.close-save-button {
+  align-self: center;
+  margin: $small-pad;
+  grid-row: 1 / span 1; 
+  grid-column: 3 / span 2;
+
+  @media only screen and (min-width: 600px) {
+    grid-column: 4 / span 1;
+  }
+}
+
+.create-poll-form {
+  text-align: center;
+  grid-row: 2 / span 2;
+  grid-column: 2 / span 2; 
+  
+}
+
+.instruction {
+  grid-row: 4 / span 1;
+  grid-column: 1 / span 4; 
+  margin: $large-fixed-margin;
+  padding: $medium-pad;
+  @media only screen and (min-width: 600px) {
+    grid-column: 2 / span 2;
+  }
+}
+
+.close-save {
+  text-align: center;
+  position: relative;
 }
 
 .fade-appear {
@@ -21,4 +62,8 @@
   opacity: 1;
   transition: all 1000ms ease;
   max-height: 750px;    
+}
+
+.saved-sessions ul {
+  list-style-type: none;
 }

@@ -5,15 +5,13 @@ import token from './auth';
 import votes from './votes';
 import socket from './socket';
 import status from './status';
-import profile from './profile';
 import savedRooms from './savedRooms';
 
 export default combineReducers({
-  token,
-  profile,
   room,
-  socket,
-  status,
+  token,
   votes,
+  status,
+  socket,
   savedRooms,
 });

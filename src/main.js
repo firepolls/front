@@ -1,9 +1,9 @@
 import React from 'react';
-import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { render as renderDOM } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import './style/main.scss';
@@ -22,7 +22,7 @@ const store = process.env.NODE_ENV === 'production' ?
 const container = document.createElement('main');
 document.body.appendChild(container);
 
-render(
+renderDOM(
   <MuiThemeProvider muiTheme={muiTheme}>
     <Provider store={store} >
       <App /> 
