@@ -1,5 +1,3 @@
-import superagent from 'superagent';
-
 export const createRoomAction = room => ({
   type: 'ROOM_SET',
   payload: room,

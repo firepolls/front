@@ -11,12 +11,13 @@ export default (socket, dispatch) => {
   });
 
   // Anthony - Room has been successfully created on server.
-  socket.on('room created', roomName => {
+  socket.on('room created', ({ roomName, roomNameRaw }) => {
     dispatch(createRoomAction({
       roomName,
-      owner: true,
       voters: 0,
       polls: [],
+      owner: true,
+      roomNameRaw,
     }));
   });
 };

@@ -118,7 +118,7 @@ class Room extends Component {
     // Rob - Don't try to access properties on room if it is null
     const roomJSX = room ? (
       <Fragment>
-        <h1>{room.roomName}</h1>
+        <h1>{room.roomNameRaw}</h1>
         <section className="info-button-container">
           <Paper 
             className="active-voters" 
@@ -140,9 +140,9 @@ class Room extends Component {
           <ReactCSSTransitionGroup
             transitionName="fade"
             transitionAppear={true}
-            transitionAppearTimeout={500}
             transitionEnterTimeout={500}
             transitionLeaveTimeout={500}
+            transitionAppearTimeout={500}
           >
             <PollList room={room} />
           </ReactCSSTransitionGroup>                  
@@ -151,14 +151,14 @@ class Room extends Component {
 
     const savedRoomJSX = savedRoom ? (
       <Fragment>
-        <h1>{savedRoom.roomName}</h1>
+        <h1>{savedRoom.roomNameRaw}</h1>
         {savedRoom.polls.length ?
           <ReactCSSTransitionGroup
             transitionName="fade"
             transitionAppear={true}
-            transitionAppearTimeout={500}
             transitionEnterTimeout={500}
             transitionLeaveTimeout={500}
+            transitionAppearTimeout={500}
           >
             <PollList room={savedRoom} />
           </ReactCSSTransitionGroup>                  
@@ -217,7 +217,7 @@ class Room extends Component {
 const mapDispatchToProps = dispatch => ({
   removeRoom: () => dispatch(removeRoomAction()),
   createPoll: poll => dispatch(createPollAction(poll)),
-  saveRoom: (postObject) => dispatch(saveRoomAction(postObject)),
+  saveRoom: postObject => dispatch(saveRoomAction(postObject)),
 });
 
 const mapStateToProps = state => ({

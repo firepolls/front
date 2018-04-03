@@ -10,13 +10,13 @@ export const addAllSavedRoomsAction = savedRooms => ({
   payload: savedRooms,
 });
 
-export const saveRoomAction = ({ roomData, token }) => (store) =>
+export const saveRoomAction = ({ roomData, token }) => (store) => 
   superagent.post(`${API_URL}/session`)
     .set('Authorization', `Bearer ${token}`)
     .send(roomData)
     .then(response => {
-      const { roomName, polls } = response.body;
-      store.dispatch(addSavedRoomAction({ roomName, polls }));
+      const { roomName, roomNameRaw, polls } = response.body;
+      store.dispatch(addSavedRoomAction({ roomName, roomNameRaw, polls }));
     })
     .catch(console.log);
 
