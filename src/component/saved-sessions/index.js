@@ -20,7 +20,7 @@ class SavedSessions extends Component {
       <section className="saved-sessions">
         { !this.props.savedRooms.length ? (
           <Paper
-            zDepth={4}
+            zDepth={2}
             className="instruction"
           >
             {instructionsText}
