@@ -61,6 +61,7 @@ class Room extends Component {
     const { socket } = this.props;
     socket.closeRoomEmit();
     this.props.removeRoom();
+    delete localStorage.fpOwned;
   };
 
   handleSave = () => {
@@ -73,6 +74,7 @@ class Room extends Component {
       this.toggleAlert();
     }
     this.toggleModal();
+    delete localStorage.fpOwned;
   };
 
   render() {
