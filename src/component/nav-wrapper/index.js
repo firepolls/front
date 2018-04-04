@@ -8,10 +8,15 @@ import AuthForm from '../auth-form';
 import { signupAction, loginAction, logoutAction } from '../../action/auth';
 
 class NavWrapper extends Component {
-    state = {
-      authType: 'login',
-      modalOpen: false,
-    }
+  state = {
+    authType: 'login',
+    modalOpen: false,
+  }
+
+  // Rob - Close modal after successful singup or login
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.loggedIn && this.state.modalOpen) this.toggleModal();
+  }
 
   toggleModal = () => {
     this.setState(prevState => ({ modalOpen: !prevState.modalOpen }));
@@ -21,16 +26,6 @@ class NavWrapper extends Component {
     this.setState(prevState => ({ 
       authType: prevState.authType === 'login' ? 'signup' : 'login', 
     }));
-  }
-
-  handleSignup = (userData) => {
-    this.props.signup(userData);
-    this.toggleModal();
-  }
-
-  handleLogin = (userData) => {
-    this.props.login(userData);
-    this.toggleModal();
   }
 
   renderSavedSwitch = (location) => {
@@ -110,7 +105,7 @@ class NavWrapper extends Component {
         </div>
         <AuthForm 
           type="signup" 
-          onComplete={this.handleSignup} 
+          onComplete={this.props.signup} 
         /> 
       </Dialog>
     );
@@ -129,7 +124,7 @@ class NavWrapper extends Component {
         </div>
         <AuthForm
           type="login" 
-          onComplete={this.handleLogin}
+          onComplete={this.props.login}
         /> 
       </Dialog>
     );
@@ -150,8 +145,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logoutAction()),
-  login: userData => dispatch(loginAction(userData)),
-  signup: userData => dispatch(signupAction(userData)),
+  login: (userData, failureCB) => dispatch(loginAction(userData, failureCB)),
+  signup: (userData, failureCB) => dispatch(signupAction(userData, failureCB)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavWrapper));
