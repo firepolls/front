@@ -16,6 +16,15 @@ class Room extends Component {
     alertOpen: false,
   }
 
+  componentWillMount() {
+    if (!this.props.room && (/\/room\//).test(this.props.location.pathname)) {
+      const { roomName } = this.props.match.params;
+      console.log('hi', roomName, this.props.socket);
+      this.props.socket.joinRoomEmit(roomName);
+    }
+  }
+
+  // TODO: Maybe remove this?
   componentWillReceiveProps(nextProps) {
     if (!nextProps.room && !nextProps.savedRoom) {
       this.props.history.push('/');

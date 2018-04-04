@@ -8,8 +8,8 @@ import './_landing.scss';
 import SocketForm from '../socket-form';
 
 class Landing extends Component { 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.room) this.props.history.push('/room');
+  componentWillReceiveProps({ room }) {
+    if (room) this.props.history.push(`/room/${room.roomName}`);
   }
 
   render() {
