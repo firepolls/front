@@ -14,17 +14,14 @@ class AuthRedirect extends Component {
     const { pathname } = location;
     let destinationRoute = null;
 
-    if (pathname === '/room') {
-      if (!room) destinationRoute = '/';
-    } else if (pathname === '/') {
-      if (room) destinationRoute = '/room';
-    } else if (room) {
-      destinationRoute = '/room';
-    } else if (pathname === '/saved') {
-      if (!loggedIn) destinationRoute = '/';
-    } else {
-      destinationRoute = '/';
-    }
+    const parts = pathname.split('/').filter(x => x);
+
+    const toHome = (pathname === '/saved' && !loggedIn) ||
+      (parts.length === 1 && pathname !== '/saved') ||
+      (parts.length === 2 && !pathname.startsWith('/room/')) ||
+      (parts.length > 2);
+
+    if (toHome) destinationRoute = '/';
 
     return (
       <div className="auth-redirect">
@@ -35,7 +32,6 @@ class AuthRedirect extends Component {
 }
 
 const mapStateToProps = state => ({ 
-  room: state.room,
   loggedIn: !!state.token, 
 });
 

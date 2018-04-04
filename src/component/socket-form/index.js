@@ -1,27 +1,63 @@
+import { connect } from 'react-redux';
 import React, { Fragment, Component } from 'react';
-import { RaisedButton, TextField } from 'material-ui';
+import { RaisedButton, TextField, Dialog } from 'material-ui';
 
 import './_socket-form.scss';
 import { capitalizer } from '../../lib/util';
+import { removeStatusAction } from '../../action/status';
+
+const getInitialState = props => ({
+  errorModal: false,
+  closedRoomModal: false,
+  [props.fieldVar]: '',
+  [`${props.fieldVar}Dirty`]: false,
+  [`${props.fieldVar}Error`]: 
+    `${props.fieldVar === 'roomName' ? 'A room name' : 'A question'} is required.`,
+});
 
 class SocketForm extends Component {
   state = {
+    errorModal: false,
+    closedRoomModal: false,
     [this.props.fieldVar]: '',
     [`${this.props.fieldVar}Dirty`]: false,
     [`${this.props.fieldVar}Error`]: 
       `${this.props.fieldVar === 'roomName' ? 'A room name' : 'A question'} is required.`,
   };
 
+  componentDidMount() {
+    const { status, type } = this.props;
+    const { roomNameDirty } = this.state;
+
+    // Rob - Indicates an error such as refreshing the page and closing your room
+    if ((type === 'join' && status && !roomNameDirty)) {
+      this.toggleErrorModal();
+    }
+  }
+
   componentWillReceiveProps(props) {
-    if (props.status) {
+    // Rob - Indicates the user was kicked
+    if (props.roomClosed) this.toggleClosedRoomModal();
+
+    // Rob - Indicates a normal form error
+    if (props.status && !localStorage.fpOwned) {
       this.setState({
         roomNameDirty: true,
         roomNameError: `The room "${props.status}" is not available.`,
       });
     }
   }
-  
-  emptyState = { ...this.state };
+
+  toggleClosedRoomModal = () => {
+    this.setState(({ closedRoomModal }) => 
+      ({ closedRoomModal: !closedRoomModal }));
+  }
+
+  killClosedRoomModal = () => {
+    this.toggleClosedRoomModal();
+    this.props.removeStatus();
+    this.setState(getInitialState(this.props));
+  }
 
   generateClassName = formField => 
     (this.state[`${formField}Dirty`] &&
@@ -45,7 +81,7 @@ class SocketForm extends Component {
 
     if (!error) {      
       this.props.onComplete(value);
-      this.setState(this.emptyState);
+      this.setState(getInitialState(this.props));
     } else {
       this.setState({
         [`${fieldVar}Dirty`]: true,
@@ -54,12 +90,31 @@ class SocketForm extends Component {
   }
 
   handleValidation = (name, value) =>
-    (value.length === 0 ?
-      `${name === 'roomName' ? 'A room name' : 'A question'} is required.` 
-      : null);
+    (value.length === 0 
+      ? `${name === 'roomName'
+        ? 'A room name'
+        : 'A question'} is required.` 
+      : null
+    );
 
+  toggleErrorModal = () => {
+    this.setState(({ errorModal }) => ({
+      errorModal: !errorModal,
+    }));
+  }
+
+  toggleModalAndHandleLS = () => {
+    this.toggleErrorModal();
+    delete localStorage.fpOwned;
+    this.props.removeStatus();
+    this.setState(getInitialState(this.props));
+  }
+
+  // Rob - this.props.status ensures only one error shows at a time
   generateError = formField => (
-    this.state[`${formField}Dirty`] ? <p className="form-error">{this.state[`${formField}Error`]}</p> : null
+    this.state[`${formField}Dirty`] && this.props.status 
+      ? <p className="form-error">{this.state[`${formField}Error`]}</p> 
+      : null
   );
 
   generateInput = (formField, placeholder) => (
@@ -87,20 +142,68 @@ class SocketForm extends Component {
   render() {
     const {
       type,
+      status,
       fieldVar,
       placeholderPartial,
     } = this.props;
 
+    const wasOwner = localStorage.fpOwned === status;
+    const voterMessage = `The room "${status}" is not available.`;
+    const ownerMessage = `Your room "${status}" has been closed.`;
+
+    // Rob - This modal shows for the user
+    const errorModal = (
+      <Dialog
+        className="join-room-error-modal"
+        title={wasOwner ? ownerMessage : voterMessage}
+        contentStyle={{ textAlign: 'center' }}
+        open={this.state.errorModal}
+        onRequestClose={this.toggleModalAndHandleLS}
+      >
+        <RaisedButton 
+          label="OK"
+          onClick={this.toggleModalAndHandleLS}
+        />
+      </Dialog>
+    );
+
+    // Rob - This modal shows for kicked out voters
+    const closedRoomModal = (
+      <Dialog
+        className="room-closed-error-modal"
+        title={`The room "${this.props.roomClosed}" was closed by the owner.`}
+        contentStyle={{ textAlign: 'center' }}
+        open={this.state.closedRoomModal}
+        onRequestClose={this.killClosedRoomModal}
+      >
+        <RaisedButton 
+          label="OK"
+          onClick={this.killClosedRoomModal}
+        />
+      </Dialog>
+    );
+
     return (
-      <div className="room-form">
-        <form onSubmit={this.handleSubmit}>
-          {this.generateInput(fieldVar, `${capitalizer(type)} ${placeholderPartial}...`)}
-          <RaisedButton type="submit">{capitalizer(type)}</RaisedButton>
-        </form>
-        {this.generateError(fieldVar)}
-      </div>
+      <Fragment>
+        <div className="room-form">
+          <form onSubmit={this.handleSubmit}>
+            {this.generateInput(fieldVar, `${capitalizer(type)} ${placeholderPartial}...`)}
+            <RaisedButton type="submit">{capitalizer(type)}</RaisedButton>
+          </form>
+          {this.generateError(fieldVar)}
+        </div>
+        { type === 'join' || type === 'signup' ? errorModal : null }
+        { type === 'join' ? closedRoomModal : null }
+      </Fragment>
     );
   }
 }
 
-export default SocketForm;
+// Rob - Extract roomClosed from this.state.status and add as this.props.roomClosed
+const mapStateToProps = ({ status: { roomClosed } }) => ({ roomClosed });
+
+const mapDispatchToProps = (dispatch) => ({
+  removeStatus: () => dispatch(removeStatusAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SocketForm);

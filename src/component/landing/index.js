@@ -1,15 +1,13 @@
-// TODO: FIX invisible DIV that appears when beginning input 
-// for CREATE or JOIN room fields (same on auth form)
-
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { Dialog, RaisedButton } from 'material-ui';
 
 import './_landing.scss';
 import SocketForm from '../socket-form';
 
-class Landing extends Component { 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.room) this.props.history.push('/room');
+class Landing extends Component {
+  componentWillReceiveProps({ room, status }) {
+    if (room) this.props.history.push(`/room/${room.roomName}`);
   }
 
   render() {
