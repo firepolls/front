@@ -1,5 +1,6 @@
 import { log } from '../lib/util';
 import * as room from '../action/room';
+import { roomClosedAction } from '../action/status';
 
 export default (socket, dispatch) => {
   // Anthony - Room successfully joined.
@@ -9,12 +10,11 @@ export default (socket, dispatch) => {
   });
 
   // Anthony - Room has been closed by owner.
-  socket.on('room closed', roomName => {
+  socket.on('room closed', ({ roomName, roomNameRaw }) => {
     log('__ROOM_CLOSED__', roomName);
     socket.emit('leave room', roomName);
     dispatch(room.removeRoomAction());
-    // TODO: Rob - this should also redirect to landing/dashboard 
-    //             and pop up a modal indicating the room was closed
+    dispatch(roomClosedAction(roomNameRaw));
   });
 
   // Anthony - Receive incoming poll from owner.
