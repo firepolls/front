@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import { RaisedButton, TextField } from 'material-ui';
+import { RaisedButton, TextField, Dialog } from 'material-ui';
 
 import './_auth-form.scss';
 
@@ -18,11 +18,31 @@ class AuthForm extends Component {
     email: '',
     emailDirty: false,
     emailError: 'Email is required',
+
+    loginError: false,
+    signupError: false,
   
     submitted: false,
   };
 
   emptyState = { ...this.state };
+
+  toggleError = errorType => {
+    this.setState(prevState => ({
+      [`${errorType}Error`]: !prevState[`${errorType}Error`],
+    }));
+  }
+
+  clearAuthErrors = () => {
+    this.setState({
+      loginError: false,
+      signupError: false,
+    });
+  }
+
+  handleAuthError = (errorType) => () => {
+    this.toggleError(errorType);
+  }
 
   // Rob - arrow functions adopt the 'this' of their defining scope
   generateClassName = (formField) => 
@@ -44,12 +64,16 @@ class AuthForm extends Component {
     const { type } = this.props;
     const { usernameError, passwordError, emailError } = this.state;
     let inputError = usernameError || passwordError;
-    inputError = type === 'login' ? 
-      inputError : 
-      inputError || emailError;
+    const failureCB = this.handleAuthError(type);
+
+    if (type === 'signup') {
+      // Rob - Additional check to catch emailError if logged in
+      inputError = inputError || emailError;
+    }
 
     if (!inputError) {
-      this.props.onComplete(this.state);
+      // Rob - Pass failureCB to handle failed logins / signups
+      this.props.onComplete(this.state, failureCB);
       this.setState(this.emptyState);
     } else {
       this.setState({
@@ -87,6 +111,7 @@ class AuthForm extends Component {
           type={type}
           name={formField}
           hintText={`${formField}...`}
+          floatingLabelText={`${formField}...`}
           onChange={this.handleChange}
           value={this.state[formField]}
           className={`auth-form-text ${this.generateClassName(formField)}`}
@@ -101,18 +126,43 @@ class AuthForm extends Component {
 
     const emailInput = type === 'signup' ? this.generateInput('email') : null;
 
-    return (
-      <form className="auth-form" onSubmit={this.handleSubmit}>
-        {this.generateInput('username')}
-        {this.generateInput('password')}
-        {emailInput}
+    const errorModal = (
+      <Dialog 
+        className="auth-error-modal"
+        open={this.state.loginError || this.state.signupError}
+        onRequestClose={this.clearAuthErrors}
+        contentStyle={{ maxWidth: '250px' }}
+      >
+        <h2>
+          Uh-oh!
+        </h2>
+        <p>
+          {this.state.loginError ? 
+            'Username or Password incorrect!' : 
+            'Username or Email already in use!'
+          }
+        </p>
         <RaisedButton 
-          type="submit"
-          style={{ marginBottom: '10px' }}
-        >
-          {type.toUpperCase()}
-        </RaisedButton>
-      </form>
+          label="OK"
+          onClick={this.clearAuthErrors}
+        />
+      </Dialog>
+    );
+
+    return (
+      <Fragment>
+        <form className="auth-form" onSubmit={this.handleSubmit}>
+          {this.generateInput('username')}
+          {this.generateInput('password')}
+          {emailInput}
+          <RaisedButton 
+            type="submit"
+            style={{ marginBottom: '10px', marginTop: '25px' }}
+            label={type.toUpperCase()}
+          />
+        </form>
+        { errorModal }
+      </Fragment>
     );
   }
 }
