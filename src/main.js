@@ -17,7 +17,7 @@ injectTapEventPlugin();
 
 const store = process.env.NODE_ENV === 'production' ?
   createStore(reducer, applyMiddleware(thunk)) :
-  createStore(reducer, composeWithDevTools(applyMiddleware(reporter, thunk)));
+  createStore(reducer, composeWithDevTools(applyMiddleware(thunk, reporter)));
 
 const container = document.createElement('main');
 document.body.appendChild(container);
