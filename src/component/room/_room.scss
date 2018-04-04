@@ -40,9 +40,13 @@
 
 .instruction {
   grid-row: 4 / span 1;
-  grid-column: 1 / span 4; 
+  grid-column: 1 / span 4;
+  margin: $large-percentage-margin $large-fixed-margin;
+  padding: $large-pad; 
   @media only screen and (min-width: 600px) {
     grid-column: 2 / span 2;
+    padding: $medium-pad;
+    margin: $large-percentage-margin $medium-fixed-margin;
   }
 }
 
@@ -62,6 +66,3 @@
   max-height: 750px;    
 }
 
-.saved-sessions ul {
-  list-style-type: none;
-}
