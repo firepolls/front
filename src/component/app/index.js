@@ -42,7 +42,7 @@ class App extends Component {
               <meta name="viewport" content="width=device-width, initial-scale=1" />
             </MetaTags>
             <Fragment>
-              { /* <Route path="*" component={AuthRedirect} /> */ }
+              <Route path="*" component={AuthRedirect} />
               <Route exact path="/" component={Landing} />
               <Route exact path="/room/:roomName" component={Room} />
               <Route exact path="/saved" component={SavedSessions} />
