@@ -87,6 +87,7 @@ class AuthForm extends Component {
           type={type}
           name={formField}
           hintText={`${formField}...`}
+          floatingLabelText={`${formField}...`}
           onChange={this.handleChange}
           value={this.state[formField]}
           className={`auth-form-text ${this.generateClassName(formField)}`}
@@ -108,10 +109,9 @@ class AuthForm extends Component {
         {emailInput}
         <RaisedButton 
           type="submit"
-          style={{ marginBottom: '10px' }}
-        >
-          {type.toUpperCase()}
-        </RaisedButton>
+          style={{ marginBottom: '10px', marginTop: '25px' }}
+          label={type.toUpperCase()}
+        />
       </form>
     );
   }
