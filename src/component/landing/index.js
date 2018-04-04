@@ -6,36 +6,12 @@ import './_landing.scss';
 import SocketForm from '../socket-form';
 
 class Landing extends Component {
-  state = { closedRoomModal: false };
-
   componentWillReceiveProps({ room, status }) {
     if (room) this.props.history.push(`/room/${room.roomName}`);
-    if (status.roomClosed) this.toggleModal();
-  }
-
-  toggleModal = () => {
-    this.setState(({ closedRoomModal }) => 
-      ({ closedRoomModal: !closedRoomModal }));
   }
 
   render() {
     const { socket } = this.props;
-
-    // Rob - This modal shows for kicked out voters
-    const closedRoomModal = (
-      <Dialog
-        className="room-closed-error-modal"
-        title={`The room "${this.props.status.roomClosed}" was closed by the owner.`}
-        contentStyle={{ textAlign: 'center' }}
-        open={this.state.closedRoomModal}
-        onRequestClose={this.toggleModal}
-      >
-        <RaisedButton 
-          label="OK"
-          onClick={this.toggleModal}
-        />
-      </Dialog>
-    );
     
     return (
       <div className="landing-frag">
@@ -90,7 +66,6 @@ class Landing extends Component {
             </p>
           </div>
         </div>
-        { closedRoomModal }
       </div>
     );
   }
