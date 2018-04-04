@@ -1,6 +1,7 @@
 import superagent from 'superagent';
 
 import { log } from '../lib/util';
+import { setLoginError } from './status';
 import { cookieDelete } from '../lib/cookie';
 import { removeSocketAction } from './socket';
 import { getSavedRoomsAction } from './savedRooms';
@@ -22,23 +23,23 @@ export const logoutAction = (socket) => (store) => {
   store.dispatch(removeTokenAction());
 };
 
-export const signupAction = (user) => (store) =>
+export const signupAction = (user, failureCB) => ({ dispatch }) =>
   superagent.post(`${API_URL}/signup`)
     .send(user)
     .withCredentials()
     .then(({ text }) => {
       localStorage.firePollsToken = text;
-      store.dispatch(setTokenAction(text));
+      dispatch(setTokenAction(text));
     })
-    .catch(log);
+    .catch(failureCB);
 
-export const loginAction = (user) => (store) =>
+export const loginAction = (user, failureCB) => ({ dispatch }) =>
   superagent.get(`${API_URL}/login`)
     .auth(user.username, user.password)
     .withCredentials()
     .then(({ text }) => {
       localStorage.firePollsToken = text;
-      store.dispatch(setTokenAction(text));
-      store.dispatch(getSavedRoomsAction(text));
+      dispatch(setTokenAction(text));
+      dispatch(getSavedRoomsAction(text));
     })
-    .catch(log);
+    .catch(failureCB);
