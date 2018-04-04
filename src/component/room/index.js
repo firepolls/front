@@ -16,10 +16,21 @@ class Room extends Component {
     alertOpen: false,
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.room && !nextProps.savedRoom) {
-      this.props.history.push('/');
+  componentWillMount() {
+    // Rob - This hook tries to fetch the someRoom when navigating directly to /room/someRoom
+    const getARoom = this.props.location && !this.props.room;
+
+    if (getARoom) {
+      const { roomName } = this.props.match.params;
+      this.props.socket.joinRoomEmit(roomName);
     }
+  }
+
+
+  componentWillReceiveProps({ status, room }) {
+    // Rob - status.join indicates user navigated to /room/someRoomThatDoesn'tExists
+    // Rob - !room indicates that the owner closed the room
+    if (status.join || !room) this.props.history.push('/');
   }
 
   handleToggle = type => {
@@ -224,6 +235,7 @@ const mapStateToProps = state => ({
   room: state.room,
   token: state.token,
   socket: state.socket,
+  status: state.status,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Room);

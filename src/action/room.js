@@ -1,7 +1,13 @@
-export const createRoomAction = room => ({
-  type: 'ROOM_SET',
-  payload: room,
-});
+export const createRoomAction = room => {
+  // Rob - LS is used to handle room close errors
+  if (room.owner) localStorage.fpOwned = room.roomName;
+  else delete localStorage.fpOwned;
+
+  return {
+    type: 'ROOM_SET',
+    payload: room,
+  };
+};
 
 export const incrementVoterCountAction = () => ({
   type: 'ROOM_COUNT_INCREMENT',

@@ -44,7 +44,7 @@ class App extends Component {
             <Fragment>
               <Route path="*" component={AuthRedirect} />
               <Route exact path="/" component={Landing} />
-              <Route exact path="/room" component={Room} />
+              <Route exact path="/room/:roomName" component={Room} />
               <Route exact path="/saved" component={SavedSessions} />
             </Fragment>
             <footer className="footer">

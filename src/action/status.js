@@ -3,6 +3,11 @@ export const setStatusAction = data => ({
   payload: data,
 });
 
+export const roomClosedAction = roomNameRaw => ({
+  type: 'ROOM_CLOSED_SET',
+  payload: roomNameRaw,
+});
+
 export const removeStatusAction = () => ({
   type: 'STATUS_REMOVE',
 });
