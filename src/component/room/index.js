@@ -22,7 +22,6 @@ class Room extends Component {
 
     if (getARoom) {
       const { roomName } = this.props.match.params;
-      console.log('hi', roomName, this.props.socket);
       this.props.socket.joinRoomEmit(roomName);
     }
   }
