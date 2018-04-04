@@ -38,9 +38,6 @@ class App extends Component {
         <BrowserRouter>
           <div className="app">
             <Header />
-            <MetaTags>
-              <meta name="viewport" content="width=device-width, initial-scale=1" />
-            </MetaTags>
             <Fragment>
               <Route path="*" component={AuthRedirect} />
               <Route exact path="/" component={Landing} />
