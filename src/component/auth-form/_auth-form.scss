@@ -7,7 +7,6 @@
     margin: 0 auto;
     max-width: 300px;
     position: relative;
-    padding-bottom: 25px;
   }
 
   .form-error {
@@ -17,4 +16,8 @@
     color: $primary-red-light;
     font-size: $font-size-error;
   }
+}
+
+.auth-error-modal {
+  text-align: center;
 }
