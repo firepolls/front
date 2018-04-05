@@ -87,7 +87,7 @@ class Room extends Component {
     // Seth - Instructions for if the room exists but no polls exist yet
     const ownerInstructionJSX = (
       <Fragment>      
-        <p>Create your first poll above...</p>
+        <h3>Create your first poll above...</h3>
         <p>
           <strong>Note:</strong> Refreshing the page will close the Room and remove all Voters.
         </p>
@@ -95,7 +95,7 @@ class Room extends Component {
 
     const voterInstructionJSX = (
       <Fragment>
-        <p>Please wait for the Room Owner to create a poll...</p>
+        <h3>Please wait for the Room Owner to create a poll...</h3>
         <p>
           <strong>Note:</strong> Refreshing the page will remove you from the room.
         </p>
@@ -184,6 +184,7 @@ class Room extends Component {
         title="Would you like to save your session?"
         open={this.state.modalOpen}
         onRequestClose={this.toggleModal}
+        contentStyle={{ textAlign: 'center' }}
       >
         <RaisedButton 
           onClick={this.handleRemoveRoom}
