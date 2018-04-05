@@ -9,6 +9,7 @@ import Poll from '../../socket/poll';
 import SocketForm from '../socket-form';
 import { saveRoomAction } from '../../action/savedRooms';
 import { createPollAction, removeRoomAction } from '../../action/room';
+import Loading from '../loading';
 
 class Room extends Component {
   state = {
@@ -89,7 +90,7 @@ class Room extends Component {
       <Fragment>      
         <h3>Create your first poll above...</h3>
         <p>
-          <strong>Note:</strong> Refreshing the page will close the Room and remove all Voters.
+          <strong>Note:</strong> Refreshing the page will close the room and remove all voters.
         </p>
       </Fragment>);
 
@@ -105,11 +106,13 @@ class Room extends Component {
 
     const ownerJSX = (
       <Fragment>
-        <RaisedButton 
-          className="close-save-button"
-          onClick={this.toggleModal}
-          label="Close Room" 
-        />
+        <div className="close-button-div">
+          <RaisedButton 
+            className="close-save-button"
+            onClick={this.toggleModal}
+            label="Close Room" 
+          />
+        </div>
         <div className="create-poll-form">
           <SocketForm 
             type="create"
@@ -133,12 +136,12 @@ class Room extends Component {
       <Fragment>
         <h1>{room.roomNameRaw}</h1>
         <section className="info-button-container">
-          <Paper 
+          <div 
             className="active-voters" 
-            zDepth={1}
+            // zDepth={1}
           >
           Active Voters: {room && room.voters > 0 ? <strong>{room.voters}</strong> : 0}
-          </Paper>
+          </div>
           {room.owner ? ownerJSX : voterButtonJSX}
           {room && !room.polls.length ? (
             <Paper
@@ -223,6 +226,7 @@ class Room extends Component {
     return (
       <section className="room">
         { savedRoom ? savedRoomJSX : liveRoomJSX }
+        <Loading />
       </section>
     );
   }
