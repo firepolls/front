@@ -6,7 +6,6 @@ import { setStatusAction, removeStatusAction } from '../action/status';
 export default (socket, dispatch) => {
   // Anthony - Room name already taken.
   socket.on('room status', data => {
-    log('Type: ', data.type, 'Room name: ', data.roomName);
     dispatch(setStatusAction(data));
   });
 
