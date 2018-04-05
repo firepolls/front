@@ -110,9 +110,8 @@ class SocketForm extends Component {
     this.setState(getInitialState(this.props));
   }
 
-  // Rob - this.props.status ensures only one error shows at a time
   generateError = formField => (
-    this.state[`${formField}Dirty`] && this.props.status 
+    this.state[`${formField}Dirty`] 
       ? <p className="form-error">{this.state[`${formField}Error`]}</p> 
       : null
   );
