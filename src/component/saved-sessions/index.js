@@ -9,7 +9,7 @@ class SavedSessions extends Component {
   render() {
     const instructionsText = (
       <Fragment>
-        <p>No Saved Rooms...</p>
+        <h3>No Saved Rooms...</h3>
         <p>
           <strong>Note: </strong>
           Create a room with at least one Poll and Save it for it to show here.

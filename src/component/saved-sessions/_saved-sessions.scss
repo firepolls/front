@@ -4,10 +4,11 @@
   text-align: center;
   font-size: $font-md-fixed;
   padding: $small-pad-fixed;
+  font-weight: 600;
 
   @media only screen and (min-width: 600px) {
     font-size: $font-lg-fixed;
-    padding: $medium-pad-fixed;
+    padding: $large-pad;
   }
 }
 
@@ -15,26 +16,32 @@
   list-style-type: none;
 
   h1 {
+    text-align: center;
     font-size: $font-sm-fixed;
-    padding: $medium-pad-fixed;
+    padding: 0 $large-pad-fixed;
+    font-weight: 600;
 
     @media only screen and (min-width: 600px) {
       font-size: $font-sm-fixed + 5px;
     }
   }
 
+  .room {
+    padding: $large-pad;    
+  }
+
   .room-li {
-    margin-top: $large-pad-fixed;
+    margin: $medium-pad-fixed;
     padding: $small-pad;
   }
   
   .room-wrap {
     margin: 1vw;
     padding: 2vw;
-    
-    .poll-list{
-      display: flex;
-      flex-direction: column !important;
-    }
+  }
+
+  .poll-list{
+    display: flex;
+    flex-direction: column;
   }
 }
