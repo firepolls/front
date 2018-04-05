@@ -102,7 +102,9 @@ class Room extends Component {
         </p>
       </Fragment>);
 
-    const instructionText = room && room.owner ? ownerInstructionJSX : voterInstructionJSX;
+    const instructionText = room && room.owner 
+      ? ownerInstructionJSX 
+      : voterInstructionJSX;
 
     const ownerJSX = (
       <Fragment>
@@ -225,7 +227,7 @@ class Room extends Component {
     return (
       <section className="room">
         { savedRoom ? savedRoomJSX : liveRoomJSX }
-        <Loading />
+        { /* <Loading /> */ }
       </section>
     );
   }
