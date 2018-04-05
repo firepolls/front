@@ -13,11 +13,10 @@
   }
 
   .close-button-div {
-    position: absolute;
-    top: 0;
-    right: 0;
+    padding-left: $medium-pad-fixed;
 
     @media only screen and (min-width: 600px) {
+      position: absolute;
       top: 17px;
       right: 10px;
     }
@@ -53,4 +52,9 @@
 
   margin: $large-percentage-margin 0;
   padding: $large-pad; 
+
+  @media only screen and (min-width: 600px) {
+    margin: $large-pad-fixed 0;
+    padding: $large-pad-fixed; 
+  }
 }
