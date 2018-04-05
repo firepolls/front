@@ -31,7 +31,12 @@ class NavWrapper extends Component {
   }
 
   getWidth = () => {
-    this.setState({ viewportWidth: window.innerWidth, viewportHeight: window.innerHeight });
+    this.setState({ 
+      viewportWidth: window.innerWidth, 
+      viewportHeight: window.innerHeight,
+    }, () => {
+      if (this.state.viewportWidth > 600) this.setState({ hamburgerOpen: false });
+    });
   }
 
   toggleHamburger = () => {
