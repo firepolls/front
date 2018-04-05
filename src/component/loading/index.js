@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import '../loading/_loading.scss';
 
+// loader sourced from https://loading.io/
 class Loading extends Component {
   render() {
     return (
