@@ -137,8 +137,7 @@ class Room extends Component {
         <h1>{room.roomNameRaw}</h1>
         <section className="info-button-container">
           <div 
-            className="active-voters" 
-            // zDepth={1}
+            className="active-voters"
           >
           Active Voters: {room && room.voters > 0 ? <strong>{room.voters}</strong> : 0}
           </div>
