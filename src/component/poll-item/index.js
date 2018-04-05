@@ -50,8 +50,8 @@ class PollItem extends Component {
           zDepth={2}
         >
           <div className="meter-and-stars-container">
+            <h3 className="votes">Votes: {totalVotes}</h3>
             <h2 className="question-render">{question}</h2>
-            <div>Votes: {totalVotes}</div>
             {votingJSX}
             <div className="meter-and-stars">
               <Meter resultsArray={resultsArray} totalVotes={totalVotes} />
