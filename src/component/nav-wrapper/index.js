@@ -13,6 +13,7 @@ class NavWrapper extends Component {
     modalOpen: false,
     hamburgerOpen: false,
     viewportWidth: null,
+    viewportHeight: null,
   }
 
   componentDidMount() {
@@ -30,7 +31,7 @@ class NavWrapper extends Component {
   }
 
   getWidth = () => {
-    this.setState({ viewportWidth: window.innerWidth });
+    this.setState({ viewportWidth: window.innerWidth, viewportHeight: window.innerHeight });
   }
 
   toggleHamburger = () => {
@@ -38,19 +39,6 @@ class NavWrapper extends Component {
       hamburgerOpen: !hamburgerOpen,
     }));
   }
-
-  // handleHamburgerListener = e => {
-  //   console.log(e.target);
-  // }
-
-  // handleHamburger = () => {
-  //   if (this.state.hamburgerOpen) {
-  //     window.addEventListener('click', this.toggleHamburger);
-  //   } else {
-  //     window.removeEventListener('click', this.toggleHamburger);      
-  //   }
-  //   this.toggleHamburger();
-  // }
 
   toggleModal = () => {
     this.setState(prevState => ({ modalOpen: !prevState.modalOpen }));
@@ -170,7 +158,7 @@ class NavWrapper extends Component {
       </Dialog>
     );
 
-    // Hambuger menu source: https://www.w3schools.com/howto/howto_css_menu_icon.asp
+    // Hamburger menu source: https://www.w3schools.com/howto/howto_css_menu_icon.asp
     const hamburgerMenu = (
       <div 
         className={this.state.hamburgerOpen 
@@ -185,6 +173,21 @@ class NavWrapper extends Component {
       </div>
     );
 
+    const overlay = (
+      <div 
+        className="header-overlay"
+        onClick={this.toggleHamburger}
+        style={{ 
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: 2,
+          width: '100%',
+          height: this.state.viewportHeight,
+        }}
+      />
+    );
+
     const smallScreens = (
       <Fragment>
         { hamburgerMenu }
@@ -192,6 +195,7 @@ class NavWrapper extends Component {
           <li>{ savedRoomButton }</li>
           <li>{ authButton }</li>
         </ul>
+        { this.state.hamburgerOpen ? overlay : null}
       </Fragment>
     );
     

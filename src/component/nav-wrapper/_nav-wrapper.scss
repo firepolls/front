@@ -37,7 +37,7 @@ h2.signup-login-header {
   position: absolute;
   right: 2.5px;
   top: 0;
-  z-index: 1;
+  z-index: 4;
 }
 
 .burger1, .burger2, .burger3 {
@@ -80,6 +80,7 @@ h2.signup-login-header {
   list-style-type: none;
   padding: 30px 10px;
   background: rgba(0, 0, 0, .8);
+  z-index: 3;
 
   li:first-child {
     padding-bottom: 10px;
