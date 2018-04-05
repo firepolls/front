@@ -81,16 +81,14 @@ h2 {
   margin-top: 2em;
 }
 
-@media screen and (min-width: 60em) {
+@media screen and (min-width: 960px) {
  .grid {
   display: grid;
-  grid-template-columns: 1fr minmax(2fr, 50em) 1fr;
+  grid-template-columns: repeat(3, 33.333%);
   grid-template-rows: 20em;
-  grid-gap: 2rem;
   margin-top: 5em;
   padding-bottom: 7em;
-  grid-template-areas: 
-    "left center right";
+  grid-template-areas: "left center right";
   }
 }
 

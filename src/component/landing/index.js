@@ -58,8 +58,8 @@ class Landing extends Component {
             </p>
           </div>
           <div className="feature-right">
-            <img src="https://i.imgur.com/DwpqLpv.png" alt="Anonymous Voting" />
-            <h2>Anonymous Voting</h2>
+            <img src="https://i.imgur.com/DwpqLpv.png" alt="Anonymity" />
+            <h2>Anonymity</h2>
             <p className="feature-desc">
               Keep track of how many people have responded
               to a poll while keeping votes anonymous.
