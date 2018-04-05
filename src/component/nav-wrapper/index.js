@@ -39,6 +39,19 @@ class NavWrapper extends Component {
     }));
   }
 
+  // handleHamburgerListener = e => {
+  //   console.log(e.target);
+  // }
+
+  // handleHamburger = () => {
+  //   if (this.state.hamburgerOpen) {
+  //     window.addEventListener('click', this.toggleHamburger);
+  //   } else {
+  //     window.removeEventListener('click', this.toggleHamburger);      
+  //   }
+  //   this.toggleHamburger();
+  // }
+
   toggleModal = () => {
     this.setState(prevState => ({ modalOpen: !prevState.modalOpen }));
   }
