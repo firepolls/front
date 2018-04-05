@@ -227,7 +227,7 @@ class Room extends Component {
     return (
       <section className="room">
         { savedRoom ? savedRoomJSX : liveRoomJSX }
-        { /* <Loading /> */ }
+        { !room ? <Loading /> : null }
       </section>
     );
   }
