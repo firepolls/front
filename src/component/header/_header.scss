@@ -2,13 +2,14 @@
 
 .header {
   position: relative;
-  padding-top: 10vw;
+  padding-top: $large-fixed-margin;
 
   .header-nav {
     width: 100%;
 
     @media only screen and (min-width: 600px) {
-      top: 35px;
+      position: absolute;
+      top: 25px;
     }
   }
 
@@ -25,8 +26,8 @@
       align-items: center;
       flex-wrap: wrap;  
       flex-direction: row;
-      
     }
+
     a {
       text-decoration: none;
     }
@@ -47,6 +48,7 @@
       margin-top: 20px;
       margin-left: 20px;
     }
+
     span {
       display: inline-block;
       margin-right: .5em;
