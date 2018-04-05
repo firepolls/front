@@ -97,7 +97,7 @@ class NavWrapper extends Component {
         onRequestClose={this.toggleModal}
       >
         <h2 className="signup-login-header">
-          Sign up for a Firepolls account.
+          Sign up for a firepolls account.
         </h2>
         <div className="signup-login-toggle" >
           <p>Already have an account?</p>
@@ -117,7 +117,7 @@ class NavWrapper extends Component {
         open={this.state.modalOpen}
         onRequestClose={this.toggleModal}
       >
-        <h2 className="signup-login-header" >Welcome back to Firepolls!</h2>
+        <h2 className="signup-login-header" >Welcome back to firepolls!</h2>
         <div className="signup-login-toggle" >
           <p>Need an account?</p>
           { authToggleButton('Sign up') }
