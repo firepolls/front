@@ -175,7 +175,7 @@ class NavWrapper extends Component {
     const smallScreens = (
       <Fragment>
         { hamburgerMenu }
-        <ul className={this.state.hamburgerOpen ? 'hidden-menu isOpen' : 'hidden-menu'}>
+        <ul className={this.state.hamburgerOpen ? 'hidden-menu isOpen' : 'hidden-menu closed'}>
           <li>{ savedRoomButton }</li>
           <li>{ authButton }</li>
         </ul>
