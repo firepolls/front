@@ -229,7 +229,7 @@ class Room extends Component {
     return (
       <section className="room">
         { savedRoom ? savedRoomJSX : liveRoomJSX }
-        { !room && !savedRoom ? <Loading /> : null }
+        { !room && !savedRoom ? <Loading size="200px" /> : null }
       </section>
     );
   }
