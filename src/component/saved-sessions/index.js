@@ -16,8 +16,17 @@ class SavedSessions extends Component {
         </p>
       </Fragment>);
 
+    // Rob - Remove polls with no rooms and reverse order of polls
+    const rooms = this.props.savedRooms
+      .filter(room => room.polls.length);
+
+    // Rob - Reverse order of rooms
+    rooms.reverse();
+
+
     return (
       <section className="saved-sessions">
+        <h1 className="saved-heading">Saved Sessions</h1>
         { !this.props.savedRooms.length ? (
           <Paper
             zDepth={2}
@@ -26,9 +35,16 @@ class SavedSessions extends Component {
             {instructionsText}
           </Paper>) : null}
         <ul>
-          { this.props.savedRooms.map(savedRoom => (
-            <li key={savedRoom._id} >
-              <Room savedRoom={savedRoom} />
+          { rooms.map(savedRoom => (
+            <li className="room-li" key={savedRoom._id} >
+              <Paper
+                zDepth={2}
+                className="instruction"
+              >
+                <div>
+                  <Room savedRoom={savedRoom} />
+                </div>
+              </Paper>
             </li>
           ))}
         </ul>
