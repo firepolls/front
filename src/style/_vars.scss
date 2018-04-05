@@ -9,6 +9,14 @@ $medium-pad: 2 * $small-pad;
 $medium-large-pad: 4 * $small-pad;
 $large-pad: 6 * $small-pad;
 $xl-pad: 10 * $small-pad;
+
+$small-pad-fixed: 5px;
+$medium-pad-fixed: 2 * $small-pad-fixed;
+$medium-large-pad-fixed: 4 * $small-pad-fixed;
+$large-pad-fixed: 6 * $small-pad-fixed;
+$xl-pad-fixed: 10 * $small-pad-fixed;
+
+
 $default-button-margin: $small-pad;
 $medium-fixed-margin: 10px;
 $large-fixed-margin: 20px;
@@ -18,3 +26,7 @@ $large-percentage-margin: 10%;
 $font-main: 'Lato', sans-serif;
 $font-mono: 'Roboto Mono', monospace;
 $font-size-error: 14px;
+$font-lg: 8vw;
+$font-md: 6vw;
+$font-lg-fixed: 48px;
+$font-md-fixed: 36px;
