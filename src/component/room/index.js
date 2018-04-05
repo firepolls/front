@@ -220,9 +220,9 @@ class Room extends Component {
     );
 
     return (
-      <Fragment>
+      <section className="room">
         { savedRoom ? savedRoomJSX : liveRoomJSX }
-      </Fragment>
+      </section>
     );
   }
 }
