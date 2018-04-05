@@ -1,6 +1,7 @@
 @import '_vars';
 
 .room {
+  position: relative;
 
   h1 {
     padding: $large-pad;
@@ -11,25 +12,21 @@
     }
   }
 
+  .close-button-div {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    @media only screen and (min-width: 600px) {
+      top: 17px;
+      right: 10px;
+    }
+  }
+
   .active-voters {
     padding: $medium-pad-fixed;
-    text-align: center;
     margin: $medium-fixed-margin 0;
     font-size: $font-sm-fixed;
-  }
-  
-  .instruction {
-    h3 {
-      font-size: $font-sm-fixed;
-      padding: $small-pad-fixed;
-    }
-
-    p {
-      padding: $small-pad-fixed;      
-    }
-
-    margin: $large-percentage-margin 0;
-    padding: $large-pad; 
   }
   
   .fade-appear {
@@ -42,4 +39,18 @@
     transition: all 1000ms ease;
     max-height: 750px;    
   }
+}
+
+.instruction {
+  h3 {
+    font-size: $font-sm-fixed;
+    padding: $small-pad-fixed;
+  }
+
+  p {
+    padding: $small-pad-fixed;      
+  }
+
+  margin: $large-percentage-margin 0;
+  padding: $large-pad; 
 }
