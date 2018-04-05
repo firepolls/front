@@ -111,10 +111,10 @@ class NavWrapper extends Component {
     const savedRoomButton = loggedIn ? this.renderSavedSwitch(location.pathname) : null;
 
     const desktopButtons = (
-      <Fragment>
+      <div className="desktop-nav">
         { savedRoomButton }
         { authButton }
-      </Fragment>
+      </div>
     );
 
     // Rob - This shows when state.modalOpen === true and state.authType === 'signup'
