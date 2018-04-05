@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component, Fragment } from 'react';
 import { RaisedButton, Dialog } from 'material-ui';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import './_nav-wrapper.scss';
 import AuthForm from '../auth-form';
