@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { RaisedButton, Dialog } from 'material-ui';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -11,11 +11,32 @@ class NavWrapper extends Component {
   state = {
     authType: 'login',
     modalOpen: false,
+    hamburgerOpen: false,
+    viewportWidth: null,
+  }
+
+  componentDidMount() {
+    this.getWidth();
+    window.addEventListener('resize', this.getWidth);
   }
 
   // Rob - Close modal after successful singup or login
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn && this.state.modalOpen) this.toggleModal();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.getWidth);
+  }
+
+  getWidth = () => {
+    this.setState({ viewportWidth: window.innerWidth });
+  }
+
+  toggleHamburger = () => {
+    this.setState(({ hamburgerOpen }) => ({
+      hamburgerOpen: !hamburgerOpen,
+    }));
   }
 
   toggleModal = () => {
@@ -89,6 +110,13 @@ class NavWrapper extends Component {
     // Seth - Using location.pathname to conditional render savedRoomButton with switch function
     const savedRoomButton = loggedIn ? this.renderSavedSwitch(location.pathname) : null;
 
+    const desktopButtons = (
+      <Fragment>
+        { savedRoomButton }
+        { authButton }
+      </Fragment>
+    );
+
     // Rob - This shows when state.modalOpen === true and state.authType === 'signup'
     const signupModal = (
       <Dialog 
@@ -128,13 +156,37 @@ class NavWrapper extends Component {
         /> 
       </Dialog>
     );
+
+    // Hambuger menu source: https://www.w3schools.com/howto/howto_css_menu_icon.asp
+    const hamburgerMenu = (
+      <div 
+        className={this.state.hamburgerOpen 
+          ? 'hamburgerContainer open' 
+          : 'hamburgerContainer'
+        } 
+        onClick={this.toggleHamburger}
+      >
+        <div className="burger1" />
+        <div className="burger2" />
+        <div className="burger3" />
+      </div>
+    );
+
+    const smallScreens = (
+      <Fragment>
+        { hamburgerMenu }
+        <ul className={this.state.hamburgerOpen ? 'hidden-menu isOpen' : 'hidden-menu'}>
+          <li>{ savedRoomButton }</li>
+          <li>{ authButton }</li>
+        </ul>
+      </Fragment>
+    );
     
     return (
       <div className="header-nav">
-        { savedRoomButton }
-        { authButton }
+        { this.state.viewportWidth < 600 ? smallScreens : desktopButtons }
         { this.state.authType === 'login' ? loginModal : signupModal }
-      </div>
+      </div>        
     );
   }
 }
