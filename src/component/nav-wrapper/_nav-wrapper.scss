@@ -4,16 +4,17 @@ h2.signup-login-header {
   text-align: center;
 
   @media only screen and (min-width: 600px) {
-    font-size: 4vw;
-  }
-
-  @media only screen and (min-width: 960px) {
-    font-size: 38.4px;
+    font-size: $font-md-fixed;
   }
 }
 
 .signup-login-toggle {
   text-align: center;
+  margin-top: $large-pad;
+
+  p {
+    margin-bottom: $medium-large-pad-fixed;
+  }
 
   @media only screen and (min-width: 600px) {
     float: left;
