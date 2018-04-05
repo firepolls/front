@@ -18,7 +18,7 @@ webpackConfig.output = {
 
 webpackConfig.plugins = [
   new HTMLPlugin({
-    title: 'Fire Polls',
+    title: 'firepolls',
     template: 'src/index.html',
   }),
   new EnvironmentPlugin(['NODE_ENV']),

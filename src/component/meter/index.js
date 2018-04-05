@@ -17,10 +17,10 @@ class Meter extends Component {
     const percentages = resultsArray.map(result => result / divisor);
 
     const svgProperties = [ 
-      { width: percentages[0], color: 'blue', star: '★' },
-      { width: percentages[1], color: 'green', star: '★★' },
-      { width: percentages[2], color: 'red', star: '★★★' },
-      { width: percentages[3], color: 'yellow', star: '★★★★' },
+      { width: percentages[0], color: '#19ECC5', star: '★' },
+      { width: percentages[1], color: '#B085EC', star: '★★' },
+      { width: percentages[2], color: '#2186D8', star: '★★★' },
+      { width: percentages[3], color: '#EC1940', star: '★★★★' },
     ];
 
     const meterJSX = svgProperties.map((properties, index) => ( 

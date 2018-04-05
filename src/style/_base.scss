@@ -1,0 +1,14 @@
+@import './vars';
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+  font-size: $font-lg;
+}
+
+h2 {
+  font-size: $font-md;
+}

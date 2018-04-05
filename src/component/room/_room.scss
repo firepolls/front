@@ -1,68 +1,60 @@
 @import '_vars';
 
-.info-button-container {
-  display: grid;
-  grid-template-columns: repeat(4, 25%);
-  grid-template-rows: repeat(4, 25%);
-}
+.room {
+  position: relative;
 
-.active-voters {
-  grid-row: 1 / span 1; 
-  grid-column: 1 / span 2;
-  align-self: center;
-  line-height: 36px;
-  text-align: center;
-  margin: $default-button-margin;
-  font-size: 1.15em;
-  font-family: $font-main;
-  @media only screen and (min-width: 600px) {
-    grid-column: 1 / span 1;
+  h1 {
+    padding: $large-pad;
+
+    @media only screen and (min-width: 600px) {
+      font-size: $font-lg-fixed;
+      padding: $medium-pad-fixed;
+    }
   }
-}
 
-.close-save-button {
-  align-self: center;
-  margin: $small-pad;
-  grid-row: 1 / span 1; 
-  grid-column: 3 / span 2;
+  .close-button-div {
+    padding-left: $medium-pad-fixed;
 
-  @media only screen and (min-width: 600px) {
-    grid-column: 4 / span 1;
+    @media only screen and (min-width: 600px) {
+      position: absolute;
+      top: 17px;
+      right: 10px;
+    }
   }
-}
 
-.create-poll-form {
-  text-align: center;
-  grid-row: 2 / span 2;
-  grid-column: 2 / span 2; 
+  .active-voters {
+    padding: $medium-pad-fixed;
+    margin: $medium-fixed-margin 0;
+    font-size: $font-sm-fixed;
+  }
   
+  .fade-appear {
+    opacity: 0;
+    max-height: 0; 
+  }
+  
+  .fade-appear.fade-appear-active {
+    opacity: 1;
+    transition: all 1000ms ease;
+    max-height: 750px;    
+  }
 }
 
 .instruction {
-  grid-row: 4 / span 1;
-  grid-column: 1 / span 4;
-  margin: $large-percentage-margin $large-fixed-margin;
+  h3 {
+    font-size: $font-sm-fixed;
+    padding: $small-pad-fixed;
+  }
+
+  p {
+    padding: $small-pad-fixed;      
+  }
+
+  margin: $large-percentage-margin 0;
   padding: $large-pad; 
+
   @media only screen and (min-width: 600px) {
-    grid-column: 2 / span 2;
-    padding: $medium-pad;
-    margin: $large-percentage-margin $medium-fixed-margin;
+    margin: $large-pad-fixed 0;
+    padding: $large-pad-fixed; 
   }
 }
-
-.close-save {
-  text-align: center;
-  position: relative;
-}
-
-.fade-appear {
-  opacity: 0;
-  max-height: 0; 
-}
-
-.fade-appear.fade-appear-active {
-  opacity: 1;
-  transition: all 1000ms ease;
-  max-height: 750px;    
-}
-
