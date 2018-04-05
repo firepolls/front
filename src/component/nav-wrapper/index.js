@@ -17,8 +17,8 @@ class NavWrapper extends Component {
   }
 
   componentDidMount() {
-    this.getWidth();
-    window.addEventListener('resize', this.getWidth);
+    this.getViewportDimensions();
+    window.addEventListener('resize', this.getViewportDimensions);
   }
 
   // Rob - Close modal after successful singup or login
@@ -27,10 +27,10 @@ class NavWrapper extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.getWidth);
+    window.removeEventListener('resize', this.getViewportDimensions);
   }
 
-  getWidth = () => {
+  getViewportDimensions = () => {
     this.setState({ 
       viewportWidth: window.innerWidth, 
       viewportHeight: window.innerHeight,
