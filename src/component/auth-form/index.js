@@ -157,7 +157,7 @@ class AuthForm extends Component {
           {emailInput}
           <RaisedButton 
             type="submit"
-            style={{ marginBottom: '10px', marginTop: '25px' }}
+            style={{ marginBottom: '10px', marginTop: '40px' }}
             label={type.toUpperCase()}
           />
         </form>
