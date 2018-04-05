@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react';
 
 import Room from '../room';
 import './_saved-sessions.scss';
+import Loading from '../loading';
 
 class SavedSessions extends Component {
   render() {
@@ -27,6 +28,7 @@ class SavedSessions extends Component {
     return (
       <section className="saved-sessions">
         <h1 className="saved-heading">Saved Sessions</h1>
+        { !this.props.savedRooms ? <Loading size="200px" /> : null }
         { !this.props.savedRooms.length ? (
           <Paper
             zDepth={2}
