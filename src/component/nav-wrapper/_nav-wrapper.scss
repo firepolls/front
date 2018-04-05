@@ -13,7 +13,7 @@ h2.signup-login-header {
   margin-top: $large-pad;
 
   p {
-    margin-bottom: $medium-large-pad-fixed;
+    margin: $medium-large-pad-fixed;
   }
 
   @media only screen and (min-width: 600px) {
@@ -57,6 +57,10 @@ h2.signup-login-header {
 .open .burger3 {
   -webkit-transform: rotate(45deg) translate(-8px, -8px);
   transform: rotate(45deg) translate(-8px, -8px);
+}
+
+.closed { 
+  display: none;
 }
 
 .hidden-menu {
