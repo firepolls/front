@@ -37,6 +37,7 @@ h2.signup-login-header {
   position: absolute;
   right: 2.5px;
   top: 0;
+  z-index: 1;
 }
 
 .burger1, .burger2, .burger3 {
@@ -45,6 +46,10 @@ h2.signup-login-header {
   background-color: #333;
   margin: 6px 0;
   transition: 0.4s;
+
+  &.open {
+    background-color: white;
+  }
 }
 
 .open .burger1 {
@@ -67,7 +72,7 @@ h2.signup-login-header {
   position: absolute;
   text-align: center;
   right: -125%;
-  top: 8.5vw;
+  top: -10px;
   width: 100%;
   -webkit-padding-start: 0;
   -webkit-padding-end: 0;

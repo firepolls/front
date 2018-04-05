@@ -166,9 +166,9 @@ class NavWrapper extends Component {
         } 
         onClick={this.toggleHamburger}
       >
-        <div className="burger1" />
-        <div className="burger2" />
-        <div className="burger3" />
+        <div className={this.state.hamburgerOpen ? 'burger1 open' : 'burger1'} />
+        <div className={this.state.hamburgerOpen ? 'burger2 open' : 'burger2'} />
+        <div className={this.state.hamburgerOpen ? 'burger3 open' : 'burger3'} />
       </div>
     );
 
