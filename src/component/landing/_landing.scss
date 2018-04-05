@@ -1,4 +1,4 @@
-@import '_vars';
+@import 'vars';
 
 .jumbotron {
   padding-top: 20px;
@@ -15,6 +15,7 @@
     font-size: 40px;
     color: #7a7a7a;
     cursor: pointer;
+
     &:hover {
       color: #1a1a1a;
     }
@@ -22,8 +23,10 @@
   
   h1 {
     margin-bottom: 20px;
-    font-size: 35px;
-    line-height: 1;
+
+    @media only screen and (min-width: 600px) {
+      font-size: $font-lg-fixed;
+    }
   }
   
   p {
@@ -37,6 +40,15 @@
   strong {
     color: orange;
     font-size: 120%;
+  }
+}
+
+h2 {
+  margin: $large-pad;
+
+  @media only screen and (min-width: 600px) {
+    margin: $large-pad-fixed;
+    font-size: $font-md-fixed;
   }
 }
 
@@ -65,7 +77,7 @@
 }
 
 .grid > * {
-  padding: 2rem;
+  padding-top: 2rem;
   margin-top: 2em;
 }
 
@@ -80,48 +92,33 @@
   grid-template-areas: 
     "left center right";
   }
-  .feature-desc {
-    padding: 0 17em;
-  }
+}
 
-  
+.feature-left, .feature-center, .feature-right {
+  text-align: center;
+  p {
+    padding: 0 1em;
+  }
+  img {
+    width: 100%;
+  }
 }
 
 .feature-left {
   grid-area: left;
-  text-align: center;
-  p {
-    padding: 0 1em;
-  }
-  img {
-    width: 100%;
-  }
 }
 
 .feature-center {
   grid-area: center;
-  text-align: center;
-  p {
-    padding: 0 1em;
-  }
-  img {
-    width: 100%;
-  }
 }
 
 .feature-right {
   grid-area: right;
-  text-align: center;
-  p {
-    padding: 0 1em;
-  }
-  img {
-    width: 100%;
-  }
 }
 
 .footer {
   margin-top: 5em;
+  margin-bottom: 1em;
   text-align: center;
   
   a {
