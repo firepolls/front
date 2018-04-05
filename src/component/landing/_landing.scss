@@ -74,24 +74,19 @@ h2 {
     max-width: 200px;
     height: auto;
   }
+  @media screen and (min-width: 960px) {
+  display: grid;
+  grid-template-columns: repeat(3, 33.333%);
+  grid-template-rows: 20em;
+  // margin-top: 5em;
+  padding-bottom: 7em;
+  grid-template-areas: "left center right";
+  }
 }
 
 .grid > * {
   padding-top: 2rem;
   margin-top: 2em;
-}
-
-@media screen and (min-width: 60em) {
- .grid {
-  display: grid;
-  grid-template-columns: 1fr minmax(2fr, 50em) 1fr;
-  grid-template-rows: 20em;
-  grid-gap: 2rem;
-  margin-top: 5em;
-  padding-bottom: 7em;
-  grid-template-areas: 
-    "left center right";
-  }
 }
 
 .feature-left, .feature-center, .feature-right {

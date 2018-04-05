@@ -126,11 +126,13 @@ class Room extends Component {
       </Fragment>);
 
     const voterButtonJSX = (
-      <RaisedButton
-        className="close-save-button"       
-        onClick={this.handleLeaveRoom} 
-        label="Leave Room"
-      />
+      <div className="close-button-div">
+        <RaisedButton
+          className="close-save-button"       
+          onClick={this.handleLeaveRoom} 
+          label="Leave Room"
+        />
+      </div>
     );
 
     // Rob - Don't try to access properties on room if it is null
@@ -227,7 +229,7 @@ class Room extends Component {
     return (
       <section className="room">
         { savedRoom ? savedRoomJSX : liveRoomJSX }
-        { /* <Loading /> */ }
+        { !room && !savedRoom ? <Loading size="200px" /> : null }
       </section>
     );
   }

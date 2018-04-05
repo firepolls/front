@@ -9,8 +9,8 @@ class Loading extends Component {
       <div className="loading">
         <svg 
           className="lds-gear"
-          width="200px" 
-          height="200px"
+          width={this.props.size} 
+          height={this.props.size}
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 100 100" 
           preserveAspectRatio="xMidYMid" 

@@ -2,6 +2,7 @@ import React, { Fragment, Component } from 'react';
 import { RaisedButton, TextField, Dialog } from 'material-ui';
 
 import './_auth-form.scss';
+import Loading from '../loading';
 
 class AuthForm extends Component {
   // Rob - babel-preset-stage-2 includes class features that implicitly bind to the instance
@@ -23,6 +24,7 @@ class AuthForm extends Component {
     signupError: false,
   
     submitted: false,
+    fetching: false,
   };
 
   emptyState = { ...this.state };
@@ -37,6 +39,7 @@ class AuthForm extends Component {
     this.setState({
       loginError: false,
       signupError: false,
+      fetching: false,
     });
   }
 
@@ -74,7 +77,7 @@ class AuthForm extends Component {
     if (!inputError) {
       // Rob - Pass failureCB to handle failed logins / signups
       this.props.onComplete(this.state, failureCB);
-      this.setState(this.emptyState);
+      this.setState({ ...this.emptyState, fetching: true });
     } else {
       this.setState({
         usernameDirty: true,
@@ -145,19 +148,27 @@ class AuthForm extends Component {
         <RaisedButton 
           label="OK"
           onClick={this.clearAuthErrors}
+          style={{ marginTop: '20px' }}
         />
       </Dialog>
+    );
+
+    const loadingDiv = (
+      <div className="loading-div">
+        <Loading size="50px" />
+      </div>
     );
 
     return (
       <Fragment>
         <form className="auth-form" onSubmit={this.handleSubmit}>
+          { this.state.fetching ? loadingDiv : null } 
           {this.generateInput('username')}
           {this.generateInput('password')}
           {emailInput}
           <RaisedButton 
             type="submit"
-            style={{ marginBottom: '10px', marginTop: '25px' }}
+            style={{ marginBottom: '10px', marginTop: '40px' }}
             label={type.toUpperCase()}
           />
         </form>
