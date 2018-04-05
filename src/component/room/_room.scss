@@ -5,7 +5,7 @@
 
   h1 {
     padding: $large-pad;
-
+    margin-right: 130px;
     @media only screen and (min-width: 600px) {
       font-size: $font-lg-fixed;
       padding: $medium-pad-fixed;

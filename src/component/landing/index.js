@@ -4,6 +4,9 @@ import { Dialog, RaisedButton } from 'material-ui';
 
 import './_landing.scss';
 import SocketForm from '../socket-form';
+import starsImg from '../../image/stars.png';
+import socketImg from '../../image/socket-io.png';
+import analyticsImg from '../../image/analytics.png';
 
 class Landing extends Component {
   componentWillReceiveProps({ room, status }) {
@@ -43,7 +46,7 @@ class Landing extends Component {
 
         <div className="grid">
           <div className="feature-left">
-            <img src="https://i.imgur.com/wfvLvuq.png" alt="Real Time" />
+            <img src={socketImg} alt="Real Time" />
             <h2>Real-Time</h2>
             <p className="feature-desc">
               Enables bi-directional, event-based communication and 
@@ -51,15 +54,15 @@ class Landing extends Component {
             </p>
           </div>
           <div className="feature-center">
-            <img src="https://i.imgur.com/RLqWOTH.png" alt="Analytics" />
+            <img src={analyticsImg} alt="Analytics" />
             <h2>Analytics</h2>
             <p className="feature-desc">
               Push data to clients and visualize results in real time.
             </p>
           </div>
           <div className="feature-right">
-            <img src="https://i.imgur.com/DwpqLpv.png" alt="Anonymous Voting" />
-            <h2>Anonymous Voting</h2>
+            <img src={starsImg} alt="Anonymity" />
+            <h2>Anonymity</h2>
             <p className="feature-desc">
               Keep track of how many people have responded
               to a poll while keeping votes anonymous.
