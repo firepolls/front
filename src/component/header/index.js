@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 
 import './_header.scss';
@@ -8,12 +9,10 @@ class Header extends Component {
     return (
       <header className="header">
         <div className="container-fluid">
-          <a href="/">
-            <h1 className="logo">
-              <span>F</span>
-              firepolls
-            </h1>
-          </a>
+          <h1 className="logo">
+            <span>F</span>
+            firepolls
+          </h1>
         </div>
         <NavWrapper />
       </header>

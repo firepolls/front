@@ -1,13 +1,13 @@
 <h1 align="center">
-  Firepolls
+  firepolls
   <br>
 </h1>
 
-Firepolls is a polling application that provides fast formative actionable data to users in real time.
+firepolls is a polling application that provides fast formative actionable data to users in real time.
 
 Users can create, join rooms and create polls anonymously. When a user creates a room they can invite other users to join with the room name. Once a room is created the owner can then create polls which are available to other users within the room. If users choose to sign up, they will have access to saved rooms which contain poll results.
 
-Firepolls is a fullstack javascript application.
+firepolls is a fullstack javascript application.
 
 ## Build Status
 
@@ -116,7 +116,7 @@ Firepolls is a fullstack javascript application.
 ## Entity Relationship Model
 
 <h1 align="center">
-  <img src="https://i.imgur.com/RMpKJy2.png" alt="Firepolls" width="960"></a>
+  <img src="https://i.imgur.com/RMpKJy2.png" alt="firepolls" width="960"></a>
 </h1>
 
 

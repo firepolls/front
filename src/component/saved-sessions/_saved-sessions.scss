@@ -1,6 +1,48 @@
-@import '_vars';
+@import '../../style/vars';
+
+.saved-heading {
+  text-align: center;
+  font-size: $font-md-fixed;
+  padding: $small-pad-fixed;
+  font-weight: 600;
+
+  @media only screen and (min-width: 600px) {
+    font-size: $font-lg-fixed;
+    padding: $large-pad;
+    padding-bottom: 0;
+  }
+}
 
 .saved-sessions ul {
   list-style-type: none;
-  padding: 0 2vw 0 2vw;  
+
+  h1 {
+    text-align: center;
+    font-size: $font-sm-fixed;
+    padding: 0 $large-pad-fixed;
+    font-weight: 600;
+
+    @media only screen and (min-width: 600px) {
+      font-size: $font-sm-fixed + 5px;
+    }
+  }
+
+  .room {
+    padding: $large-pad;    
+  }
+
+  .room-li {
+    margin: $medium-pad-fixed;
+    padding: $small-pad;
+  }
+  
+  .room-wrap {
+    margin: 1vw;
+    padding: 2vw;
+  }
+
+  .poll-list{
+    display: flex;
+    flex-direction: column;
+  }
 }

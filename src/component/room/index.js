@@ -9,6 +9,7 @@ import Poll from '../../socket/poll';
 import SocketForm from '../socket-form';
 import { saveRoomAction } from '../../action/savedRooms';
 import { createPollAction, removeRoomAction } from '../../action/room';
+import Loading from '../loading';
 
 class Room extends Component {
   state = {
@@ -87,29 +88,33 @@ class Room extends Component {
     // Seth - Instructions for if the room exists but no polls exist yet
     const ownerInstructionJSX = (
       <Fragment>      
-        <p>Create your first poll above...</p>
+        <h3>Create your first poll above...</h3>
         <p>
-          <strong>Note:</strong> Refreshing the page will close the Room and remove all Voters.
+          <strong>Note:</strong> Refreshing the page will close the room and remove all voters.
         </p>
       </Fragment>);
 
     const voterInstructionJSX = (
       <Fragment>
-        <p>Please wait for the Room Owner to create a poll...</p>
+        <h3>Please wait for the Room Owner to create a poll...</h3>
         <p>
           <strong>Note:</strong> Refreshing the page will remove you from the room.
         </p>
       </Fragment>);
 
-    const instructionText = room && room.owner ? ownerInstructionJSX : voterInstructionJSX;
+    const instructionText = room && room.owner 
+      ? ownerInstructionJSX 
+      : voterInstructionJSX;
 
     const ownerJSX = (
       <Fragment>
-        <RaisedButton 
-          className="close-save-button"
-          onClick={this.toggleModal}
-          label="Close Room" 
-        />
+        <div className="close-button-div">
+          <RaisedButton 
+            className="close-save-button"
+            onClick={this.toggleModal}
+            label="Close Room" 
+          />
+        </div>
         <div className="create-poll-form">
           <SocketForm 
             type="create"
@@ -133,12 +138,11 @@ class Room extends Component {
       <Fragment>
         <h1>{room.roomNameRaw}</h1>
         <section className="info-button-container">
-          <Paper 
-            className="active-voters" 
-            zDepth={1}
+          <div 
+            className="active-voters"
           >
           Active Voters: {room && room.voters > 0 ? <strong>{room.voters}</strong> : 0}
-          </Paper>
+          </div>
           {room.owner ? ownerJSX : voterButtonJSX}
           {room && !room.polls.length ? (
             <Paper
@@ -184,6 +188,7 @@ class Room extends Component {
         title="Would you like to save your session?"
         open={this.state.modalOpen}
         onRequestClose={this.toggleModal}
+        contentStyle={{ textAlign: 'center' }}
       >
         <RaisedButton 
           onClick={this.handleRemoveRoom}
@@ -220,9 +225,10 @@ class Room extends Component {
     );
 
     return (
-      <Fragment>
+      <section className="room">
         { savedRoom ? savedRoomJSX : liveRoomJSX }
-      </Fragment>
+        { /* <Loading /> */ }
+      </section>
     );
   }
 }

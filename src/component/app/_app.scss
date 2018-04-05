@@ -1,32 +1,9 @@
 @import 'vars';
 
 .app {
-  padding: $medium-pad;
-}
-
-.nav-wrapper {
-  position: relative;
-  margin-left: auto;
-  text-align: right;
-  display: grid;
-  grid-template-columns: repeat(10, auto);
-  grid-gap: 10px;
+  padding: $medium-pad-fixed;
 }
 
 .saved-link, .login-logout-button {
-  margin: $small-pad;
-}
-
-.login-logout-button {
-  grid-column: 10 / span 1;
-}
-
-.saved-link {
-  grid-column: 1 / span 1;
-  .saved-button {
-    width: 100%;
-  }
-  @media only screen and (min-width: 600px) {
-  grid-column: 9 / span 1;    
-  }
+  margin: $medium-pad-fixed;
 }

@@ -10,7 +10,7 @@ import spacing from 'material-ui/styles/spacing';
 
 const muiTheme = getMuiTheme({
   spacing,
-  fontFamily: 'Lato, sans-serif',
+  fontFamily: 'Raleway, sans-serif',
   palette: {
     primary1Color: cyan500,
     primary2Color: cyan700,

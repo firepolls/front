@@ -16,7 +16,7 @@ class Landing extends Component {
     return (
       <div className="landing-frag">
         <section className="jumbotron">
-          <h1>Welcome to Firepolls</h1>
+          <h1>Welcome to firepolls</h1>
           <p>Create a room below and invite your friends.</p>
         </section>
         

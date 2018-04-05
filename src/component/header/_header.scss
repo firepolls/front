@@ -2,11 +2,19 @@
 
 .header {
   position: relative;
+  padding-top: $large-fixed-margin;
 
   .header-nav {
-    position: absolute;
-    top: 0;
-    right: 0;
+    width: 100%;
+
+    @media only screen and (min-width: 600px) {
+      position: absolute;
+      top: 25px;
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    padding-top: 0;
   }
 
   .container-fluid {
@@ -18,8 +26,8 @@
       align-items: center;
       flex-wrap: wrap;  
       flex-direction: row;
-      
     }
+
     a {
       text-decoration: none;
     }
@@ -40,6 +48,7 @@
       margin-top: 20px;
       margin-left: 20px;
     }
+
     span {
       display: inline-block;
       margin-right: .5em;
