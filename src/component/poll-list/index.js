@@ -3,6 +3,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './_poll-list.scss';
 import PollItem from '../poll-item';
+import ErrorBoundary from '../error-boundary';
+
 
 class PollList extends Component {
   render() {
@@ -26,11 +28,13 @@ class PollList extends Component {
               transitionEnterTimeout={500}
               transitionLeaveTimeout={500}
             >
-              <PollItem 
-                poll={poll}
-                roomName={roomName}
-                owner={owner}
-              />
+              <ErrorBoundary>
+                <PollItem 
+                  poll={poll}
+                  roomName={roomName}
+                  owner={owner}
+                />
+              </ErrorBoundary>
             </ReactCSSTransitionGroup>
           )
         )}
